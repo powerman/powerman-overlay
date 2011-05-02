@@ -1,0 +1,10 @@
+--- chkwtmp.c
++++ chkwtmp.c
+@@ -21,6 +21,7 @@
+ 
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <unistd.h>
+ #include <string.h>
+ #include <utmp.h>

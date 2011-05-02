@@ -1,0 +1,21 @@
+diff -r c5c62aeb6267 src/Make.cmd
+--- a/src/Make.cmd	Mon Mar 07 16:18:24 2011 +1100
++++ b/src/Make.cmd	Mon Apr 11 18:33:40 2011 +0300
+@@ -21,6 +21,8 @@
+ install: $(QUOTED_GOBIN)/$(TARG)
+ 
+ $(QUOTED_GOBIN)/$(TARG): $(TARG)
++	[ "$(TARG)" = "cgo" ]	&& chpax -m $(TARG)
++	[ "$(TARG)" = "gofmt" ] && chpax -m $(TARG)
+ 	cp -f $(TARG) $(QUOTED_GOBIN)
+ 
+ CLEANFILES+=$(TARG)
+diff -r c5c62aeb6267 src/cmd/gotest/gotest
+--- a/src/cmd/gotest/gotest	Mon Mar 07 16:18:24 2011 +1100
++++ b/src/cmd/gotest/gotest	Mon Apr 11 18:33:40 2011 +0300
+@@ -194,4 +194,5 @@
+ 
+ $GC _testmain.go
+ $GL _testmain.$O
++chpax -m ./$O.out
+ $E ./$O.out "$@"

@@ -1,0 +1,9 @@
+http://code.google.com/p/inferno-os/issues/detail?id=244
+--- man/3/srv.orig	2010-12-11 15:49:54.000000000 +0200
++++ man/3/srv	2010-12-11 15:50:26.000000000 +0200
+@@ -84,5 +84,3 @@
+ .IR plumb (1),
+ .IR wm (1),
+ .IR sys-file2chan (2)
+-.SH BUGS
+-A client with a read or write pending can remain blocked if the server exits before reply.

@@ -1,0 +1,19 @@
+# ChangeLog for net-ftp/twoftpd
+# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/twoftpd/ChangeLog,v 1.4 2007/03/02 19:36:19 bangert Exp $
+
+  02 Mar 2007; Thilo Bangert <bangert@gentoo.org> twoftpd-1.21.ebuild:
+  set build variables correctly
+
+  23 Feb 2007; Thilo Bangert <bangert@gentoo.org> twoftpd-1.21.ebuild:
+  fix ROOT misuse
+
+  12 Jun 2006; Thilo Bangert <bangert@gentoo.org> ChangeLog:
+  fix changelog
+
+*twoftpd-1.21 (14 May 2006)
+
+  14 May 2006; Thilo Bangert <bangert@gentoo.org> ChangeLog:
+  initial import. twoftpd, a new FTP server that strives to 
+  be secure, simple, and efficient.
+

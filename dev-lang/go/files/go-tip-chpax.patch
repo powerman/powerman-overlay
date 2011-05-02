@@ -1,0 +1,26 @@
+diff -r ffa7af487196 src/Make.ccmd
+--- a/src/Make.ccmd	Mon Apr 11 10:28:34 2011 -0400
++++ b/src/Make.ccmd	Mon Apr 11 22:27:00 2011 +0300
+@@ -24,6 +24,9 @@
+ 
+ $(QUOTED_GOBIN)/$(TARG): $(TARG)
+ 	cp $(TARG) "$(GOBIN)"/$(TARG)
++	[ "$(TARG)" != "8l" ] || cp "$(GOBIN)"/$(TARG) "$(GOBIN)"/$(TARG).orig
++	[ "$(TARG)" != "8l" ] || cp wrapper.sh "$(GOBIN)"/$(TARG)
++	[ "$(TARG)" != "8l" ] || chmod +x "$(GOBIN)"/$(TARG)
+ 
+ y.tab.h: $(YFILES)
+ 	bison -y $(HOST_YFLAGS) $(YFILES)
+diff -r ffa7af487196 src/cmd/8l/wrapper.sh
+--- /dev/null	Thu Jan 01 00:00:00 1970 +0000
++++ b/src/cmd/8l/wrapper.sh	Mon Apr 11 22:27:00 2011 +0300
+@@ -0,0 +1,9 @@
++#!/bin/bash
++BIN="8.out"
++for (( i = 1 ; i <= $# ; i++ )); do
++    if [ "x${!i}" = "x-o" ]; then
++        i=$(( i + 1 ))
++        BIN="${!i}"
++    fi
++done
++8l.orig "$@" && /sbin/chpax -m "$BIN"

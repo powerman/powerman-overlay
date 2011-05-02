@@ -1,0 +1,105 @@
+diff -uNr cue2tracks-0.2.11.orig/cue2tracks cue2tracks-0.2.11/cue2tracks
+--- cue2tracks-0.2.11.orig/cue2tracks	2009-06-21 15:13:30.000000000 +0300
++++ cue2tracks-0.2.11/cue2tracks	2010-11-07 19:31:05.000000000 +0200
+@@ -3,6 +3,10 @@
+ 
+ [ ${SHELL} = "/bin/bash" ] || exit "Bash required!"
+ 
++# set CPU_NUMBER to the number of your CPUs. This variable is used by FlaCuda.
++
++CPU_NUMBER=$(grep ^processor /proc/cpuinfo | wc -l)
++
+ # --== ERRORS ==--
+ 
+ chk_error=0
+@@ -37,6 +41,7 @@
+ E_CODEC_MP3_NOT_FOUND=23
+ E_CODEC_OGGd_NOT_FOUND=24
+ E_CODEC_OGGe_NOT_FOUND=25
++E_CODEC_FLACUDA_NOT_FOUND=66
+ 
+ E_UNK_CODEPAGE=26
+ E_CODEPAGE_NOT_SET=27
+@@ -99,6 +104,7 @@
+ codec_OFR=""
+ codec_SHN=""
+ codec_TTA=""
++codec_FLACUDA=""
+ 
+ codec_MP3=""
+ codec_OGGd=""
+@@ -136,6 +142,7 @@
+ codec_OGGe_needed=0
+ codec_M4Ae_needed=0
+ codec_M4Ad_needed=0
++codec_FLACUDA_needed=0
+ 
+ cueFile=""
+ inFile=""
+@@ -255,16 +262,17 @@
+ # function for printing codecs
+ print_codecs() {
+ 	echo -e "\tCodecs may be:\n\
+-\t\twav   : no encode, raw sound wave,\n\
+-\t\tflac  : (default) Free Lossless Audio Codec,\n\
+-\t\tflake : FLAC realisation via FFmpeg (beta),\n\
+-\t\tape   : Monkey's Audio Codec,\n\
+-\t\twv    : WavPack,\n\
+-\t\tofr   : OptimFrog,\n\
+-\t\tshn   : shorten,\n\
+-\t\tmp3   : mpeg 1 layer 3 via lame,\n\
+-\t\togg   : ogg vorbis\n\
+-\t\tm4a   : aac with m4a container,\n\
++\t\twav     : no encode, raw sound wave,\n\
++\t\tflac    : (default) Free Lossless Audio Codec,\n\
++\t\tflake   : FLAC realisation via FFmpeg (beta),\n\
++\t\tape     : Monkey's Audio Codec,\n\
++\t\twv      : WavPack,\n\
++\t\tofr     : OptimFrog,\n\
++\t\tshn     : shorten,\n\
++\t\tmp3     : mpeg 1 layer 3 via lame,\n\
++\t\togg     : ogg vorbis\n\
++\t\tm4a     : aac with m4a container,\n\
++\t\tflacuda : cuda-accelerated flac-encoder,\n\
+ " >&2
+ }
+ 
+@@ -382,6 +390,16 @@
+ 			[ ${outCodecLevel} -eq 2 ] && outCodecParam=" flake -4 - %f"
+ 			codec_OUT="flake"
+ 		;;
++		"flacuda" )
++			codec_FLACUDA_needed=1
++			if [ ${putTags} -eq 1 ]; then tag_FLAC_needed=1; fi
++			outExt="flac"
++			toolCodec="${outExt}"
++			outCodecParam=" flacuda --cpu-threads ${CPU_NUMBER} -8 -o %f -"
++			[ ${outCodecLevel} -eq 1 ] && outCodecParam=" flacuda -1 -o %f -"
++			[ ${outCodecLevel} -eq 2 ] && outCodecParam=" flacuda -4 -o %f -"
++			codec_OUT="flacuda"
++		;;
+ 		"ape" )
+ 			codec_APE_needed=1
+ 			if [ ${putTags} -eq 1 ]; then tag_APE_needed=1; fi
+@@ -650,6 +668,12 @@
+ 		codec_OGGe=`checktool oggenc oggenc`
+ 		[ -n "${codec_OGGe}" ] || return ${E_CODEC_OGGe_NOT_FOUND}
+ 	fi
++
++	if [ ${codec_FLACUDA_needed} -eq 1 ]
++	then
++		codec_FLACUDA=`checktool flacuda flacuda`
++		[ -n "${codec_FLACUDA}" ] || return ${E_CODEC_FLACUDA_NOT_FOUND}
++	fi
+ }
+ 
+ # function for search taging tools
+@@ -1025,7 +1049,7 @@
+ # function for track taging
+ tag_track() {
+ 	case "${outCodec}" in
+-		"flac" | "flake" )
++		"flac" | "flake" | "flacuda" )
+ 			if [ ${onlyTest} -eq 0 ]
+ 			then
+ 				optional=""

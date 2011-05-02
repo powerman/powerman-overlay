@@ -1,0 +1,15 @@
+diff -u -r1.14 runit.c
+--- src/runit.c	21 Nov 2006 15:09:18 -0000	1.14
++++ src/runit.c	3 Jun 2007 10:59:19 -0000
+@@ -157,8 +157,9 @@
+       sig_block(sig_child);
+       sig_block(sig_int);
+       
+-      read(selfpipe[0], &ch, 1);
+-      child =wait_nohang(&wstat);
++      while (read(selfpipe[0], &ch, 1) == 1) {}
++      while ((child =wait_nohang(&wstat)) > 0)
++        if (child == pid) break;
+ 
+       /* reget stderr */
+       if ((ttyfd =open_write("/dev/console")) != -1) {

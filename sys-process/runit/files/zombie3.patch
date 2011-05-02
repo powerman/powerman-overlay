@@ -1,0 +1,47 @@
+diff --git src/runit.c src/runit.c
+index f7d6522..6f0793d 100644
+--- src/runit.c
++++ src/runit.c
+@@ -143,22 +143,28 @@ int main (int argc, const char * const *argv, char * const *envp) {
+     FD_SET(x.fd, &rfds);
+ #endif
+     for (;;) {
+-      int child;
++      int r, child;
+ 
+       sig_unblock(sig_child);
+       sig_unblock(sig_cont);
+       sig_unblock(sig_int);
+ #ifdef IOPAUSE_POLL
+-      poll(&x, 1, -1);
++      r =poll(&x, 1, 5000);
+ #else
+-      select(x.fd +1, &rfds, (fd_set*)0, (fd_set*)0, (struct timeval*)0);
++      r =select(x.fd +1, &rfds, (fd_set*)0, (fd_set*)0, (struct timeval*)0);
+ #endif
+       sig_block(sig_cont);
+       sig_block(sig_child);
+       sig_block(sig_int);
+       
+-      read(selfpipe[0], &ch, 1);
+-      child =wait_nohang(&wstat);
++      while (read(selfpipe[0], &ch, 1) == 1) {}
++      while ((child =wait_nohang(&wstat)) > 0)
++        if (child == pid) break;
++      if (child == -1) {
++        strerr_warn2(WARNING, "wait_nohang, pausing: ", &strerr_sys);
++        sleep(5);
++      }
++      if ((r == 0) && (child != pid)) continue;
+ 
+       /* reget stderr */
+       if ((ttyfd =open_write("/dev/console")) != -1) {
+@@ -194,7 +200,7 @@ int main (int argc, const char * const *argv, char * const *envp) {
+         strerr_warn3(INFO, "leave stage: ", stage[st], 0);
+         break;
+       }
+-      if (child > 0) {
++      if (child != 0) {
+         /* collect terminated children */
+         write(selfpipe[1], "", 1);
+         continue;

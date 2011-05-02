@@ -1,0 +1,4 @@
+PATH=/usr/inferno/Linux/386/bin
+ROOTPATH=/usr/inferno/Linux/386/bin
+EMU="-r/usr/inferno"
+CONFIG_PROTECT="/usr/inferno/keydb /usr/inferno/lib /usr/inferno/services"

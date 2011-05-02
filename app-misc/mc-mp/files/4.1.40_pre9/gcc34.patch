@@ -1,0 +1,12 @@
+diff -uNr mc-4.1.40-pre9.orig/src/cons.handler.c mc-4.1.40-pre9/src/cons.handler.c
+--- mc-4.1.40-pre9.orig/src/cons.handler.c	2003-04-28 12:34:24.000000000 +0300
++++ mc-4.1.40-pre9/src/cons.handler.c	2005-12-09 10:07:30.000000000 +0200
+@@ -205,6 +205,7 @@
+ 	break;
+     default:
+ 	/* Nothing */
++	;
+     }
+ }
+ 
+

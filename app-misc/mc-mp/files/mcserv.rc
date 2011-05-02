@@ -1,0 +1,28 @@
+#!/sbin/runscript
+###
+# description: The Midnight Commander server allows users on remote machines \
+#	       to use the Midnight Commander file manager to manipulate their \
+#	       files on the machine running the server. The server  \
+#              authenticates the user through PAM, which by default requires \
+#              a username/password combination before allowing access.
+
+service_name="mcserv"
+service="/usr/bin/mcserv" 
+
+depend() {
+	need net portmap
+}
+
+start() {
+	ebegin "Starting ${service_name}"
+	start-stop-daemon --start --quiet --exec ${service} -- -d
+	result=$?
+	eend $result
+}
+
+stop() {
+	ebegin "Stopping ${service_name}"
+	start-stop-daemon --stop --quiet --exec ${service}
+	result=$?
+	eend $result
+}

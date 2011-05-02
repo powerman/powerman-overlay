@@ -1,0 +1,20 @@
+--- chkrootkit.orig	2005-01-23 23:29:05.017022840 +0930
++++ chkrootkit	2005-01-23 23:30:07.494524816 +0930
+@@ -1354,7 +1354,7 @@
+ 
+ chk_ls () {
+     STATUS=${NOT_INFECTED}
+-LS_INFECTED_LABEL="/dev/ttyof|/dev/pty[pqrs]|/dev/hdl0|\.tmp/lsfile|/dev/hdcc|/dev/ptyxx|duarawkz|/prof|/dev/tux|/security|file\.h"
++LS_INFECTED_LABEL="/dev/ttyof|/dev/pty[pqrs]|/dev/hdl0|\.tmp/lsfile|/dev/hdcc|/dev/ptyxx|duarawkz|^/prof|/dev/tux|/security|file\.h"
+     CMD=`loc ls ls $pth`
+ 
+     if [ "${EXPERT}" = "t" ]; then
+@@ -1371,7 +1371,7 @@
+ 
+ chk_du () {
+     STATUS=${NOT_INFECTED}
+-    DU_INFECTED_LABEL="/dev/ttyof|/dev/pty[pqrsx]|w0rm|/prof|/dev/tux|file\.h"
++    DU_INFECTED_LABEL="/dev/ttyof|/dev/pty[pqrsx]|w0rm|^/prof|/dev/tux|file\.h"
+     CMD=`loc du du $pth`
+ 
+     if [ "${EXPERT}" = "t" ]; then

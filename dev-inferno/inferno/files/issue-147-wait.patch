@@ -1,0 +1,12 @@
+http://code.google.com/p/inferno-os/issues/detail?id=147
+--- emu/port/devprog.c	2009-02-16 00:13:16.000000000 +0200
++++ emu/port/devprog.c	2008-11-03 10:16:58.000000000 +0200
+@@ -282,7 +282,7 @@
+ 	case Qexception:
+ 		break;
+ 	case Qwait:
+-		c->aux = qopen(1024, Qmsg, nil, nil);
++		c->aux = qopen(65536, Qmsg, nil, nil);
+ 		if(c->aux == nil)
+ 			error(Enomem);
+ 		o->childq = c->aux;

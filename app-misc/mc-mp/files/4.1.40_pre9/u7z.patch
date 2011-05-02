@@ -1,0 +1,215 @@
+diff -Naur ../work/mc-4.1.40-pre9/lib/mc.ext.in mc-4.1.40-pre9/lib/mc.ext.in
+--- ../work/mc-4.1.40-pre9/lib/mc.ext.in	2004-08-27 16:17:35.000000000 +0400
++++ mc-4.1.40-pre9/lib/mc.ext.in	2005-04-05 10:13:09.673449336 +0400
+@@ -152,6 +152,13 @@
+ 	Compile=c++ -O -c %f
+ 	Link=c++ -O -o %d/`basename %f .c` %f
+ 
++# 7zip file archive
++# This must be added before Manual pages Lines to prevent handle 7z archive
++# like man page
++regex/\.(7z|7Z)$
++	View=%view{ascii} 7za l %f 2>/dev/null
++	Open=%cd %p#u7z
++
+ ### Documentation ###
+ 
+ # Texinfo
+diff -Naur ../work/mc-4.1.40-pre9/vfs/extfs/extfs.ini mc-4.1.40-pre9/vfs/extfs/extfs.ini
+--- ../work/mc-4.1.40-pre9/vfs/extfs/extfs.ini	2004-08-30 01:15:20.000000000 +0400
++++ mc-4.1.40-pre9/vfs/extfs/extfs.ini	2005-04-05 10:03:06.553137560 +0400
+@@ -27,3 +27,5 @@
+ apt=
+ # ISO9660 image Virtual FileSystem
+ iso= .iso .ISO
++# 7zip file archive
++u7z=.7z .7Z
+diff -Naur ../work/mc-4.1.40-pre9/vfs/extfs/u7z mc-4.1.40-pre9/vfs/extfs/u7z
+--- ../work/mc-4.1.40-pre9/vfs/extfs/u7z	1970-01-01 03:00:00.000000000 +0300
++++ mc-4.1.40-pre9/vfs/extfs/u7z	2005-03-05 00:03:09.000000000 +0300
+@@ -0,0 +1,156 @@
++#! /bin/sh
++#
++# u7z - 7zip file archive Virtual File System for Midnight Commander ( ftp://ftp.ibiblio.org/pub/Linux/utils/file/managers/mc/ )
++# 
++# Copyright (C) 2004 Sergiy Niskorodov (sgh at ukrpost dot net)
++
++# Written by Sergiy Niskorodov aka SGh
++#
++# beta version 4.14.2 (04 Mar 2005)
++#
++# 7z for linux can be found on http://sourceforge.net/projects/p7zip/
++
++
++# Thanks to urar VFS authors andrey joukov 2:5020/337.13@fidonet.org, 
++# christian.gennerat@alcatel.fr, Andrew V. Samoilov <sav@bcs.zp.ua>
++# I use this script like example
++
++
++# This program is free software; you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation; either version 2 of the License, or
++# (at your option) any later version.
++# 
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++# 
++# You should have received a copy of the GNU General Public License
++# along with this program; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++
++
++SEVENZ=`which 7za`
++
++
++mc7zfs_list ()
++{
++    $SEVENZ l "$1" 2> /dev/null | gawk -v uid=${UID-0} '
++BEGIN { flag=0 }
++ /^-------/ { flag++; if (flag > 1) exit 0; next }
++{
++if (flag == 0) next
++
++year=substr($1, 1, 4)
++month=substr($1, 6, 2)
++day=substr($1, 9, 2)
++date=month "-" day "-" year
++
++time=substr($2, 1, 5)
++
++if (index($3, "D") != 0)
++    attr="drwxr-xr-x"
++else
++if (index($3, ".") != 0)
++    attr="-rw-r--r--"
++
++size=$4
++
++$0=substr($0, 54)
++if (NF > 1)
++    name=$0
++else
++    name=$1
++
++gsub(/\\/, "/", name)
++
++printf "%s   1 %-8d %-8d %8d %s %s %s\n", attr, uid, 0, size, date, time, name
++}'
++}
++
++mc7zfs_copyin ()
++{
++# preserve pwd.
++    pwd=`pwd`
++# Create a directory and copy in it the tmp file with the random name
++    dir="$3".dir
++    mkdir "$dir"
++    cd "$dir"
++    mv "$1" .
++    arname=`basename "$1"`
++    di="${2%/*}"
++# if file is to be written upper in the archive tree, make fake dir
++    if test "$di" != "${2##*/}" ; then
++#	echo asdsad 1>&2
++        mkdir -p "$di" 
++    fi
++#    pwd > /tmp/cdir
++#    echo "$arname $2" > /tmp/ters
++    cp -fp "$3" "$dir/$2"
++#    cp -f "$1" "$3.dir"
++    $SEVENZ a "$arname" "$2" -w >/dev/null 2> /dev/null
++    mv "$arname" "$1"
++    cd $pwd
++    rm -rf "$3.dir"
++}
++
++mc7zfs_copyout ()
++{
++    dir=tmpdir.${RANDOM}
++    mkdir /tmp/"$dir"
++#    echo "$1 $2 $3" > hers
++#	p7zip 0.91 don't understand filename in subdir without "./"
++#	but in top dir it understand only without "./"
++    FLIST=`$SEVENZ l "$1" 2> /dev/null`
++    echo "$FLIST" | grep "[.][/]" > /dev/null 2>&1 && echo "$2" | grep "\/" > /dev/null 2>&1 && EXFNAME=*./"$2" || EXFNAME="$2"
++    EXFN=`basename "$2"`
++    $SEVENZ e -r- "$1" "$EXFNAME" -o/tmp/"$dir" > /dev/null 2> /dev/null
++
++    cat /tmp/"$dir"/"$EXFN" > "$3"
++    rm -rf /tmp/"$dir"
++}
++
++mc7zfs_mkdir ()
++{
++# Function not fully implemented, because 7z cannot keep empty directories
++# preserve pwd.
++    pwd=`pwd`
++# Create a directory and create in it a tmp directory with the good name     
++    dir=tmpdir.${RANDOM}
++    mkdir $dir
++    cd $dir
++    mv "$1" .
++    arname=`basename "$1"`
++    mkdir -p "$2"
++# 7z cannot create an empty directory    
++#    touch "$2"/.emptydir
++    $SEVENZ a -r "$arname" "$2" >/dev/null 2>/dev/null
++#    echo "$1" "$2" >error34
++#    $SEVENZ d ../"$1" "$2/.7zfs" >/dev/null
++    mv "$arname" "$1"
++    cd $pwd
++    rm -rf $dir
++}
++
++mc7zfs_rm ()
++{
++    $SEVENZ l "$1" 2> /dev/null | grep "[.][\\]" > /dev/null 2>&1 && echo "$2" | grep "\/" > /dev/null 2>&1 && EXFNAME=*./"$2" || EXFNAME="$2"
++    $SEVENZ d "$1" "$EXFNAME" >/dev/null 2> /dev/null
++}
++
++umask 077
++
++cmd="$1"
++shift
++
++case "$cmd" in
++  list)    mc7zfs_list    "$@" ;;
++  rm)      mc7zfs_rm      "$@" ;;
++  rmdir)   mc7zfs_rm      "$@" ;;
++  mkdir)   mc7zfs_mkdir   "$@" ;;
++  copyin)  mc7zfs_copyin  "$@" ;;
++  copyout) mc7zfs_copyout "$@" ;;
++  *) exit 1 ;;
++esac
++exit 0
+diff -Naur ../work/mc-4.1.40-pre9/vfs/Makefile.in mc-4.1.40-pre9/vfs/Makefile.in
+--- ../work/mc-4.1.40-pre9/vfs/Makefile.in	2004-08-30 01:20:18.000000000 +0400
++++ mc-4.1.40-pre9/vfs/Makefile.in	2005-04-05 10:10:30.959577512 +0400
+@@ -33,7 +33,7 @@
+ VFSOBJS = $(NONETFILES) @NETFILES@
+ 
+ EXTFSSTUFF = README extfs.ini a cpio deb ftplist lha lslR \
+-	rar rpm zip zoo arfs patchfs mailfs hp48 iso
++	rar rpm zip zoo arfs patchfs mailfs hp48 iso u7z
+ 
+ #
+ # Distribution variables
+@@ -123,6 +123,7 @@
+ 	$(INSTALL_PROGRAM) extfs/mailfs $(DESTDIR)$(libdir)/extfs/mailfs                        
+ 	$(INSTALL_PROGRAM) extfs/audio $(DESTDIR)$(libdir)/extfs/audio
+ 	$(INSTALL_PROGRAM) extfs/patchfs $(DESTDIR)$(libdir)/extfs/patchfs
++	$(INSTALL_PROGRAM) extfs/u7z $(DESTDIR)$(libdir)/extfs/u7z
+ 
+ uninstall:
+ 	-$(RMF) $(DESTDIR)$(libdir)/extfs/rpm
+@@ -136,6 +137,7 @@
+ 	-$(RMF) $(DESTDIR)$(libdir)/extfs/iso
+ 	-$(RMF) $(DESTDIR)$(libdir)/extfs/lslR
+ 	-$(RMF) $(DESTDIR)$(libdir)/extfs/ftplist
++	-$(RMF) $(DESTDIR)$(libdir)/extfs/u7z
+ 	-$(RMF) $(DESTDIR)$(libdir)/extfs/extfs.ini
+ 	-$(RMF) $(DESTDIR)$(libdir)/extfs/README
+ 	-rmdir $(DESTDIR)$(libdir)/extfs
+

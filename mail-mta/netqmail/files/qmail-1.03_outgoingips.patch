@@ -1,0 +1,205 @@
+qmail-1.03_outgoingips.patch by Alberto Brealey-Guzma¡n <beto@rno-consultores.com>
+version 1.0
+
+With this patch qmail-remote is modified to bind to different local ip addresses
+depending on the domain part in the sender argument. The mapping between ip
+addresses and domains is specified in a new control file: control/outgoingips.
+The HELO string will be set to the domain part if there is a match.
+
+Based on outgoingip.patch (http://qmail.org./outgoingip.patch). Let me know if you 
+find it useful.
+
+diff -Nru qmail-1.03.orig/qmail-control.9 qmail-1.03/qmail-control.9
+--- qmail-1.03.orig/qmail-control.9	1998-06-15 04:53:16.000000000 -0600
++++ qmail-1.03/qmail-control.9	2004-09-15 13:44:28.000000000 -0600
+@@ -56,6 +56,7 @@
+ .I localiphost	\fIme	\fRqmail-smtpd
+ .I locals	\fIme	\fRqmail-send
+ .I morercpthosts	\fR(none)	\fRqmail-smtpd
++.I outgoingips	\fR(none)	\fRqmail-remote
+ .I percenthack	\fR(none)	\fRqmail-send
+ .I plusdomain	\fIme	\fRqmail-inject
+ .I qmqpservers	\fR(none)	\fRqmail-qmqpc
+diff -Nru qmail-1.03.orig/qmail-remote.8 qmail-1.03/qmail-remote.8
+--- qmail-1.03.orig/qmail-remote.8	1998-06-15 04:53:16.000000000 -0600
++++ qmail-1.03/qmail-remote.8	2004-09-15 13:44:28.000000000 -0600
+@@ -124,6 +124,23 @@
+ .B qmail-remote
+ refuses to run.
+ .TP 5
++.I outgoingips
++IP addresses to be used on outgoing connections.
++Each line has the form
++.IR fromdomain\fB:\fIlocalip ,
++without any extra spaces.
++If
++.I domain
++matches the domain part in
++.IR sender ,
++.B qmail-remote
++will bind to
++.IR localip 
++when connecting to 
++.IR host .
++If it matches, it will also set the HELO string to the domain part of
++.IR sender .
++.TP 5
+ .I smtproutes
+ Artificial SMTP routes.
+ Each route has the form
+diff -Nru qmail-1.03.orig/qmail-remote.c qmail-1.03/qmail-remote.c
+--- qmail-1.03.orig/qmail-remote.c	1998-06-15 04:53:16.000000000 -0600
++++ qmail-1.03/qmail-remote.c	2004-09-15 13:44:28.000000000 -0600
+@@ -39,6 +39,9 @@
+ static stralloc sauninit = {0};
+ 
+ stralloc helohost = {0};
++stralloc outdomain = {0};
++stralloc outgoingips = {0};
++struct constmap mapoutgoingips;
+ stralloc routes = {0};
+ struct constmap maproutes;
+ stralloc host = {0};
+@@ -47,6 +50,7 @@
+ saa reciplist = {0};
+ 
+ struct ip_address partner;
++struct ip_address outgoingip;
+ 
+ void out(s) char *s; { if (substdio_puts(subfdoutsmall,s) == -1) _exit(0); }
+ void zero() { if (substdio_put(subfdoutsmall,"\0",1) == -1) _exit(0); }
+@@ -56,6 +60,7 @@
+ ch = sa->s[i]; if (ch < 33) ch = '?'; if (ch > 126) ch = '?';
+ if (substdio_put(subfdoutsmall,&ch,1) == -1) _exit(0); } }
+ 
++void temp_noip() { out("Zinvalid ipaddr in control/outgoingips (#4.3.0)\n"); zerodie(); }
+ void temp_nomem() { out("ZOut of memory. (#4.3.0)\n"); zerodie(); }
+ void temp_oserr() { out("Z\
+ System resources temporarily unavailable. (#4.3.0)\n"); zerodie(); }
+@@ -324,6 +329,14 @@
+     case 1:
+       if (!constmap_init(&maproutes,routes.s,routes.len,1)) temp_nomem(); break;
+   }
++  switch(control_readfile(&outgoingips,"control/outgoingips",0)) {
++    case -1:
++      temp_control();
++    case 0:
++      if (!constmap_init(&mapoutgoingips,"",0,1)) temp_nomem(); break;
++    case 1:
++      if (!constmap_init(&mapoutgoingips,outgoingips.s,outgoingips.len,1)) temp_nomem(); break;
++  }
+ }
+ 
+ void main(argc,argv)
+@@ -338,6 +351,7 @@
+   int flagallaliases;
+   int flagalias;
+   char *relayhost;
++  char *localip;
+  
+   sig_pipeignore();
+   if (argc < 4) perm_usage();
+@@ -366,6 +380,22 @@
+ 
+   addrmangle(&sender,argv[2],&flagalias,0);
+  
++  if (!stralloc_copy(&outdomain,&canonhost)) temp_nomem();  /* is there a better way? */
++  localip = 0;
++  for (i = 0;i <= outdomain.len;++i)
++    if ((i == 0) || (i == outdomain.len) || (outdomain.s[i] == '.'))
++      if (localip = constmap(&mapoutgoingips,outdomain.s + i,outdomain.len - i))
++	break;
++  if (localip && !*localip) localip = 0;
++
++  if (localip) {
++    if (!ip_scan(localip,&outgoingip)) temp_noip();
++    if (!stralloc_copy(&helohost,&outdomain)) temp_nomem(); /* could be in control file */
++  }
++  else
++    outgoingip.d[0] = outgoingip.d[1] = outgoingip.d[2] = outgoingip.d[3] = (unsigned long) 0;
++ 
++  
+   if (!saa_readyplus(&reciplist,0)) temp_nomem();
+   if (ipme_init() != 1) temp_oserr();
+  
+@@ -414,7 +444,7 @@
+     smtpfd = socket(AF_INET,SOCK_STREAM,0);
+     if (smtpfd == -1) temp_oserr();
+  
+-    if (timeoutconn(smtpfd,&ip.ix[i].ip,(unsigned int) port,timeoutconnect) == 0) {
++    if (timeoutconn(smtpfd,&ip.ix[i].ip,&outgoingip,(unsigned int) port,timeoutconnect) == 0) {
+       tcpto_err(&ip.ix[i].ip,0);
+       partner = ip.ix[i].ip;
+       smtp(); /* does not return */
+diff -Nru qmail-1.03.orig/qmail-showctl.c qmail-1.03/qmail-showctl.c
+--- qmail-1.03.orig/qmail-showctl.c	1998-06-15 04:53:16.000000000 -0600
++++ qmail-1.03/qmail-showctl.c	2004-09-15 13:44:28.000000000 -0600
+@@ -230,6 +230,7 @@
+   do_str("localiphost",1,"localiphost","Local IP address becomes ");
+   do_lst("locals","Messages for me are delivered locally.","Messages for "," are delivered locally.");
+   do_str("me",0,"undefined! Uh-oh","My name is ");
++  do_lst("outgoingips","No outgoing ip mappings defined.","Map from sender domain part to local ip: ","");
+   do_lst("percenthack","The percent hack is not allowed.","The percent hack is allowed for user%host@",".");
+   do_str("plusdomain",1,"plusdomain","Plus domain name is ");
+   do_lst("qmqpservers","No QMQP servers.","QMQP server: ",".");
+@@ -296,6 +297,7 @@
+     if (str_equal(d->d_name,"timeoutremote")) continue;
+     if (str_equal(d->d_name,"timeoutsmtpd")) continue;
+     if (str_equal(d->d_name,"virtualdomains")) continue;
++    if (str_equal(d->d_name,"outgoingips")) continue;
+     substdio_puts(subfdout,"\n");
+     substdio_puts(subfdout,d->d_name);
+     substdio_puts(subfdout,": I have no idea what this file does.\n");
+diff -Nru qmail-1.03.orig/remoteinfo.c qmail-1.03/remoteinfo.c
+--- qmail-1.03.orig/remoteinfo.c	1998-06-15 04:53:16.000000000 -0600
++++ qmail-1.03/remoteinfo.c	2004-09-15 13:44:28.000000000 -0600
+@@ -44,12 +44,12 @@
+   s = socket(AF_INET,SOCK_STREAM,0);
+   if (s == -1) return 0;
+  
+-  byte_zero(&sin,sizeof(sin));
++/*  byte_zero(&sin,sizeof(sin));
+   sin.sin_family = AF_INET;
+   byte_copy(&sin.sin_addr,4,ipl);
+   sin.sin_port = 0;
+-  if (bind(s,(struct sockaddr *) &sin,sizeof(sin)) == -1) { close(s); return 0; }
+-  if (timeoutconn(s,ipr,113,timeout) == -1) { close(s); return 0; }
++  if (bind(s,(struct sockaddr *) &sin,sizeof(sin)) == -1) { close(s); return 0; } */
++  if (timeoutconn(s,ipr,ipl,113,timeout) == -1) { close(s); return 0; }
+   fcntl(s,F_SETFL,fcntl(s,F_GETFL,0) & ~O_NDELAY);
+  
+   len = 0;
+diff -Nru qmail-1.03.orig/timeoutconn.c qmail-1.03/timeoutconn.c
+--- qmail-1.03.orig/timeoutconn.c	1998-06-15 04:53:16.000000000 -0600
++++ qmail-1.03/timeoutconn.c	2004-09-15 13:44:28.000000000 -0600
+@@ -10,14 +10,16 @@
+ #include "byte.h"
+ #include "timeoutconn.h"
+ 
+-int timeoutconn(s,ip,port,timeout)
++int timeoutconn(s,ip,localip,port,timeout)
+ int s;
+ struct ip_address *ip;
++struct ip_address *localip;
+ unsigned int port;
+ int timeout;
+ {
+   char ch;
+   struct sockaddr_in sin;
++  struct sockaddr_in sin_local;
+   char *x;
+   fd_set wfds;
+   struct timeval tv;
+@@ -30,7 +32,11 @@
+  
+   if (ndelay_on(s) == -1) return -1;
+  
+-  /* XXX: could bind s */
++  byte_zero(&sin_local,sizeof(sin_local));
++  byte_copy(&sin_local.sin_addr,4,localip);
++  sin_local.sin_family = AF_INET;
++
++  if (bind(s,(struct sockaddr *) &sin_local,sizeof(sin_local)) == -1) return -1;
+  
+   if (connect(s,(struct sockaddr *) &sin,sizeof(sin)) == 0) {
+     ndelay_off(s);

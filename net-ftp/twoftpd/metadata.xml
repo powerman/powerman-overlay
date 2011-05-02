@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>bangert@gentoo.org</email>
+  <name>Thilo Bangert</name>
+</maintainer>
+<longdescription lang="en">This is twoftpd, a new FTP server that strives to be secure,
+simple, and efficient.  None of the commands can cause execution of other programs,
+and the normal model of execution does a chroot to the logged in user's
+directory immediately after authentication.</longdescription>
+</pkgmetadata>

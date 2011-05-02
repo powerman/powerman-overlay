@@ -1,0 +1,24 @@
+Respect LDFLAGS
+
+http://bugs.gentoo.org/show_bug.cgi?id=331129
+
+--- js/src/Makefile.ref
++++ js/src/Makefile.ref
+@@ -338,7 +338,7 @@
+ 	link.exe -out:"$@" $(EXE_LINK_FLAGS) $^
+ else
+ $(PROGRAM): $(PROG_OBJS) $(LIBRARY)
+-	$(CC) -o $@ $(CFLAGS) $(PROG_OBJS) $(LIBRARY) $(LDFLAGS) $(OTHER_LIBS) \
++	$(CC) $(HOST_LDFLAGS) -o $@ $(CFLAGS) $(PROG_OBJS) $(LIBRARY) $(LDFLAGS) $(OTHER_LIBS) \
+ 	    $(PROG_LIBS)
+ endif
+ 
+@@ -355,7 +355,7 @@
+ 	$(OBJDIR)/jscpucfg > $@
+ 
+ $(OBJDIR)/jscpucfg: $(OBJDIR)/jscpucfg.o
+-	$(CC) -o $@ $(OBJDIR)/jscpucfg.o
++	$(CC) $(HOST_LDFLAGS) -o $@ $(OBJDIR)/jscpucfg.o
+ 
+ # Add to TARGETS for clobber rule
+ TARGETS += $(OBJDIR)/jsautocfg.h $(OBJDIR)/jscpucfg \
