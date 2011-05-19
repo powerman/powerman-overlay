@@ -14,7 +14,7 @@ SRC_URI="https://github.com/downloads/poelzi/${PN}/${P}.tar.gz"
 
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 
 IUSE="doc qt4"
 
