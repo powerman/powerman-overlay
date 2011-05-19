@@ -12,7 +12,7 @@ SRC_URI="http://git.alpinelinux.org/cgit/luaposix.git/snapshot/${P}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND=">=dev-lang/lua-5.1"
