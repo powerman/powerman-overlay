@@ -1,0 +1,14 @@
+--- emu/port/devfs-posix.c.orig	2011-08-20 13:56:57.000000000 +0300
++++ emu/port/devfs-posix.c	2011-08-20 14:01:48.000000000 +0300
+@@ -263,6 +263,11 @@
+ 	if(connect(fd, (struct sockaddr*)&su, sizeof su) >= 0)
+ 		return fd;
+ 	close(fd);
++	if((fd = socket(AF_UNIX, SOCK_DGRAM, 0)) < 0)
++		return -1;
++	if(connect(fd, (struct sockaddr*)&su, sizeof su) >= 0)
++		return fd;
++	close(fd);
+ 	return -1;
+ }		
+ 
