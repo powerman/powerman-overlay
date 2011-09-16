@@ -30,7 +30,7 @@ RDEPEND=">=app-text/docbook-xsl-stylesheets-1.75
 		dev-libs/libxslt
 		graphviz? ( media-gfx/graphviz )
 		app-text/docbook-xml-dtd:4.5
-		highlight? ( dev-util/source-highlight )
+		highlight? ( || ( dev-util/source-highlight dev-python/pygments ) )
 "
 DEPEND="test? ( dev-util/source-highlight
 			media-sound/lilypond
