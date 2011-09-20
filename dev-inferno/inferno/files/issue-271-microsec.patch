@@ -1,0 +1,30 @@
+diff -uNr old/module/sys.m new/module/sys.m
+--- old/module/sys.m	2011-08-26 17:07:24.000000000 +0300
++++ new/module/sys.m	2011-08-26 17:10:01.000000000 +0300
+@@ -137,6 +137,7 @@
+ 	iounit:		fn(fd: ref FD): int;
+ 	listen:		fn(c: Connection): (int, Connection);
+ 	millisec:	fn(): int;
++	microsec:	fn(): big;
+ 	mount:		fn(fd: ref FD, afd: ref FD, on: string, flags: int, spec: string): int;
+ 	open:		fn(s: string, mode: int): ref FD;
+ 	pctl:		fn(flags: int, movefd: list of int): int;
+diff -uNr old/emu/port/inferno.c new/emu/port/inferno.c
+--- old/emu/port/inferno.c	2011-08-26 17:09:25.000000000 +0300
++++ new/emu/port/inferno.c	2011-08-31 23:34:20.000000000 +0300
+@@ -127,6 +127,15 @@
+ }
+ 
+ void
++Sys_microsec(void *fp)
++{
++	F_Sys_microsec *f;
++
++	f = fp;
++	*f->ret = osusectime();
++}
++
++void
+ Sys_open(void *fp)
+ {
+ 	int fd;

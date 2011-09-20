@@ -1,0 +1,57 @@
+diff -uNr old/emu/port/alloc.c new/emu/port/alloc.c
+--- old/emu/port/alloc.c	2011-09-20 21:54:34.000000000 +0300
++++ new/emu/port/alloc.c	2011-09-20 21:54:40.000000000 +0300
+@@ -92,6 +92,18 @@
+ #define	ML(v, sz, pc)	if(CKLEAK && ckleak && v){ if(sz) fprint(2, "%lux %lux %lux\n", (ulong)v, (ulong)sz, (ulong)pc); else fprint(2, "%lux\n", (ulong)v); }
+ 
+ int
++heapneedgc(ulong osize)
++{
++	return heapmem->cursize-osize > heapmem->chunk/8;
++}
++
++ulong
++heapcursize(void)
++{
++	return heapmem->cursize;
++}
++
++int
+ memusehigh(void)
+ {
+ 	return 	mainmem->cursize > mainmem->ressize ||
+diff -uNr old/emu/port/dis.c new/emu/port/dis.c
+--- old/emu/port/dis.c	2011-09-20 21:54:47.000000000 +0300
++++ new/emu/port/dis.c	2011-09-20 21:54:55.000000000 +0300
+@@ -37,6 +37,11 @@
+ static void	addgrp(Prog*, Prog*);
+ void	printgrp(Prog*, char*);
+ 
++extern ulong heapcursize(void);
++extern int heapneedgc(ulong v);
++static ulong prevheapsize;
++static vlong prevgcpass;
++
+ static Prog**
+ pidlook(int pid)
+ {
+@@ -89,7 +94,7 @@
+ {
+ 	int done;
+ 
+-	if(tready(nil))
++	if(tready(nil) || !heapneedgc(prevheapsize) && osusectime()-prevgcpass < 10*1000*1000)
+ 		return;
+ 
+ 	gcidle++;
+@@ -107,6 +112,10 @@
+ 		if(((ulong)gcidlepass&0xFF) == 0)
+ 			osyield();
+ 	}
++	if(gcruns()) {
++		prevheapsize = heapcursize();
++		prevgcpass = osusectime();
++	}
+ 	up->type = Interp;
+ 	delrunq(up->prog);
+ }
