@@ -285,6 +285,7 @@ src_prepare() {
 
 		epatch "${FILESDIR}"/256.35-unified-arch.patch
 		epatch "${FILESDIR}"/nvidia-2.6.38.diff
+		epatch "${FILESDIR}"/nvidia-drivers-275.19-pax-const.patch
 
 		# If you set this then it's your own fault when stuff breaks :)
 		use custom-cflags && sed -i "s:-O:${CFLAGS}:" "${NV_SRC}"/Makefile.*
