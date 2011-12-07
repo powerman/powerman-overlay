@@ -15,11 +15,11 @@ SLOT="0"
 KEYWORDS="alpha amd64 amd64-fbsd arm hppa ia64 m68k mips ppc ppc64 s390 sh sparc sparc-fbsd x86 x86-fbsd   ppc-aix x86-freebsd x64-freebsd sparc64-freebsd hppa-hpux ia64-hpux x86-interix mips-irix amd64-linux arm-linux ia64-linux x86-linux ppc-macos x86-macos x64-macos m68k-mint x86-netbsd ppc-openbsd x86-openbsd x64-openbsd sparc-solaris sparc64-solaris x64-solaris x86-solaris x86-winnt x86-cygwin"
 IUSE=""
 
-DEPEND="perl-gcpan/Filter-CommaEquals
+DEPEND="dev-perl/Filter-CommaEquals
 	dev-perl/Test-Exception
 	dev-perl/URI
-	perl-gcpan/Test-MockModule
+	dev-perl/Test-MockModule
 	dev-perl/JSON-XS
-	perl-gcpan/Perl6-Export-Attrs
+	dev-perl/Perl6-Export-Attrs
 	dev-perl/HTML-Parser
 	dev-lang/perl"

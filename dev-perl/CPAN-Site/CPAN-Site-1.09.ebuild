@@ -19,5 +19,5 @@ DEPEND="dev-perl/Archive-Zip
 	dev-perl/CPAN-Checksums
 	>=dev-perl/Test-Pod-1.450.0
 	dev-perl/HTTP-Date
-	>=perl-gcpan/Log-Report-0.94
+	>=dev-perl/Log-Report-0.94
 	dev-lang/perl"

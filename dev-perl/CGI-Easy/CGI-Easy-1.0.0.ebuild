@@ -18,5 +18,5 @@ IUSE=""
 DEPEND="dev-perl/Test-Exception
 	dev-perl/URI
 	dev-perl/Data-UUID
-	perl-gcpan/Perl6-Export-Attrs
+	dev-perl/Perl6-Export-Attrs
 	dev-lang/perl"

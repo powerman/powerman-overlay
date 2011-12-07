@@ -16,12 +16,12 @@ KEYWORDS="alpha amd64 amd64-fbsd arm hppa ia64 m68k mips ppc ppc64 s390 sh sparc
 IUSE=""
 
 DEPEND="dev-perl/Capture-Tiny
-	>=perl-gcpan/IO-CaptureOutput-1.1102
+	>=dev-perl/IO-CaptureOutput-1.1102
 	dev-perl/Probe-Perl
-	>=perl-gcpan/Test-Reporter-1.58
+	>=dev-perl/Test-Reporter-1.58
 	dev-perl/File-HomeDir
 	dev-perl/File-pushd
-	>=perl-gcpan/Devel-Autoflush-0.05
+	>=dev-perl/Devel-Autoflush-0.05
 	>=dev-perl/File-Copy-Recursive-0.380.0
 	>=dev-perl/Config-Tiny-2.140.0
 	dev-lang/perl"

@@ -16,6 +16,6 @@ KEYWORDS="alpha amd64 amd64-fbsd arm hppa ia64 m68k mips ppc ppc64 s390 sh sparc
 IUSE=""
 
 DEPEND="dev-perl/Test-Exception
-	perl-gcpan/EV-ADNS
+	dev-perl/EV-ADNS
 	dev-perl/EV
 	dev-lang/perl"

@@ -23,6 +23,6 @@ DEPEND="dev-perl/Archive-Zip
 	dev-perl/File-Which
 	dev-perl/Expect
 	dev-perl/Term-ReadLine-Perl
-	perl-gcpan/CPAN-Reporter
+	dev-perl/CPAN-Reporter
 	dev-perl/YAML-Syck
 	dev-lang/perl"
