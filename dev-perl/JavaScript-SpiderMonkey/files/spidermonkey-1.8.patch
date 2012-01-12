@@ -1,0 +1,12 @@
+diff -uNr JavaScript-SpiderMonkey-0.21.orig/SpiderMonkey.xs JavaScript-SpiderMonkey-0.21/SpiderMonkey.xs
+--- JavaScript-SpiderMonkey-0.21.orig/SpiderMonkey.xs	2010-05-29 09:49:31.000000000 +0300
++++ JavaScript-SpiderMonkey-0.21/SpiderMonkey.xs	2012-01-12 22:53:28.000000000 +0200
+@@ -718,7 +718,7 @@
+         PJS_Context* pcx = (PJS_Context *) JS_GetContextPrivate(cx);
+         pcx->branch_count = 0;
+         pcx->branch_max = max_branch_operations;
+-        JS_SetBranchCallback(cx, BranchHandler);
++        JS_SetOperationCallback(cx, BranchHandler);
+     }
+     OUTPUT:
+ 
