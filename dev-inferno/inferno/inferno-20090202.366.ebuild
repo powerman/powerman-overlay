@@ -10,7 +10,7 @@ SRC_URI="http://inferno-os-downloads.googlecode.com/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT=0
-KEYWORDS="~x86"
+KEYWORDS="~x86 ~amd64"
 IUSE="hardened X doc source"
 
 RDEPEND=""

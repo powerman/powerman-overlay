@@ -10,7 +10,7 @@ HOMEPAGE="http://www.pcm.ru/support/download/soft/"
 SRC_URI="http://www.pcm.ru/data/download/public/soft/upsmon_for_linux.rar"
 
 SLOT="0"
-KEYWORDS="x86"
+KEYWORDS="x86 amd64"
 IUSE=""
 
 RDEPEND=">=virtual/jre-1.6"

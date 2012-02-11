@@ -8,7 +8,7 @@ SRC_URI="http://powerman.name/download/greysmtpd/${P}.tgz"
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="x86"
+KEYWORDS="x86 amd64"
 IUSE=""
 
 DEPEND="virtual/qmail net-libs/adns"

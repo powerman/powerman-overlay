@@ -8,7 +8,7 @@ SRC_URI="http://powerman.name/download/deliver/${P}.tgz"
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="x86"
+KEYWORDS="x86 amd64"
 IUSE=""
 
 DEPEND=""
