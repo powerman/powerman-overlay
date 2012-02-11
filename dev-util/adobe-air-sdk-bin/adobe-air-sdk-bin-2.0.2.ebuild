@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils fdo-mime multilib
+inherit eutils fdo-mime multilib pax-utils
 
 DESCRIPTION="Adobe AIR SDK"
 HOMEPAGE="http://www.adobe.com/products/air/tools/sdk/"
@@ -60,6 +60,8 @@ src_install() {
 
 	insinto /usr/share/mime/packages
 	doins "${FILESDIR}"/${PN}.xml || die "doins failed"
+
+	pax-mark m "${D}/${sdkdir}/bin/adl"
 }
 
 pkg_postinst() {
