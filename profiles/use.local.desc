@@ -1,2 +1,3 @@
-dev-inferno/inferno:re2 - Enable support for libre2.
-mail-mta/netqmail:outgoingips - Enable control of outgoing IP.
+dev-inferno/inferno:re2 - Enable support for libre2
+mail-mta/netqmail:outgoingips - Enable control of outgoing IP
+dev-libs/libre2:32bit - For amd64-multilib, installs the 32-bit library
