@@ -11,7 +11,7 @@ SRC_URI="http://www.vitanuova.com/dist/4e/inferno-20100120.tgz
 
 LICENSE="GPL-2"
 SLOT=0
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~x86"
 IUSE="hardened X doc source"
 
 RDEPEND=""
