@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/vmware-modules/vmware-modules-264.1.ebuild,v 1.1 2011/12/03 20:04:15 vadimk Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/vmware-modules/vmware-modules-264.1.ebuild,v 1.2 2012/01/06 14:30:38 vadimk Exp $
 
 EAPI="2"
 
@@ -63,10 +63,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${PV_MAJOR}-makefile-include.patch"
 	epatch "${FILESDIR}/${PV_MAJOR}-jobserver.patch"
 	epatch "${FILESDIR}/${PV_MAJOR}-netdevice.patch"
+	epatch "${FILESDIR}/${PV_MAJOR}-3.2.0.patch"
 	epatch "${FILESDIR}/vmci-driver.patch"
 	epatch "${FILESDIR}/vmmon-driver.patch"
 	epatch "${FILESDIR}/vmnet-driver.patch"
-	epatch "${FILESDIR}/vmware3.2.0.patch"
 }
 
 src_install() {
