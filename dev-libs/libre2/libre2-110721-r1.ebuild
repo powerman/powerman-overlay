@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit flag-o-matic eutils toolchain-funcs multilib
+inherit flag-o-matic eutils
 
 DESCRIPTION="an efficient, principled regular expression library"
 HOMEPAGE="http://code.google.com/p/re2/"
