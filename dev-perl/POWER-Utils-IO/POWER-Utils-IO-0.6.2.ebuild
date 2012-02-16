@@ -20,4 +20,5 @@ DEPEND="dev-perl/Perl6-Export-Attrs
 	dev-perl/Data-Alias
 	dev-perl/EV
 	dev-perl/POWER-Utils
+	virtual/perl-Module-Build
 	dev-lang/perl"
