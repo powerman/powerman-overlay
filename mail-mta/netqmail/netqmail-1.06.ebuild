@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/netqmail/netqmail-1.06.ebuild,v 1.12 2011/03/28 09:32:33 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/netqmail/netqmail-1.06.ebuild,v 1.13 2012/02/12 20:57:22 vapier Exp $
 
 GENQMAIL_PV=20080406
 QMAIL_SPP_PV=0.42
@@ -123,9 +123,6 @@ pkg_postinst() {
 	qmail_queue_setup
 	qmail_rootmail_fixup
 	qmail_tcprules_build
-
-	# for good measure
-	env-update
 
 	qmail_config_notice
 	qmail_supervise_config_notice
