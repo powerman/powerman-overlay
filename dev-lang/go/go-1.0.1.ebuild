@@ -19,13 +19,15 @@ HOMEPAGE="http://www.golang.org"
 
 LICENSE="BSD-2"
 SLOT="0"
-IUSE="hardened bash-completion emacs vim-syntax zsh-completion"
+IUSE="pax_kernel bash-completion emacs vim-syntax zsh-completion"
 
-DEPEND="sys-apps/ed"
+DEPEND="sys-apps/ed
+    pax_kernel? ( sys-apps/paxctl )"
 RDEPEND="bash-completion? ( app-shells/bash-completion )
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-editors/vim )
-	zsh-completion? ( app-shells/zsh-completion )"
+	zsh-completion? ( app-shells/zsh-completion )
+	pax_kernel? ( sys-apps/paxctl )"
 
 	# The go language stores binary data for packages in *.a files.
 	# These are _NOT_ libraries, and should not be stripped.
@@ -44,7 +46,7 @@ export_settings()
 
 src_compile()
 {
-	use hardened && epatch "${FILESDIR}"/go-hardened.patch
+	use pax_kernel && epatch "${FILESDIR}"/go-hardened.patch
 
 	export_settings
 	cd src
