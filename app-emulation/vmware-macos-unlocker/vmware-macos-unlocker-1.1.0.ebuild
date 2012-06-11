@@ -31,5 +31,9 @@ src_prepare() {
 src_install() {
 	mv Unlocker.Linux vmware-macos-unlocker
 	dobin vmware-macos-unlocker
+
+	cd ../tools
+	insinto /opt/vmware/lib/vmware/isoimages/
+    doins darwin.iso*
 }
 
