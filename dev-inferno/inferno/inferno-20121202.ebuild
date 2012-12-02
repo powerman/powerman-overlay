@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=4
 inherit flag-o-matic eutils
 
 DESCRIPTION="OS Inferno Fourth Edition"
@@ -86,8 +87,6 @@ src_compile() {
 }
 
 src_install() {
-	export PORTAGE_COMPRESS=""	# don't bzip man pages
-
 	if ! use X ; then
 		cp "${S}"/Linux/386/bin/emu{-g,}
 	fi
@@ -118,5 +117,8 @@ src_install() {
 
 	# Setup the path environment
 	doenvd "${FILESDIR}/20inferno"
+
+    # We don't compress to keep support for Inferno's man
+    docompress -x /usr/inferno/man
 }
 
