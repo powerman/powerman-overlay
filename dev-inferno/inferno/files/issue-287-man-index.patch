@@ -1,0 +1,244 @@
+diff -uNr /man/1/INDEX /man/1/INDEX
+--- /man/1/INDEX	2012-06-13 23:09:00.000000000 +0300
++++ /man/1/INDEX	2012-12-02 18:33:02.774122832 +0200
+@@ -112,11 +112,10 @@
+ man man
+ man2html man
+ man2txt man
++sig man
+ wm/man man
+ mash mash
+-mash mash-make
+ mash-make mash-make
+-mash mash-tk
+ mash-tk mash-tk
+ ack math-misc
+ crackerbarrel math-misc
+@@ -171,10 +170,9 @@
+ unload sh
+ unquote sh
+ whatis sh
+- sh-alphabet
+-alphabet sh-alphabet sh-alphabet
++alphabet sh-alphabet
+ autoconvert sh-alphabet
+-autodeclare
++autodeclare sh-alphabet
+ declare sh-alphabet
+ define sh-alphabet
+ import sh-alphabet
+@@ -229,6 +227,7 @@
+ parse sh-std
+ pctl sh-std
+ pid sh-std
++pipe sh-std
+ raise sh-std
+ rescue sh-std
+ sh-std sh-std
+@@ -266,6 +265,7 @@
+ join spree-join
+ spree-join spree-join
+ stack stack
++stackv stack
+ stream stream
+ strings strings
+ md5sum sum
+diff -uNr /man/2/INDEX /man/2/INDEX
+--- /man/2/INDEX	2012-06-13 23:09:00.000000000 +0300
++++ /man/2/INDEX	2012-12-02 18:21:01.275113379 +0200
+@@ -1,4 +1,15 @@
+ intro 0intro
++9p-ninep 9p-ninep
++dir2text 9p-ninep
++istmsg 9p-ninep
++ninep 9p-ninep
++packdir 9p-ninep
++packdirsize 9p-ninep
++qid2text 9p-ninep
++readmsg 9p-ninep
++rmsg 9p-ninep
++tmsg 9p-ninep
++unpackdir 9p-ninep
+ alphabet alphabet-intro
+ alphabet-intro alphabet-intro
+ arg arg
+@@ -22,6 +33,52 @@
+ convcs convcs
+ stob convcs
+ crc crc
++crypt crypt-0intro
++crypt-intro crypt-0intro
++intro crypt-0intro
++aescbc crypt-crypt
++aessetup crypt-crypt
++crypt crypt-crypt
++crypt-crypt crypt-crypt
++descbc crypt-crypt
++desecb crypt-crypt
++dessetup crypt-crypt
++ideacbc crypt-crypt
++ideaecb crypt-crypt
++ideasetup crypt-crypt
++crypt crypt-dsagen
++crypt-dsagen crypt-dsagen
++dsagen crypt-dsagen
++eggen crypt-dsagen
++rsadecrypt crypt-dsagen
++rsaencrypt crypt-dsagen
++rsafill crypt-dsagen
++rsagen crypt-dsagen
++crypt crypt-gensk
++crypt-gensk crypt-gensk
++dhparams crypt-gensk
++gensk crypt-gensk
++genskfrompk crypt-gensk
++sign crypt-gensk
++sktopk crypt-gensk
++verify crypt-gensk
++crypt crypt-rc4
++crypt-rc4 crypt-rc4
++rc4 crypt-rc4
++rc4back crypt-rc4
++rc4setup crypt-rc4
++rc4skip crypt-rc4
++crypt crypt-sha1
++crypt-sha1 crypt-sha1
++hmac_md5 crypt-sha1
++hmac_sha1 crypt-sha1
++md4 crypt-sha1
++md5 crypt-sha1
++sha1 crypt-sha1
++sha224 crypt-sha1
++sha256 crypt-sha1
++sha384 crypt-sha1
++sha512 crypt-sha1
+ csv csv
+ daytime daytime
+ filet daytime
+@@ -99,14 +156,13 @@
+ copyattrs factotum
+ delattr factotum
+ factotum factotum
+-factotum factotum factotum
+ findattr factotum
+ findattrval factotum
+ getuserpassd factotum
+ mount factotum
+ open factotum
+ parseattrs factotum
+-proxy
++proxy factotum
+ publicattrs factotum
+ respond factotum
+ response factotum
+@@ -142,13 +198,23 @@
+ readxbitmap imagefile
+ remap imagefile
+ ip ip
++ipint ipints
++ipints ipints
++dsaprimes ipints-genprime
++genprime ipints-genprime
++gensafeprime ipints-genprime
++genstrongprime ipints-genprime
++ipints ipints-genprime
++ipints-genprime ipints-genprime
++probably_prime ipints-genprime
+ ir ir
+ itslib itslib
+ json json
+ jvalue json
+ readjson json
+ writejson json
+-keyring intro keyring-0intro
++intro keyring-0intro
++keyring keyring-0intro
+ keyring-intro keyring-0intro
+ auth keyring-auth
+ keyring keyring-auth
+@@ -217,6 +283,7 @@
+ concat lists
+ delete lists
+ filter lists
++find lists
+ ismember lists
+ last lists
+ lists lists
+@@ -271,7 +338,6 @@
+ import_real32 math-export
+ math math-export
+ math-export math-export
+-math math-fp
+ math-fp math-fp
+ dot math-linalg
+ gemm math-linalg
+@@ -335,6 +401,7 @@
+ prof prof
+ profile prof
+ pslib pslib
++rabin rabin
+ rand rand
+ readdir readdir
+ regex regex
+@@ -352,6 +419,18 @@
+ server security-auth
+ login security-login
+ security-login security-login
++certtostr security-oldauth
++oldauth security-oldauth
++pktostr security-oldauth
++readauthinfo security-oldauth
++security-oldauth security-oldauth
++sign security-oldauth
++sktostr security-oldauth
++strtocert security-oldauth
++strtopk security-oldauth
++strtosk security-oldauth
++verify security-oldauth
++writeauthinfo security-oldauth
+ random security-random
+ randombuf security-random
+ randomint security-random
+@@ -396,10 +475,9 @@
+ quoted string
+ splitl string
+ splitr string
+-splitstrl
++splitstrl string
+ splitstrr string
+ string string
+-string string string
+ take string
+ tobig string
+ toint string
+@@ -509,6 +587,7 @@
+ namechan tk
+ pointer tk
+ quote tk
++rect tk
+ tk tk
+ toplevel tk
+ handler tkclient
+@@ -517,9 +596,8 @@
+ settitle tkclient
+ snarfget tkclient
+ snarfput tkclient
+-startinput
++startinput tkclient
+ tkclient tkclient
+-tkclient tkclient tkclient
+ toplevel tkclient
+ wmctl tkclient
+ mkdictname translate
+@@ -533,11 +611,8 @@
+ venti venti
+ virgil virgil
+ volume volume
+-w3c w3c-css
+ w3c-css w3c-css
+-w3c w3c-uris
+ w3c-uris w3c-uris
+-w3c w3c-xpointers
+ w3c-xpointers w3c-xpointers
+ wait wait
+ makedrawcontext wmclient
