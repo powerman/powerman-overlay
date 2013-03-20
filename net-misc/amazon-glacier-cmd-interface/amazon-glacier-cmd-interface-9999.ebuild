@@ -26,6 +26,6 @@ RDEPEND="
 		>=dev-python/boto-2.6.0
 		dev-python/python-dateutil
 		dev-python/pytz
-		dev-python/argparse
+		virtual/python-argparse
 		dev-python/prettytable
 		"
