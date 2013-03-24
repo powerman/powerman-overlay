@@ -11,7 +11,7 @@ EHG_REPO_URI="https://bitbucket.org/powerman/vcprompt"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 RDEPEND=""
