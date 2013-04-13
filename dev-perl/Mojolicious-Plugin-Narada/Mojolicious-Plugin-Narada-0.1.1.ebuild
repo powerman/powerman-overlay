@@ -5,7 +5,7 @@
 EAPI="2"
 
 MODULE_AUTHOR="POWERMAN"
-MODULE_VERSION="v0.1.0"
+MODULE_VERSION="v0.1.1"
 
 inherit perl-module
 
