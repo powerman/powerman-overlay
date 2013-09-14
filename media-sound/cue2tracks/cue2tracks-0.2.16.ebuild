@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=3
+
 inherit eutils
 
 DESCRIPTION="Bash script for split audio CD image files with cue sheet to tracks and write tags."
