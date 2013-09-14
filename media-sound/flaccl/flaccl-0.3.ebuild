@@ -4,9 +4,9 @@
 
 EAPI=3
 
-DESCRIPTION="CUDA-enabled FLAC encoder"
-HOMEPAGE="http://www.cuetools.net/doku.php/flacuda"
-SRC_URI="http://www.cuetools.net/install/FlaCuda09Linux.rar"
+DESCRIPTION="CUDA-enabled FLAC encoder (former FlaCuda)"
+HOMEPAGE="http://www.cuetools.net/wiki/FLACCL"
+SRC_URI="http://www.cuetools.net/install/flaccl03.rar"
 
 LICENSE="LGPL"
 SLOT="0"
@@ -21,7 +21,9 @@ S="${WORKDIR}"
 
 src_install() {
 	dobin "${FILESDIR}/flacuda"
-	dobin CUETools.FlaCuda.exe
+	dobin CUETools.FLACCL.cmd.exe
 	dolib *.dll
+	dolib flac.cl
+	dosym libOpenCL.so /usr/lib/libopencl.so
 }
 
