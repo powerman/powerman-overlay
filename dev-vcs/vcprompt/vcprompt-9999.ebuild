@@ -17,6 +17,8 @@ IUSE=""
 RDEPEND=""
 
 src_install() {
-	dobin "${PN}"*
+	dobin "${PN}"
+	dobin "${PN}"-hgst
+	doman "${PN}".1
 	dodoc README.txt
 }
