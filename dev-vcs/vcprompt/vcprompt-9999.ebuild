@@ -3,7 +3,7 @@
 
 EAPI="4"
 
-inherit mercurial
+inherit mercurial autotools
 
 DESCRIPTION="show info about the current working directory for various VCS for PS1"
 HOMEPAGE="https://bitbucket.org/powerman/vcprompt"
@@ -15,6 +15,10 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 RDEPEND=""
+
+src_prepare() {
+	eautoconf
+}
 
 src_install() {
 	dobin "${PN}"
