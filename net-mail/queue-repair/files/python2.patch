@@ -1,0 +1,9 @@
+diff -uNr queue-repair-0.9.0.orig/queue_repair.py queue-repair-0.9.0/queue_repair.py
+--- queue-repair-0.9.0.orig/queue_repair.py	2003-10-22 18:54:13.000000000 +0300
++++ queue-repair-0.9.0/queue_repair.py	2014-09-20 13:00:13.195347116 +0300
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python2
+ '''queue_repair.py - qmail tools in Python.
+ Copyright (C) 2001 Charles Cazabon <pqt @ discworld.dyndns.org>
+ 
