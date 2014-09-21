@@ -1,7 +1,7 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-EAPI=4
+EAPI=5
 MODULE_AUTHOR=ZEFRAM
 MODULE_VERSION=1.18
 inherit perl-module
