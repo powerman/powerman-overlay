@@ -14,7 +14,7 @@ KEYWORDS="x86 amd64"
 IUSE=""
 
 RDEPEND=">=virtual/jre-1.6"
-DEPEND=""
+DEPEND="app-arch/rar"
 
 S="${WORKDIR}"
 
