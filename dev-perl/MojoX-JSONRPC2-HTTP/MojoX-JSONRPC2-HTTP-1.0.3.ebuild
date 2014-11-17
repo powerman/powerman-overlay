@@ -20,3 +20,5 @@ DEPEND="dev-perl/Test-Exception
 	dev-perl/JSON-XS
 	dev-perl/JSON-RPC2
 	dev-lang/perl"
+
+SRC_TEST="do"
