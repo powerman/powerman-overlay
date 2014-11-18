@@ -3,7 +3,7 @@
 # $Header: $
 EAPI=5
 MODULE_AUTHOR=SRI
-MODULE_VERSION=5.61
+MODULE_VERSION=5.62
 inherit perl-module
 
 DESCRIPTION='Real-time web framework'
