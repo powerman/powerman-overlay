@@ -19,6 +19,7 @@ DEPEND="dev-perl/Test-Exception
 	dev-perl/Mojolicious
 	dev-perl/JSON-XS
 	dev-perl/JSON-RPC2
+	>=dev-perl/Mojolicious-Plugin-JSONRPC2-1.1.1
 	dev-lang/perl"
 
 SRC_TEST="do"
