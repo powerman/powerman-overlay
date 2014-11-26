@@ -1,13 +1,13 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/djbdns/djbdns-1.05-r30.ebuild,v 1.2 2014/10/29 02:06:06 mjo Exp $
 
 EAPI=5
 inherit eutils flag-o-matic readme.gentoo toolchain-funcs user
 
 DESCRIPTION="Collection of DNS client/server software"
 HOMEPAGE="http://cr.yp.to/djbdns.html"
-IPV6_PATCH="test25"
+IPV6_PATCH="test27"
 
 SRC_URI="http://cr.yp.to/djbdns/${P}.tar.gz
 	http://smarden.org/pape/djb/manpages/${P}-man.tar.gz
@@ -18,9 +18,8 @@ LICENSE="public-domain"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE="ipv6 selinux"
 
-DEPEND="!app-doc/djbdns-man"
-RDEPEND="${DEPEND}
-	sys-apps/ucspi-tcp
+DEPEND=""
+RDEPEND="sys-apps/ucspi-tcp
 	virtual/daemontools
 	selinux? ( sec-policy/selinux-djbdns )"
 
@@ -56,9 +55,9 @@ src_prepare() {
 
 		# Fix CVE2008-4392 (ipv6)
 		epatch \
-			"${FILESDIR}/CVE2008-4392_0001-dnscache-merge-similar-outgoing-queries-ipv6-${IPV6_PATCH}.patch" \
+			"${FILESDIR}/CVE2008-4392_0001-dnscache-merge-similar-outgoing-queries-ipv6-test25.patch" \
 			"${FILESDIR}/CVE2008-4392_0002-dnscache-cache-soa-records-ipv6.patch" \
-			"${FILESDIR}/makefile-parallel-${IPV6_PATCH}.patch"
+			"${FILESDIR}/makefile-parallel-test25.patch"
 
 		cd "${S}-noipv6" || die
 	fi
@@ -124,9 +123,7 @@ pkg_preinst() {
 
 DISABLE_AUTOFORMATTING=1
 DOC_CONTENTS='
-The dnscache-setup, tinydns-setup, and djbdns-setup programs have
-been removed to follow upstream more closely. To configure djbdns,
-please follow the instructions at,
+To configure djbdns, please follow the instructions at,
 
 	http://cr.yp.to/djbdns.html
 
