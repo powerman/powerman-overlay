@@ -9,7 +9,7 @@ MODULE_AUTHOR="MARKOV"
 
 inherit perl-module
 
-DESCRIPTION="error message dispatcher with translation"
+DESCRIPTION="Log::Report or ::Minimal"
 
 LICENSE="|| ( Artistic GPL-1 GPL-2 GPL-3 )"
 SLOT="0"
@@ -17,8 +17,6 @@ KEYWORDS="alpha amd64 amd64-fbsd arm arm64 hppa ia64 m68k mips ppc ppc64 s390 sh
 IUSE=""
 
 DEPEND=">=dev-perl/String-Print-0.15
-	>=dev-perl/Devel-GlobalDestruction-0.120.0
-	>=dev-perl/Log-Report-Optional-1.01
 	dev-lang/perl"
 
 SRC_TEST="do"
