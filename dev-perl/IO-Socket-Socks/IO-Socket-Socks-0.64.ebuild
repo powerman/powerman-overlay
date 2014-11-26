@@ -18,4 +18,4 @@ IUSE=""
 
 DEPEND="dev-lang/perl"
 
-SRC_TEST=do
+SRC_TEST="do"
