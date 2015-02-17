@@ -20,6 +20,7 @@ DEPEND="dev-perl/Perl6-Export-Attrs
 	dev-perl/Test-Exception
 	dev-perl/Test-MockModule
 	dev-perl/Test-Differences
+	dev-perl/Devel-CheckOS
 	dev-perl/Log-Fast
 	virtual/perl-Module-Build
 	dev-lang/perl
