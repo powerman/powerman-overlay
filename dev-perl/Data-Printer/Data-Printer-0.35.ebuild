@@ -20,6 +20,7 @@ IUSE=""
 DEPEND=">=dev-perl/File-HomeDir-1.0.0
 	>=dev-perl/Package-Stash-0.360.0
 	dev-perl/Clone-PP
+	dev-perl/DateTime
 	dev-perl/Sort-Naturally
 	dev-lang/perl"
 SRC_TEST="do"
