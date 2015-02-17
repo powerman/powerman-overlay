@@ -3,7 +3,7 @@
 # $Header: $
 EAPI=5
 MODULE_AUTHOR=FAYLAND
-MODULE_VERSION=0.30
+MODULE_VERSION=0.32
 inherit perl-module
 
 DESCRIPTION='Automatically convert POD to a README for Dist::Zilla'
@@ -22,8 +22,6 @@ perl_meta_runtime() {
 	echo \>=dev-perl/Dist-Zilla-5.0.0
 	# Moose
 	echo dev-perl/Moose
-	# Moose::Autobox
-	echo dev-perl/Moose-Autobox
 	# Pod::Readme
 	echo \>=dev-perl/Pod-Readme-1.001.1
 	# Pod::Simple 3.23 ( 3.230.0 )
