@@ -16,7 +16,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-perl/Class-Load-0.200.0
-	>=dev-perl/Devel-StackTrace-1.210.0
+	>=dev-perl/Devel-StackTrace-1.320.0
 	>=dev-perl/Moo-1.0.1
 	dev-perl/MooX-Types-MooseLike
 "
