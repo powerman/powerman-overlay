@@ -20,6 +20,7 @@ IUSE=""
 DEPEND="dev-perl/Software-License
 	>=dev-perl/Dist-Zilla-5.15.0
 	>=dev-perl/Module-Build-Tiny-0.37.0
+	dev-perl/JSON
 	dev-lang/perl"
 
 mytargets="install"
