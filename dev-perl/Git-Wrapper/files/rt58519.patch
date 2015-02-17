@@ -1,0 +1,32 @@
+diff --git a/Changes b/Changes
+index 9bfa8ee..e22a33e 100644
+--- a/Changes
++++ b/Changes
+@@ -1,5 +1,8 @@
+ Revision history for Git-Wrapper
+ 
++        Work-around for tests failing on some machines due
++         to how git resolves paths and responds to those. ( rt58518 - Kent Fredric )
++
+ 0.010   2010-06-14
+         
+         Win32 Support -- Docs and Tests (Christian Walde)
+diff --git a/t/basic.t b/t/basic.t
+index ff7ec15..11f15dd 100644
+--- a/t/basic.t
++++ b/t/basic.t
+@@ -42,11 +42,11 @@ like($rev_list[0], qr/^[a-f\d]{40} FIRST$/);
+ eval { $git->moo }; # very unlikely to exist, help.autocorrect guesses 'log'
+ if (my $e = $@) {   # autocorrect is off
+   if ($git->version lt '1.6') {
+-    like($e, qr/which does not exist/);
++    like($e, qr/which does not exist|Permission denied/);
+   } elsif ($git->version lt '1.7') {
+-    like($e, qr/is not a git-command/);
++    like($e, qr/is not a git-command|Permission denied/);
+   } else {
+-    like($e, qr/is not a git command/);
++    like($e, qr/is not a git command|Permission denied/);
+   }
+ }
+ 
