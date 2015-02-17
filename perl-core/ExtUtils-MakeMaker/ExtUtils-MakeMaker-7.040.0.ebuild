@@ -26,7 +26,7 @@ PDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}/6.82-delete_packlist_podlocal.patch"
+	"${FILESDIR}/7.04-delete_packlist_podlocal.patch"
 	"${FILESDIR}/6.58-RUNPATH.patch"
 )
 SRC_TEST=do
