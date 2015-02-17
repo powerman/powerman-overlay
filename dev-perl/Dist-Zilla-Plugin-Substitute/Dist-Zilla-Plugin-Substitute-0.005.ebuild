@@ -22,6 +22,7 @@ DEPEND="dev-perl/Path-Tiny
 	dev-perl/Dist-Zilla
 	dev-perl/MooseX-Types
 	dev-perl/Moose
+	>=dev-perl/Role-Tiny-1.3.4
 	dev-lang/perl"
 
 mytargets="install"
