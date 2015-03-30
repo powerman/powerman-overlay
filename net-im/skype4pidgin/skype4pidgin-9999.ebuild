@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit subversion
+inherit git-r3
 
 DESCRIPTION="Skype API PLugin for Pidgin"
-HOMEPAGE="http://myjobspace.co.nz/images/pidgin/"
-ESVN_REPO_URI="http://skype4pidgin.googlecode.com/svn/trunk/"
+HOMEPAGE="http://eion.robbmob.com/"
+EGIT_REPO_URI="https://github.com/EionRobb/skype4pidgin.git"
 LICENSE="GPL-2 CCPL-Attribution-ShareAlike-NonCommercial-3.0"
 KEYWORDS="~amd64 ~x86"
 IUSE="dbus nls"
