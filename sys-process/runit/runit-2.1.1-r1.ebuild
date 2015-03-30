@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/runit/runit-2.1.1-r1.ebuild,v 1.1 2011/11/30 00:19:33 mschiff Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/runit/runit-2.1.1-r1.ebuild,v 1.13 2014/04/10 19:18:50 williamh Exp $
 
 EAPI="3"
 
@@ -12,14 +12,14 @@ SRC_URI="http://smarden.org/runit/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86"
 IUSE="static"
 
 S=${WORKDIR}/admin/${P}/src
 
 src_prepare() {
 	# we either build everything or nothing static
-	sed -i -e 's:-static: :' src/Makefile
+	sed -i -e 's:-static: :' Makefile
 }
 
 src_configure() {
@@ -38,7 +38,7 @@ src_install() {
 
 	dobin $(<../package/commands) || die "dobin"
 	dodir /sbin
-	mv "${D}"/usr/bin/{runit-init,runit,utmpset} "${D}"/sbin/ || die "dosbin"
+	mv "${ED}"/usr/bin/{runit-init,runit,utmpset} "${ED}"/sbin/ || die "dosbin"
 
 	cd "${S}"/..
 	dodoc package/{CHANGES,README,THANKS,TODO}
@@ -56,7 +56,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	env-update
 	ewarn "/etc/profile was updated. Please run:"
 	ewarn "source /etc/profile"
 	ewarn "to make 'sv' work correctly on your currently open shells"
