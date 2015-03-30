@@ -3,9 +3,8 @@
 Most notable packages:
 
 - Runit:
-  - `sys-process/runit`: only difference from portage package is removed
-    default files from `/etc/runit/` (they're in
-    `power-misc/runit-scripts`)
+  - `sys-process/runit`: removed default files in `/etc/runit/` (they're
+    in `power-misc/runit-scripts`)
   - `runit-service/service-*`: `./run` files for many services (agetty,
     apache, mysql, …)
   - `power-misc/runit-scripts`: boot scripts (replacement for
@@ -21,15 +20,14 @@ Most notable packages:
   - `power-misc/powerwatchdog`
   - `power-misc/remote`
 - Other:
-  - `mail-mta/netqmail`: only difference from portage is added outgoingips
-    patch
+  - `mail-mta/netqmail`: added outgoingips patch
   - `media-sound/cue2tracks`
   - `media-sound/flaccl`
   - `net-ftp/twoftpd`: with patch to support Russian file names in Windows
     CP1251 encoding
   - `net-im/skype4pidgin`
   - `net-p2p/i2p`: usually newer version than available in portage
-  - `net-p2p/rtorrent`: only difference from portage is added colors patch
+  - `net-p2p/rtorrent`: added colors patch
 
 # Install
 
