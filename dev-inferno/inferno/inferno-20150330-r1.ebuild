@@ -43,6 +43,7 @@ src_unpack() {
 	hg revert --no-backup $(hg status | grep ^M | sed 's/^M //')
 	hg pull	-r $INFERNO_REV	|| die
 	hg update				|| die
+	rm -rf .hg
 
 	if ! use ipv6; then
 		perl -i -pe 's/ipif6/ipif/g' emu/Linux/emu emu/Linux/emu-g
