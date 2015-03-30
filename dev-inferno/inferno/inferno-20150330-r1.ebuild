@@ -7,7 +7,7 @@ inherit flag-o-matic eutils pax-utils
 
 DESCRIPTION="OS Inferno Fourth Edition"
 HOMEPAGE="https://bitbucket.org/inferno-os/inferno-os"
-SRC_URI="http://www.vitanuova.com/dist/4e/inferno-20100120.tgz"
+SRC_URI="http://www.vitanuova.com/dist/4e/inferno-20150328.tgz"
 
 LICENSE="GPL-2"
 SLOT=0
@@ -38,22 +38,27 @@ RE2_REV=1.2.4
 CJSON_REV=0.3.3
 
 src_unpack() {
-	hg clone -r $INFERNO_REV https://bitbucket.org/inferno-os/inferno-os inferno || die
+	unpack inferno-20150328.tgz
 	cd "${S}"
+	hg revert --no-backup $(hg status | grep ^M | sed 's/^M //')
+	hg pull	-r $INFERNO_REV	|| die
+	hg update				|| die
 
 	if ! use ipv6; then
 		perl -i -pe 's/ipif6/ipif/g' emu/Linux/emu emu/Linux/emu-g
 	fi
 
 	if use re2; then
-		git clone -r $RE2_REV https://github.com/powerman/inferno-re2.git tmp/inferno-re2
+		git clone https://github.com/powerman/inferno-re2.git tmp/inferno-re2
+		cd tmp/inferno-re2; git checkout $RE2_REV; cd ../..
 		cp -a tmp/inferno-re2/* ./
 		rm -rf tmp/inferno-re2
 		./patch.re2
 	fi
 
 	if use cjson; then
-		git clone -r $CJSON_REV https://github.com/powerman/inferno-cjson.git tmp/inferno-cjson
+		git clone https://github.com/powerman/inferno-cjson.git tmp/inferno-cjson
+		cd tmp/inferno-cjson; git checkout $CJSON_REV; cd ../..
 		cp -a tmp/inferno-cjson/* ./
 		rm -rf tmp/inferno-cjson
 		./patch.cjson
