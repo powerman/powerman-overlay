@@ -35,7 +35,7 @@ src_prepare() {
 }
 
 src_compile() {
-	make || die "make failed"
+	emake -j1
 }
 
 src_install() {
