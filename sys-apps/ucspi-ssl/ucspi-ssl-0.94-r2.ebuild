@@ -25,6 +25,7 @@ src_prepare() {
 	ht_fix_all
 	sed -i -e 's:HOME/command:/usr/bin:' sslcat.sh sslconnect.sh https\@.sh
 	sed -i -e 's:auto:gcc:' conf-cc conf-ld
+	sed -i -e 's:-m64::' conf-ld
 
 	qmail_set_cc
 
