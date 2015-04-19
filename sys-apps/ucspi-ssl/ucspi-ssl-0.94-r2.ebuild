@@ -22,6 +22,8 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}"/host/superscript.com/net/${P}/src
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-verbose.patch"
+
 	ht_fix_all
 	sed -i -e 's:HOME/command:/usr/bin:' sslcat.sh sslconnect.sh https\@.sh
 	sed -i -e 's:auto:gcc:' conf-cc conf-ld
