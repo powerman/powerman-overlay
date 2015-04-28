@@ -1,7 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="1"
+EAPI="5"
 
 inherit eutils font
 
@@ -18,7 +18,7 @@ DEPEND="dev-lang/perl
 		app-arch/gzip
 		pcf? ( x11-apps/bdftopcf )
 		inferno? ( dev-inferno/inferno )"
-RDEPEND=">=media-fonts/terminus-font-4.39-r1"
+RDEPEND="psf? ( >=media-fonts/terminus-font-4.39-r1[psf] )"
 
 FONTDIR=/usr/share/fonts/developer
 DOCS="README"
