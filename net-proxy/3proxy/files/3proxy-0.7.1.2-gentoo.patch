@@ -23,7 +23,7 @@
  
  DESTDIR		=
 -prefix		= /usr/local
-+prefix		= /usr
++prefix		=
  exec_prefix	= $(prefix)
 -man_prefix	= $(prefix)/share
 +man_prefix	= $(prefix)/usr/share
