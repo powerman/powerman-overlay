@@ -39,7 +39,7 @@ src_install() {
 	doman "${S}"/man/3proxy*.[38]
 
 	cd "${S}"
-	dodoc Changelog Readme
+	dodoc Readme
 	dohtml -r doc/html/*
 	docinto cfg
 	dodoc cfg/*.{txt,sample}
