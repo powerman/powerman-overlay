@@ -15,7 +15,7 @@ IUSE=""
 S="${WORKDIR}/${PN}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-gentoo.patch
+	epatch "${FILESDIR}"/${PN}-0.7.1.2-gentoo.patch
 	cp Makefile.Linux Makefile || die
 	default
 }
