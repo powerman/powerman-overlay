@@ -17,6 +17,7 @@ S="${WORKDIR}/${PN}"
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-gentoo.patch
 	cp Makefile.Linux Makefile || die
+	default
 }
 
 src_install() {
