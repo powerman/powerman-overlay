@@ -32,7 +32,6 @@ Modified portage packages:
 - `net-ftp/twoftpd`: added patch which block TELNET_IAC support to allow
   using character with code 255 in file names (required to support
   Cyrillic file names in Windows CP1251 encoding)
-- `net-p2p/i2p`: usually newer version than available in portage
 - `net-p2p/rtorrent`: added colors patch
 
 New packages:
