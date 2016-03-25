@@ -39,7 +39,6 @@ New packages:
 - `media-sound/cue2tracks`: split audio CD image files with cue sheet to
   tracks and write tags
 - `media-sound/flaccl`: CUDA-enabled FLAC encoder (former FlaCuda)
-- `net-im/skype4pidgin`: Skype API plugin for Pidgin
 
 New packages (my software):
 
