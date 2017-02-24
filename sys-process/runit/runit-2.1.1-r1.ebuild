@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="3"
+EAPI="4"
 
 inherit toolchain-funcs flag-o-matic
 
@@ -16,6 +16,13 @@ KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86"
 IUSE="static"
 
 S=${WORKDIR}/admin/${P}/src
+
+pkg_pretend() {
+	if has_version '>=sys-process/runit-2.1.2'; then
+		eerror "Downgrade from runit-2.1.2 is not implemented, sorry."
+		die
+	fi
+}
 
 src_prepare() {
 	# we either build everything or nothing static
