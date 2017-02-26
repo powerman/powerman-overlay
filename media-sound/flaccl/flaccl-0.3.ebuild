@@ -8,7 +8,7 @@ DESCRIPTION="CUDA-enabled FLAC encoder (former FlaCuda)"
 HOMEPAGE="http://www.cuetools.net/wiki/FLACCL"
 SRC_URI="http://www.cuetools.net/install/flaccl03.rar"
 
-LICENSE="LGPL"
+LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
