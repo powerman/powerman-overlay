@@ -73,7 +73,7 @@ src_compile() {
 	export INFERNO_ROOT=$(pwd)
 	perl -i -pe 's/^ROOT=.*/ROOT=$ENV{INFERNO_ROOT}/m' mkconfig
 	perl -i -pe 's/^SYSHOST=.*/SYSHOST=Linux/m' mkconfig || die
-	perl -i -pe 's/^OBJTYPE=.*/OBJTYPE=386/m'   mkconfig || die
+	perl -i -pe 's/^OBJTYPE=.*/OBJTYPE=386/m'	mkconfig || die
 
 	export PATH=$INFERNO_ROOT/Linux/386/bin:$PATH
 	sh makemk.sh			|| die
@@ -122,6 +122,6 @@ src_install() {
 	# Setup the path environment
 	doenvd "${FILESDIR}/20inferno"
 
-    # We don't compress to keep support for Inferno's man
-    docompress -x /usr/inferno/man
+	# We don't compress to keep support for Inferno's man
+	docompress -x /usr/inferno/man
 }

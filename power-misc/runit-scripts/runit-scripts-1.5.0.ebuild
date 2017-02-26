@@ -35,5 +35,5 @@ pkg_postinst() {
 	fi
 	if ! linux_config_exists || ! linux_chkconfig_present DEVTMPFS; then
 		ewarn "Please enable CONFIG_DEVTMPFS in your kernel config."
-    fi
+	fi
 }

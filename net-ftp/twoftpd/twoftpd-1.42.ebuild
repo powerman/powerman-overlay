@@ -21,7 +21,7 @@ RDEPEND="sys-apps/ucspi-tcp
 		>=net-libs/cvm-0.90"
 
 src_compile() {
-	epatch ${FILESDIR}/FF.patch
+	epatch "${FILESDIR}"/FF.patch
 	echo "/usr/sbin" > conf-bin
 	echo "/usr/share/man" > conf-man
 	echo "$(tc-getCC) ${CFLAGS} -I/usr/include/bglibs" > conf-cc

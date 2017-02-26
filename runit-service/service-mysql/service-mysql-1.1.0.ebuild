@@ -34,7 +34,7 @@ pkg_postinst() {
 		ewarn "Old version of this service detected: /service/mysql-log"
 	fi
 
-	logs=$( egrep '^\s*(err-log|log-error)' /etc/mysql/my.cnf | 
+	logs=$( egrep '^\s*(err-log|log-error)' /etc/mysql/my.cnf |
 		sed 's,.*=\s*,,' | sort -u );
 	if [ "$logs" != "/dev/stdout" ]; then
 		ewarn "Please configure mysql logs to stdout. Example:"
