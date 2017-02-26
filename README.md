@@ -16,29 +16,32 @@ New packages:
 - `power-misc/runit-scripts`: my runit boot scripts (replacement for
   sysvinit/baselayout/openrc boot scripts)
 
-## OS Inferno
+## Other
+
+Modified portage packages:
+
+- `mail-mta/netqmail`: add support for user patches
+- `net-p2p/rtorrent`: added colors patch
 
 New packages:
 
 - `dev-inferno/inferno`: [a compact operating system for building
   cross-platform distributed
   systems](http://vitanuova.com/inferno/index.html)
-
-## Other
-
-Modified portage packages:
-
-- `mail-mta/netqmail`: added outgoingips patch
-- `net-ftp/twoftpd`: added patch which block TELNET_IAC support to allow
-  using character with code 255 in file names (required to support
-  Cyrillic file names in Windows CP1251 encoding)
-- `net-p2p/rtorrent`: added colors patch
-
-New packages:
-
+- `dev-vcs/vcprompt`: show info about the current working directory for
+  various VCS for PS1 (my [fork of original vcprompt, optimized for
+  speed](https://github.com/powerman/vcprompt))
 - `media-sound/cue2tracks`: split audio CD image files with cue sheet to
   tracks and write tags
 - `media-sound/flaccl`: CUDA-enabled FLAC encoder (former FlaCuda)
+- `net-fs/wdmrc`: WebDAV emulator for Mail.ru Cloud
+- `net-ftp/twoftpd`: simple secure efficient FTP server by Bruce Guenter
+  (with added patch which block TELNET_IAC support to allow using
+  character with code 255 in file names (required to support Cyrillic file
+  names in Windows CP1251 encoding)
+- `x11-misc/xse`: command Line Interface to XSendEvent()
+- `x11-plugins/telegram-purple`: adds support for Telegram to Pidgin and
+  Finch
 
 New packages (my software):
 
@@ -79,4 +82,3 @@ Next fetch list of available overlays and add my overlay:
 # layman -L
 # layman -a powerman
 ```
-
