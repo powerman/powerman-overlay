@@ -72,7 +72,7 @@ pkg_preinst() {
 			ewarn "${EROOT}etc/sv was moved to ${EROOT}etc/sv.bak"
 		fi
 		mv "${EROOT}"service "${EROOT}"etc/sv || die
-		ln -sf "${EROOT}"etc/sv "${EROOT}"service || die
+		ln -snf etc/sv "${EROOT}"service || die
 		cp -a "${EROOT}"etc/runit/runsvdir "${T}" || die
 		touch "${T}"/make_var_service || die
 	fi
@@ -83,19 +83,18 @@ pkg_preinst() {
 }
 
 default_config() {
-	local sv="${EROOT}"etc/sv
-	local service="${EROOT}"etc/service
-	mkdir -p "${service}" || die
-	einfo "If you need multiple runlevels, please see the documentation"
-	einfo "for how to set them up."
-	einfo
+	if [ ! -e "${EROOT}"etc/runit/runsvdir/current ]; then
+		mkdir -p "${EROOT}"etc/runit/runsvdir/default || die
+		ln -snf default "${EROOT}"etc/runit/runsvdir/current || die
+	fi
+	ln -snf runit/runsvdir/current "${EROOT}"etc/service || die
 }
 
 migrate_from_211() {
 	# Create /etc/service and /var/service if requested
 	if [ -e "${T}"/make_var_service ]; then
-		ln -sf "${EROOT}"etc/runit/runsvdir/current "${EROOT}"etc/service || die
-		ln -sf "${EROOT}"etc/runit/runsvdir/current "${EROOT}"var/service || die
+		ln -snf runit/runsvdir/current "${EROOT}"etc/service || die
+		ln -snf ../etc/runit/runsvdir/current "${EROOT}"var/service || die
 	fi
 	if [ -d "${T}"/runsvdir ]; then
 		cp -a "${T}"/runsvdir "${EROOT}"etc/runit || die
