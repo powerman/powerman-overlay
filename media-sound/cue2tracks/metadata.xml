@@ -5,4 +5,10 @@
 		<email>powerman-asdf@yandex.ru</email>
 		<name>Alex Efros</name>
 	</maintainer>
+	<use>
+		<flag name="flake">Add support for Flake, alternative FLAC encoder.</flag>
+		<flag name="flaccl">Add support for FLACCL, CUDA-enabled FLAC encoder.</flag>
+		<flag name="mac">Add support for Monkey's Audio files.</flag>
+		<flag name="tta">Add support for media-sound/ttaenc.</flag>
+    </use>
 </pkgmetadata>

@@ -13,7 +13,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="flake flacuda mac tta shorten wavpack mp3 m4a vorbis"
+IUSE="flake flaccl mac tta shorten wavpack mp3 aac vorbis"
 
 DEPEND=""
 
@@ -23,18 +23,18 @@ RDEPEND="
 	media-libs/flac
 	app-cdr/cuetools
 	flake? ( media-sound/flake )
-	flacuda? ( media-sound/flaccl )
+	flaccl? ( media-sound/flaccl )
 	mac? ( media-sound/mac media-sound/apetag )
 	tta? ( media-sound/ttaenc )
 	shorten? ( media-sound/shorten )
 	wavpack? ( media-sound/wavpack media-sound/apetag )
 	mp3? ( media-sound/lame media-sound/id3v2 )
 	vorbis? ( media-sound/vorbis-tools )
-	m4a? ( media-libs/faac media-libs/faad2 )
+	aac? ( media-libs/faac media-libs/faad2 )
 	"
 
 src_prepare() {
-	use flacuda && epatch "${FILESDIR}/flacuda-0.2.16.patch"
+	use flaccl && epatch "${FILESDIR}/flacuda-0.2.16.patch"
 }
 
 src_install() {

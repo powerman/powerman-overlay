@@ -13,7 +13,7 @@ SRC_URI="http://rtorrent.net/downloads/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris"
-IUSE="color daemon debug ipv6 selinux test xmlrpc"
+IUSE="daemon debug ipv6 selinux test xmlrpc"
 
 COMMON_DEPEND="~net-libs/libtorrent-0.13.${PV##*.}
 	>=dev-libs/libsigc++-2.2.2:2
@@ -39,7 +39,7 @@ src_prepare() {
 	# https://github.com/rakshasa/rtorrent/issues/332
 	cp "${FILESDIR}"/rtorrent.1 "${S}"/doc/ || die
 
-	use color && epatch "${FILESDIR}"/${PN}-0.9.2-canvas-fix.patch
+	epatch "${FILESDIR}"/${PN}-0.9.2-canvas-fix.patch
 
 	eautoreconf
 }
@@ -65,12 +65,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	if use color; then
-		elog "rtorrent colors patch"
-		elog "Set colors using the options below in .rtorrent.rc:"
-		elog "Options: done_fg_color, done_bg_color, active_fg_color, active_bg_color"
-		elog "Colors: 0 = black, 1 = red, 2 = green, 3 = yellow, 4 = blue,"
-		elog "5 = magenta, 6 = cyan and 7 = white"
-		elog "Example: done_fg_color = 1"
-	fi
+	elog "rtorrent colors patch"
+	elog "Set colors using the options below in .rtorrent.rc:"
+	elog "Options: done_fg_color, done_bg_color, active_fg_color, active_bg_color"
+	elog "Colors: 0 = black, 1 = red, 2 = green, 3 = yellow, 4 = blue,"
+	elog "5 = magenta, 6 = cyan and 7 = white"
+	elog "Example: done_fg_color = 1"
 }

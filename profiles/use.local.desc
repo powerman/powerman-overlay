@@ -1,3 +1,18 @@
-dev-inferno/inferno:re2 - Enable support for libre2
-mail-mta/netqmail:outgoingips - Enable control of outgoing IP
-dev-libs/libre2:32bit - For amd64-multilib, installs the 32-bit library
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using egencache *
+
+dev-inferno/inferno:cjson - Add fast JSON tokenizer module for Limbo.
+dev-inferno/inferno:re2 - Enable support for dev-libs/re2.
+mail-mta/netqmail:authcram - Enable AUTHCRAM support
+mail-mta/netqmail:gencertdaily - Generate SSL certificates daily instead of hourly
+mail-mta/netqmail:highvolume - Prepare netqmail for high volume servers
+media-fonts/developer-font:inferno - Install fonts for OS Inferno.
+media-fonts/developer-font:pcf - Install Portable Compiled Font (required for X11).
+media-fonts/developer-font:psf - Install PC Screen Font with unicode data (for linux console).
+media-fonts/developer-font:raw - Install RAW font data which should be compatible with most UNIX systems (you don't need this on linux).
+media-sound/cue2tracks:flaccl - Add support for FLACCL, CUDA-enabled FLAC encoder.
+media-sound/cue2tracks:flake - Add support for Flake, alternative FLAC encoder.
+media-sound/cue2tracks:mac - Add support for Monkey's Audio files.
+media-sound/cue2tracks:tta - Add support for media-sound/ttaenc.
+net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application

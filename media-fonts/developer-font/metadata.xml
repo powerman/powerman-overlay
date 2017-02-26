@@ -5,4 +5,13 @@
 		<email>powerman-asdf@yandex.ru</email>
 		<name>Alex Efros</name>
 	</maintainer>
+	<use>
+		<flag name="inferno">Install fonts for OS Inferno.</flag>
+		<flag name="pcf">Install Portable Compiled Font (required for X11).</flag>
+		<flag name="psf">Install PC Screen Font with unicode data (for linux console).</flag>
+		<flag name="raw">
+			Install RAW font data which should be compatible with most
+			UNIX systems (you don't need this on linux).
+		</flag>
+	</use>
 </pkgmetadata>

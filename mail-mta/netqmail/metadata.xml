@@ -5,4 +5,13 @@
 		<email>powerman-asdf@yandex.ru</email>
 		<name>Alex Efros</name>
 	</maintainer>
+	<use>
+		<flag name="authcram">Enable AUTHCRAM support</flag>
+		<flag name="gencertdaily">Generate SSL certificates daily instead of
+			hourly</flag>
+		<flag name="highvolume">Prepare netqmail for high volume servers</flag>
+	</use>
+	<upstream>
+		<remote-id type="sourceforge">qmail-spp</remote-id>
+	</upstream>
 </pkgmetadata>

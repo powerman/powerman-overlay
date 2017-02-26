@@ -14,17 +14,17 @@ EGIT_BRANCH="master"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+libwebp"
+IUSE="+webp"
 
 DEPEND="
 	sys-devel/gettext
 	dev-libs/libgcrypt:0/20
-	libwebp? ( media-libs/libwebp )
+	webp? ( media-libs/libwebp )
 	net-im/pidgin
 	sys-libs/zlib
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	econf $(use_enable libwebp)
+	econf $(use_enable webp libwebp)
 }
