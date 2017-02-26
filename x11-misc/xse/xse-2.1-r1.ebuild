@@ -9,7 +9,7 @@ HOMEPAGE="ftp://ftp.x.org/R5contrib/"
 SRC_URI="ftp://ftp.x.org/R5contrib/xsendevent-${PV}.tar.Z"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RDEPEND="x11-libs/libXt

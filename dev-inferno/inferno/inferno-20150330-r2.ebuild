@@ -3,7 +3,9 @@
 # $Id$
 
 EAPI=4
-inherit flag-o-matic eutils pax-utils
+MULTILIB_COMPAT=( abi_x86_32 )
+
+inherit flag-o-matic eutils pax-utils multilib-build
 
 DESCRIPTION="OS Inferno Fourth Edition"
 HOMEPAGE="https://bitbucket.org/inferno-os/inferno-os"
@@ -11,7 +13,7 @@ SRC_URI="http://www.vitanuova.com/dist/4e/inferno-20150328.tgz"
 
 LICENSE="GPL-2"
 SLOT=0
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="-* ~x86 ~amd64"
 IUSE="X doc source re2 cjson ipv6"
 
 RDEPEND=""
@@ -19,16 +21,11 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	dev-vcs/mercurial
 	dev-vcs/git
-	re2? ( >=dev-libs/re2-0.2016.05.01[abi_x86_32] )
-	amd64? (
-		X? ( || (
-			(
-				x11-libs/libX11[abi_x86_32(-)]
-				x11-libs/libXext[abi_x86_32(-)]
-			)
-			app-emulation/emul-linux-x86-xlibs
-		) )
-    )
+	re2? ( >=dev-libs/re2-0.2016.05.01[${MULTILIB_USEDEP}] )
+	amd64? ( X? (
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+	) )
 	"
 
 S="${WORKDIR}/${PN}"

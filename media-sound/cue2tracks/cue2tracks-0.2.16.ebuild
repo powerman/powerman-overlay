@@ -23,14 +23,14 @@ RDEPEND="
 	media-libs/flac
 	app-cdr/cuetools
 	flake? ( media-sound/flake )
-	flacuda? ( || ( media-sound/flacuda media-sound/flaccl ) )
+	flacuda? ( media-sound/flaccl )
 	mac? ( media-sound/mac media-sound/apetag )
 	tta? ( media-sound/ttaenc )
 	shorten? ( media-sound/shorten )
 	wavpack? ( media-sound/wavpack media-sound/apetag )
 	mp3? ( media-sound/lame media-sound/id3v2 )
 	vorbis? ( media-sound/vorbis-tools )
-	m4a? ( media-video/mpeg4ip media-libs/faac media-libs/faad2 )
+	m4a? ( media-libs/faac media-libs/faad2 )
 	"
 
 src_prepare() {

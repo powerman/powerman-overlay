@@ -11,7 +11,7 @@ HOMEPAGE="http://powerman.name/config/font.html"
 SRC_URI="http://powerman.name/download/font/${P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~x86"
 IUSE="+psf raw +pcf inferno"
 
 DEPEND="dev-lang/perl

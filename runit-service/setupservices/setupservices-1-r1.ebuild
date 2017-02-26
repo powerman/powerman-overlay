@@ -10,7 +10,7 @@ SRC_URI=""
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS="x86 amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
