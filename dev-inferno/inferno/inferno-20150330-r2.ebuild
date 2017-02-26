@@ -37,7 +37,7 @@ CJSON_REV=0.3.3
 src_unpack() {
 	unpack inferno-20150328.tgz
 	cd "${S}"
-	hg revert --no-backup $(hg status | grep ^M | sed 's/^M //')
+	hg revert --no-backup $(hg status | grep ^M | cut -c 3-)
 	hg pull	-r $INFERNO_REV	|| die
 	hg update				|| die
 	rm -rf .hg
@@ -61,7 +61,9 @@ src_unpack() {
 		rm -rf tmp/inferno-cjson
 		./patch.cjson
 	fi
+}
 
+src_prepare() {
 	epatch "${FILESDIR}/issue-122-csendalt.patch"
 	epatch "${FILESDIR}/issue-147-wait.patch"
 	epatch "${FILESDIR}/issue-271-microsec.patch"
