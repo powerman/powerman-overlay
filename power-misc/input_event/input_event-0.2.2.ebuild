@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Enable the use and configuration of special keyboard keys"
 HOMEPAGE="http://powerman.name/soft/input_event.html"
@@ -24,4 +24,3 @@ src_install() {
 	insinto /etc
 	doins input_event.actions
 }
-

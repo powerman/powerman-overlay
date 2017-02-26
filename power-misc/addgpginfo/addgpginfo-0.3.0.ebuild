@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="add GnuPG info into email headers while delivering"
 HOMEPAGE="http://powerman.name/soft/"
@@ -17,4 +17,3 @@ RDEPEND=""
 src_install() {
 	dobin addgpginfo
 }
-

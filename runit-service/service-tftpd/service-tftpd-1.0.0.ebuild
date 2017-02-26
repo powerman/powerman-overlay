@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Service for net-ftp/tftp-hpa"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
@@ -21,4 +21,3 @@ RDEPEND="
 src_install() {
 	cp -a * "${D}"
 }
-

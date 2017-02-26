@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Library for fake access to files from external app"
 HOMEPAGE="http://powerman.name/soft/libREV.html"
@@ -21,4 +21,3 @@ src_compile() {
 src_install() {
 	dolib libREV.so*
 }
-

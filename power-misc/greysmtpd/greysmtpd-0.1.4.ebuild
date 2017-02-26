@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="tcpserver-compatible anti-spam (greylisting) smtpd"
 HOMEPAGE="http://powerman.name/soft/greysmtpd.html"
@@ -30,4 +30,3 @@ pkg_postinst() {
 	einfo 'To activate greysmtpd add into /var/qmail/control/conf-smtpd line:'
 	einfo 'QMAIL_SMTP_PRE="${QMAIL_SMTP_PRE} greysmtpd"'
 }
-

@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xse/Attic/xse-2.1.ebuild,v 1.13 2010/02/17 15:44:16 scarabeus dead $
+# $Id$
 
 inherit eutils
 

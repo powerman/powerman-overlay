@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="font for console, dos/koi/win mappings for screen and keyboard"
 HOMEPAGE="http://powerman.name/"
@@ -18,4 +18,3 @@ src_install() {
 	insinto /usr/share
 	doins -r usr/share/{consolefonts,consoletrans,keymaps}
 }
-

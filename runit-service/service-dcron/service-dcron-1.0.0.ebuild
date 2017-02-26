@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Service for sys-process/dcron"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
@@ -28,4 +28,3 @@ pkg_postinst() {
 	chmod 2755 /var/log/dcron/all
 	chown log:root /var/log/dcron/*/{lock,state,newstate,current} 2>/dev/null
 }
-

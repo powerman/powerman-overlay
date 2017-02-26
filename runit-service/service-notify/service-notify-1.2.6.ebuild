@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Process system log on-the-fly, detect events and run actions"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
@@ -25,4 +25,3 @@ pkg_postinst() {
 		ewarn "Possible old version of this service detected: /service/log-notify"
 	fi
 }
-

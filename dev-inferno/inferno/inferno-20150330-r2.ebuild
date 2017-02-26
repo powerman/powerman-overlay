@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=4
 inherit flag-o-matic eutils pax-utils
@@ -128,4 +128,3 @@ src_install() {
     # We don't compress to keep support for Inferno's man
     docompress -x /usr/inferno/man
 }
-

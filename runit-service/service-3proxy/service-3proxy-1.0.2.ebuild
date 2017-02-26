@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Service for net-proxy/3proxy"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
@@ -35,4 +35,3 @@ pkg_postinst() {
 		[ -d "$d" ] && ewarn "Modified service may need update: $d"
 	done
 }
-

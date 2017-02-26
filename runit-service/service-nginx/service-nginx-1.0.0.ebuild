@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Service for www-servers/nginx"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
@@ -44,4 +44,3 @@ pkg_postinst() {
 	chmod 600 /var/log/nginx/error_log
 	chown log:root /var/log/nginx/*/{lock,state,newstate,current} 2>/dev/null
 }
-

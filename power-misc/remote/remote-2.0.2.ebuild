@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 DESCRIPTION="Ease to use wrapper tools for ssh and scp"
 HOMEPAGE="http://powerman.name/soft/remote.html"
@@ -18,4 +18,3 @@ src_install() {
 	dobin {download,remote,upload}
 	dodoc .remote
 }
-

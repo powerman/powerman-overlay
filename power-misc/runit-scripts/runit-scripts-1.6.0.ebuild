@@ -1,6 +1,6 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 inherit linux-info
 
@@ -37,4 +37,3 @@ pkg_postinst() {
 		ewarn "Please enable CONFIG_DEVTMPFS in your kernel config."
     fi
 }
-

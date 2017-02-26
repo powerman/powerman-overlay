@@ -1,5 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=4
 
@@ -60,4 +61,3 @@ pkg_postinst() {
 		ewarn "      none  /proc/bus/usb  usbfs  defaults  0 0"
 	fi
 }
-

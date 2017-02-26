@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=3
 
@@ -26,4 +26,3 @@ src_install() {
 	dolib flac.cl
 	dosym libOpenCL.so /usr/lib/libopencl.so
 }
-
