@@ -6,7 +6,7 @@ EAPI=3
 
 inherit eutils
 
-DESCRIPTION="Bash script for split audio CD image files with cue sheet to tracks and write tags."
+DESCRIPTION="Tool for splitting audio CD image to tracks with cue sheet info."
 HOMEPAGE="http://code.google.com/p/cue2tracks/"
 SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 

@@ -6,7 +6,7 @@ EAPI=5
 
 inherit git-r3
 
-DESCRIPTION="Adds support for Telegram to Pidgin, Adium, Finch and other Libpurple based messengers"
+DESCRIPTION="Adds support for Telegram to Pidgin and Finch."
 HOMEPAGE="https://github.com/majn/telegram-purple"
 EGIT_REPO_URI="https://github.com/majn/telegram-purple"
 EGIT_BRANCH="master"
