@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI=6
 
 inherit mercurial autotools
 
@@ -13,17 +13,15 @@ EHG_REPO_URI="https://bitbucket.org/powerman/vcprompt"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE=""
-
-RDEPEND=""
 
 src_prepare() {
+	default
 	eautoconf
 }
 
 src_install() {
-	dobin "${PN}"
-	dobin "${PN}"-hgst
-	doman "${PN}".1
-	dodoc README.txt
+	dobin vcprompt
+	dobin vcprompt-hgst
+	doman vcprompt.1
+	einstalldocs
 }
