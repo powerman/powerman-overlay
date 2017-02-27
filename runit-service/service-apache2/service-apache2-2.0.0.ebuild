@@ -36,9 +36,9 @@ pkg_preinst() {
 		ewarn "This package now contain 3 new services for ssl-logs."
 		ewarn "You current logs was renamed to ${ROOT}var/log/apache2/ssl_*_log.old."
 		ewarn "You should start new services now and restart apache:"
-		ewarn "    ln -s ${ROOT}service/apache2-log-ssl-access  ${ROOT}var/service/"
-		ewarn "    ln -s ${ROOT}service/apache2-log-ssl-error   ${ROOT}var/service/"
-		ewarn "    ln -s ${ROOT}service/apache2-log-ssl-request ${ROOT}var/service/"
+		ewarn "    ln -s /etc/sv/apache2-log-ssl-access  ${ROOT%/}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/apache2-log-ssl-error   ${ROOT%/}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/apache2-log-ssl-request ${ROOT%/}${SVDIR%/}/"
 		ewarn "    sv t apache2"
 	fi
 }
