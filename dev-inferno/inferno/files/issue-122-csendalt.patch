@@ -1,6 +1,6 @@
 http://code.google.com/p/inferno-os/issues/detail?id=122
---- emu/port/inferno.c	2009-02-16 01:22:50.000000000 +0200
-+++ emu/port/inferno.c	2008-10-23 00:04:07.000000000 +0300
+--- a/emu/port/inferno.c	2009-02-16 01:22:50.000000000 +0200
++++ b/emu/port/inferno.c	2008-10-23 00:04:07.000000000 +0300
 @@ -760,10 +760,10 @@
  
  	fio = H2D(Sys_FileIO*, h);

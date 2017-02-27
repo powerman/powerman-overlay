@@ -2,128 +2,129 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=4
+EAPI=6
 MULTILIB_COMPAT=( abi_x86_32 )
 
-inherit flag-o-matic eutils pax-utils multilib-build
+inherit mercurial git-r3 pax-utils multilib-build
 
 DESCRIPTION="OS Inferno Fourth Edition"
 HOMEPAGE="https://bitbucket.org/inferno-os/inferno-os"
-SRC_URI="http://www.vitanuova.com/dist/4e/inferno-20150328.tgz"
+SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT=0
 KEYWORDS="-* ~x86 ~amd64"
 IUSE="X doc source re2 cjson ipv6"
 
-RDEPEND=""
-
-DEPEND="${RDEPEND}
-	dev-vcs/mercurial
-	dev-vcs/git
-	re2? ( >=dev-libs/re2-0.2016.05.01[${MULTILIB_USEDEP}] )
-	amd64? ( X? (
+DEPEND="re2? ( dev-libs/re2[${MULTILIB_USEDEP}] )
+	X? (
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		x11-libs/libXext[${MULTILIB_USEDEP}]
-	) )
-	"
+	)"
+RDEPEND=""
 
-S="${WORKDIR}/${PN}"
+EHG_REPO_URI="https://bitbucket.org/inferno-os/inferno-os"
+EHG_REVISION="7110524"
 
-INFERNO_REV=7110524
-RE2_REV=1.3.0
-CJSON_REV=0.3.3
+RE2_EGIT_REPO_URI="https://github.com/powerman/inferno-re2"
+RE2_EGIT_COMMIT=1.3.0
+RE2_EGIT_CHECKOUT_DIR="$WORKDIR"/re2
+
+CJSON_EGIT_REPO_URI="https://github.com/powerman/inferno-cjson"
+CJSON_EGIT_COMMIT=0.3.3
+CJSON_EGIT_CHECKOUT_DIR="$WORKDIR"/cjson
+
+PATCHES=(
+	"$FILESDIR"/issue-122-csendalt.patch
+	"$FILESDIR"/issue-147-wait.patch
+	"$FILESDIR"/issue-271-microsec.patch
+	"$FILESDIR"/issue-274-execatidle.patch
+	"$FILESDIR"/issue-287-man-index.patch
+)
 
 src_unpack() {
-	unpack inferno-20150328.tgz
-	cd "${S}"
-	hg revert --no-backup $(hg status | grep ^M | cut -c 3-)
-	hg pull	-r $INFERNO_REV	|| die
-	hg update				|| die
-	rm -rf .hg
-
-	if ! use ipv6; then
-		perl -i -pe 's/ipif6/ipif/g' emu/Linux/emu emu/Linux/emu-g
-	fi
+	mercurial_src_unpack
 
 	if use re2; then
-		git clone https://github.com/powerman/inferno-re2.git tmp/inferno-re2
-		cd tmp/inferno-re2; git checkout $RE2_REV; cd ../..
-		cp -a tmp/inferno-re2/* ./
-		rm -rf tmp/inferno-re2
-		./patch.re2
+		git-r3_fetch "$RE2_EGIT_REPO_URI" "$RE2_EGIT_COMMIT"
+		git-r3_checkout "$RE2_EGIT_REPO_URI" "$RE2_EGIT_CHECKOUT_DIR"
+		cp -a "$RE2_EGIT_CHECKOUT_DIR"/* "$S" || die
 	fi
-
 	if use cjson; then
-		git clone https://github.com/powerman/inferno-cjson.git tmp/inferno-cjson
-		cd tmp/inferno-cjson; git checkout $CJSON_REV; cd ../..
-		cp -a tmp/inferno-cjson/* ./
-		rm -rf tmp/inferno-cjson
-		./patch.cjson
+		git-r3_fetch "$CJSON_EGIT_REPO_URI" "$CJSON_EGIT_COMMIT"
+		git-r3_checkout "$CJSON_EGIT_REPO_URI" "$CJSON_EGIT_CHECKOUT_DIR"
+		cp -a "$CJSON_EGIT_CHECKOUT_DIR"/* "$S" || die
 	fi
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/issue-122-csendalt.patch"
-	epatch "${FILESDIR}/issue-147-wait.patch"
-	epatch "${FILESDIR}/issue-271-microsec.patch"
-	epatch "${FILESDIR}/issue-274-execatidle.patch"
-	epatch "${FILESDIR}/issue-287-man-index.patch"
+	default
+
+	if ! use ipv6; then
+		sed -i 's/ipif6/ipif/g' emu/Linux/emu emu/Linux/emu-g || die
+	fi
+	if use re2; then
+		./patch.re2 || die
+	fi
+	if use cjson; then
+		./patch.cjson || die
+	fi
 }
 
 src_compile() {
-	export INFERNO_ROOT=$(pwd)
-	perl -i -pe 's/^ROOT=.*/ROOT=$ENV{INFERNO_ROOT}/m' mkconfig
-	perl -i -pe 's/^SYSHOST=.*/SYSHOST=Linux/m' mkconfig || die
-	perl -i -pe 's/^OBJTYPE=.*/OBJTYPE=386/m'	mkconfig || die
+	export INFERNO_ROOT="$S"
+	sed -i "s:^ROOT=.*:ROOT=${INFERNO_ROOT}:" mkconfig || die
+	sed -i 's/^SYSHOST=.*/SYSHOST=Linux/' mkconfig || die
+	sed -i 's/^OBJTYPE=.*/OBJTYPE=386/' mkconfig || die
 
-	export PATH=$INFERNO_ROOT/Linux/386/bin:$PATH
-	sh makemk.sh			|| die
-	mk nuke					|| die
+	export PATH="${INFERNO_ROOT}/Linux/386/bin:${PATH}"
+	sh makemk.sh || die
+	mk nuke || die
+	mk mkdirs || die
 	if use X; then
-		mk install			|| die
+		mk install || die
 	fi
-	mk CONF=emu-g install	|| die
+	mk CONF=emu-g install || die
 
 	pax-mark pems Linux/386/bin/emu*
 
 	# needed to allow rebuilding already installed inferno (with "use source")
 	export INFERNO_ROOT="/usr/inferno"
-	perl -i -pe 's/^ROOT=.*/ROOT=$ENV{INFERNO_ROOT}/m' mkconfig
+	sed -i "s:^ROOT=.*:ROOT=${INFERNO_ROOT}:" mkconfig || die
 }
 
 src_install() {
-	if ! use X ; then
-		cp "${S}"/Linux/386/bin/emu{-g,}
-	fi
-
-	if ! use doc ; then
-		rm -rf "${S}"/doc
-	fi
-
-	if ! use source ; then
-		rm -rf "${S}"/{DragonFly,FreeBSD,Hp,Inferno,Irix,MacOSX,NetBSD,Nt,OpenBSD,Plan9,Solaris}
-		rm -rf "${S}"/{asm,emu,include,lib?*,limbo,mkfiles,os,tools,utils}
-		rm -rf "${S}"/{makemk.sh,mkconfig,mkfile}
-	fi
-
-	cat "${FILESDIR}/profile.env" >> "${S}"/lib/sh/profile
-
 	insinto /usr/inferno
-	doins -r "${S}"/*
-	if use source ; then
-		doins -r "${S}"/.hg*
+	doins -r *
+	if use source; then
+		doins -r .hg*
 	fi
+
 	# Fix permissions
-	find Linux/386/bin/ -type f -print0 |
-		xargs -0 -I '{}' fperms +x /usr/inferno/'{}'
-	find dis/ -type f -not -name '*.dis' -print0 |
-		xargs -0 -I '{}' fperms +x /usr/inferno/'{}'
+	while IFS="" read -d $'\0' -r f ; do
+		fperms +x /usr/inferno/"$f"
+	done < <(find Linux/386/bin/ dis/ -type f -not -name '*.dis' -print0)
 	fperms 0600 /usr/inferno/keydb/keys
 
-	# Setup the path environment
-	doenvd "${FILESDIR}/20inferno"
+	# Cleanup extra files
+	pushd "$D"/usr/inferno || die
+	if ! use X; then
+		cp Linux/386/bin/emu{-g,} || die
+	fi
+	if ! use doc; then
+		rm -rf doc || die
+	fi
+	if ! use source; then
+		rm -rf {DragonFly,FreeBSD,Hp,Inferno,Irix,MacOSX,NetBSD,Nt,OpenBSD,Plan9,Solaris} || die
+		rm -rf {asm,emu,include,lib?*,limbo,mkfiles,os,tools,utils} || die
+		rm -rf {makemk.sh,mkconfig,mkfile} || die
+	fi
+	popd || die
 
-	# We don't compress to keep support for Inferno's man
-	docompress -x /usr/inferno/man
+	# Custom files
+	insinto /usr/inferno/lib/sh
+	newins "$FILESDIR"/profile.env profile
+
+	# Setup the path environment
+	doenvd "$FILESDIR"/20inferno
 }

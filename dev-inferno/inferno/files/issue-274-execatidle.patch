@@ -1,6 +1,6 @@
-diff -uNr old/emu/port/alloc.c new/emu/port/alloc.c
---- old/emu/port/alloc.c	2011-09-20 21:54:34.000000000 +0300
-+++ new/emu/port/alloc.c	2011-09-20 21:54:40.000000000 +0300
+diff -uNr a/emu/port/alloc.c b/emu/port/alloc.c
+--- a/emu/port/alloc.c	2011-09-20 21:54:34.000000000 +0300
++++ b/emu/port/alloc.c	2011-09-20 21:54:40.000000000 +0300
 @@ -92,6 +92,18 @@
  #define	ML(v, sz, pc)	if(CKLEAK && ckleak && v){ if(sz) fprint(2, "%lux %lux %lux\n", (ulong)v, (ulong)sz, (ulong)pc); else fprint(2, "%lux\n", (ulong)v); }
  
@@ -20,9 +20,9 @@ diff -uNr old/emu/port/alloc.c new/emu/port/alloc.c
  memusehigh(void)
  {
  	return 	mainmem->cursize > mainmem->ressize ||
-diff -uNr old/emu/port/dis.c new/emu/port/dis.c
---- old/emu/port/dis.c	2011-09-20 21:54:47.000000000 +0300
-+++ new/emu/port/dis.c	2011-09-20 21:54:55.000000000 +0300
+diff -uNr a/emu/port/dis.c b/emu/port/dis.c
+--- a/emu/port/dis.c	2011-09-20 21:54:47.000000000 +0300
++++ b/emu/port/dis.c	2011-09-20 21:54:55.000000000 +0300
 @@ -37,6 +37,11 @@
  static void	addgrp(Prog*, Prog*);
  void	printgrp(Prog*, char*);

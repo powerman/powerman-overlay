@@ -1,6 +1,6 @@
-diff -uNr /man/1/INDEX /man/1/INDEX
---- /man/1/INDEX	2012-06-13 23:09:00.000000000 +0300
-+++ /man/1/INDEX	2012-12-02 18:33:02.774122832 +0200
+diff -uNr a/man/1/INDEX b/man/1/INDEX
+--- a/man/1/INDEX	2012-06-13 23:09:00.000000000 +0300
++++ b/man/1/INDEX	2012-12-02 18:33:02.774122832 +0200
 @@ -112,11 +112,10 @@
  man man
  man2html man
@@ -43,9 +43,9 @@ diff -uNr /man/1/INDEX /man/1/INDEX
  stream stream
  strings strings
  md5sum sum
-diff -uNr /man/2/INDEX /man/2/INDEX
---- /man/2/INDEX	2012-06-13 23:09:00.000000000 +0300
-+++ /man/2/INDEX	2012-12-02 18:21:01.275113379 +0200
+diff -uNr a/man/2/INDEX b/man/2/INDEX
+--- a/man/2/INDEX	2012-06-13 23:09:00.000000000 +0300
++++ b/man/2/INDEX	2012-12-02 18:21:01.275113379 +0200
 @@ -1,4 +1,15 @@
  intro 0intro
 +9p-ninep 9p-ninep
