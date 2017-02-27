@@ -29,6 +29,6 @@ src_install() {
 
 pkg_postinst() {
 	for d in "${ROOT}"etc/sv/3proxy?*/; do
-		ewarn "Modified service may need update: $d"
+		[ -e "$d" ] && ewarn "Modified service may need update: $d"
 	done
 }
