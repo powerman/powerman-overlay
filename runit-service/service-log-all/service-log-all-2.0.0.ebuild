@@ -18,7 +18,7 @@ RDEPEND=">=sys-process/runit-2.1.2-r1"
 
 src_install() {
 	cp -a * "${D}"
-	for d in var/log/*/{,*/}; do
+	for d in var/log/*/; do
 		fowners log:root /"$d"
 		fperms 0750 /"$d"
 	done
