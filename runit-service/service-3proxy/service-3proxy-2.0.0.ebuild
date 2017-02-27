@@ -19,12 +19,9 @@ RDEPEND=">=sys-process/runit-2.1.2-r1
 
 src_install() {
 	cp -a * "${D}"
-	for d in var/log/*/; do
+	for d in var/log/*/{,*/}; do
 		fowners log:root /"$d"
-		fperms 2750 /"$d"
-	done
-	for d in var/log/*/*/; do
-		fowners log:root /"$d"
+		fperms 0750 /"$d"
 	done
 	fowners nobody:root /etc/sv/3proxy/root/etc/3proxy.cfg
 	fperms 0400 /etc/sv/3proxy/root/etc/3proxy.cfg
