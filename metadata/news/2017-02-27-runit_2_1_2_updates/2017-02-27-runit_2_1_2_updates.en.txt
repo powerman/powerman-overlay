@@ -1,0 +1,19 @@
+Title: runit-2.1.2-r1 updates
+Author: Alex Efros <powerman-asdf@ya.ru>
+Content-Type: text/plain
+Posted: 2017-02-27
+Revision: 1
+News-Item-Format: 1.0
+Display-If-Installed: >=sys-process/runit-2.1.2-r1
+
+All installed services was moved from /service/ to /etc/sv/.
+All running services was moved from /var/service/ to /etc/service/.
+
+To complete this move you should manually update paths used by symlinks
+in /etc/service/ from /service/ to /etc/sv/:
+
+    for s in /etc/runit/runsvdir/*/*; do
+    	ln -snf "$(readlink "$s" | sed 's:^/service:/etc/sv:;s:/$::')" "$s"
+    done
+
+After reboot you can remove /var/service.

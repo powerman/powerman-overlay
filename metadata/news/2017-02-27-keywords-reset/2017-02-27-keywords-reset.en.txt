@@ -1,0 +1,17 @@
+Title: KEYWORDS reset to ~arch
+Author: Alex Efros <powerman-asdf@ya.ru>
+Content-Type: text/plain
+Posted: 2017-02-27
+Revision: 1
+News-Item-Format: 1.0
+
+This overlay was updated to conform current Gentoo policy.
+
+One of changes was to reset KEYWORDS in all packages to ~arch,
+and I plan to keep it in this state forever.
+
+So, to receive updates to already installed packages you should add
+
+    */*::powerman
+
+to /etc/portage/package.keywords.
