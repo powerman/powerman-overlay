@@ -19,7 +19,7 @@ RDEPEND="media-sound/shntool
 	media-libs/flac
 	app-cdr/cuetools
 	flake? ( media-sound/flake )
-	flaccl? ( media-sound/flaccl )
+	flaccl? ( >=media-sound/flaccl-2 )
 	mac? ( media-sound/mac media-sound/apetag )
 	tta? ( media-sound/ttaenc )
 	shorten? ( media-sound/shorten )
@@ -29,7 +29,7 @@ RDEPEND="media-sound/shntool
 	aac? ( media-libs/faac media-libs/faad2 )"
 
 src_prepare() {
-	use flaccl && eapply "${FILESDIR}/flacuda-0.2.16.patch"
+	use flaccl && eapply "${FILESDIR}/flaccl-0.2.16.patch"
 	default
 }
 

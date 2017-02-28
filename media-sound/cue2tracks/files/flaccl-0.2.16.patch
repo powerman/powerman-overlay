@@ -1,11 +1,11 @@
-diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
---- cue2tracks-0.2.16.orig/cue2tracks	2013-07-06 13:50:36.000000000 +0300
-+++ cue2tracks-0.2.16/cue2tracks	2013-09-14 22:26:24.728355048 +0300
+diff -uNr a/cue2tracks b/cue2tracks
+--- a/cue2tracks	2013-07-06 13:50:36.000000000 +0300
++++ b/cue2tracks	2013-09-14 22:26:24.728355048 +0300
 @@ -3,6 +3,9 @@
  PATH=${PATH}:/bin:/usr/bin:/usr/local/bin
  export PATH=$PATH
  
-+# set CPU_NUMBER to the number of your CPUs. This variable is used by FlaCuda.
++# set CPU_NUMBER to the number of your CPUs. This variable is used by flaccl.
 +CPU_NUMBER=$(grep ^processor /proc/cpuinfo | wc -l)
 +
  # --== ERRORS ==--
@@ -15,7 +15,7 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  
  E_CODEC_FLAC_NOT_FOUND=15
  E_CODEC_FLAKE_NOT_FOUND=16
-+E_CODEC_FLACUDA_NOT_FOUND=66
++E_CODEC_FLACCL_NOT_FOUND=66
  E_CODEC_APE_NOT_FOUND=17
  E_CODEC_WVp_NOT_FOUND=18
  E_CODEC_WVu_NOT_FOUND=19
@@ -23,7 +23,7 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  
  codec_FLAC=""
  codec_FLAKE=""
-+codec_FLACUDA=""
++codec_FLACCL=""
  codec_APE=""
  codec_WVp=""
  codec_WVu=""
@@ -31,7 +31,7 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  
  codec_FLAC_needed=0
  codec_FLAKE_needed=0
-+codec_FLACUDA_needed=0
++codec_FLACCL_needed=0
  codec_APE_needed=0
  codec_WVp_needed=0
  codec_WVu_needed=0
@@ -39,7 +39,7 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  \t\twav   : no encode, raw sound wave,\n\
  \t\tflac  : (default) Free Lossless Audio Codec,\n\
  \t\tflake : FLAC realisation via FFmpeg (beta),\n\
-+\t\tflacuda:FLAC realisation using GPU acceleration,\n\
++\t\tflaccl: FLAC realisation using GPU acceleration,\n\
  \t\tape   : Monkey's Audio Codec,\n\
  \t\twv    : WavPack,\n\
  \t\tofr   : OptimFrog,\n\
@@ -47,15 +47,15 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  			[ ${outCodecLevel} -eq 2 ] && outCodecParam=" flake -4 - %f"
  			codec_OUT="flake"
  		;;
-+		"flacuda" )
-+			codec_FLACUDA_needed=1
++		"flaccl" )
++			codec_FLACCL_needed=1
 +			if [ ${putTags} -eq 1 ]; then tag_FLAC_needed=1; fi
 +			outExt="flac"
 +			toolCodec="${outExt}"
-+			outCodecParam=" flacuda --cpu-threads ${CPU_NUMBER} -o %f -"
-+			[ ${outCodecLevel} -eq 1 ] && outCodecParam=" flacuda -1 --cpu-threads ${CPU_NUMBER} -o %f -"
-+			[ ${outCodecLevel} -eq 2 ] && outCodecParam=" flacuda -4 --cpu-threads ${CPU_NUMBER} -o %f -"
-+			codec_OUT="flacuda"
++			outCodecParam=" flaccl --cpu-threads ${CPU_NUMBER} -o %f -"
++			[ ${outCodecLevel} -eq 1 ] && outCodecParam=" flaccl -1 --cpu-threads ${CPU_NUMBER} -o %f -"
++			[ ${outCodecLevel} -eq 2 ] && outCodecParam=" flaccl -4 --cpu-threads ${CPU_NUMBER} -o %f -"
++			codec_OUT="flaccl"
 +		;;
  		"tak" )
  			codec_TAK_needed=1
@@ -64,11 +64,11 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  		[ -n "${codec_FLAKE}" ] || return ${E_CODEC_FLAKE_NOT_FOUND}
  	fi
  
-+	if [ ${codec_FLACUDA_needed} -eq 1 ]
++	if [ ${codec_FLACCL_needed} -eq 1 ]
 +	then
-+		checktool flacuda flacuda
-+		codec_FLACUDA=`gettool flacuda`
-+		[ -n "${codec_FLACUDA}" ] || return ${E_CODEC_FLACUDA_NOT_FOUND}
++		checktool flaccl flaccl
++		codec_FLACCL=`gettool flaccl`
++		[ -n "${codec_FLACCL}" ] || return ${E_CODEC_FLACCL_NOT_FOUND}
 +	fi
 +
  	if [ ${codec_OFR_needed} -eq 1 ]
@@ -79,7 +79,7 @@ diff -uNr cue2tracks-0.2.16.orig/cue2tracks cue2tracks-0.2.16/cue2tracks
  tag_track() {
  	case "${outCodec}" in
 -		"flac" | "flake" )
-+		"flac" | "flake" | "flacuda" )
++		"flac" | "flake" | "flaccl" )
  			if [ ${onlyTest} -eq 0 ]
  			then
  				[ -n "${tags_ALBUM_DISCID}" ] && ( tag_flac_track "DISCID" "${tags_ALBUM_DISCID}" || return ${E_CANT_TAG_FLAC} )
