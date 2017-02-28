@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=6
+
 DESCRIPTION="Watchdogs for system monitoring"
 HOMEPAGE="http://powerman.name/soft/"
 SRC_URI="http://powerman.name/download/powerwatchdog/${P}.tgz"
@@ -10,9 +12,6 @@ LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
-
-DEPEND=""
-RDEPEND=""
 
 src_install() {
 	dosbin sbin/watchdog-check-{cpu,df,loadavg,mem,ping,proc,url}
