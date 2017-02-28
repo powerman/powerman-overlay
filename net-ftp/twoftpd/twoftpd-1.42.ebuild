@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-inherit toolchain-funcs eutils
+EAPI=6
+
+inherit toolchain-funcs
 
 DESCRIPTION="Simple secure efficient FTP server by Bruce Guenter"
 HOMEPAGE="http://untroubled.org/twoftpd/"
@@ -10,7 +12,7 @@ SRC_URI="http://untroubled.org/twoftpd/archive/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="virtual/libc
@@ -20,21 +22,21 @@ RDEPEND="sys-apps/ucspi-tcp
 		sys-process/daemontools
 		>=net-libs/cvm-0.90"
 
-src_compile() {
-	epatch "${FILESDIR}"/FF.patch
-	echo "/usr/sbin" > conf-bin
-	echo "/usr/share/man" > conf-man
-	echo "$(tc-getCC) ${CFLAGS} -I/usr/include/bglibs" > conf-cc
-	echo "$(tc-getCC) -s -L/usr/lib/bglibs" > conf-ld
-	emake || die "make failed"
+DOCS=( ANNOUNCEMENT ChangeLog NEWS README TODO VERSION twoftpd.run twoftpd-log.run )
+
+src_prepare() {
+	eapply "$FILESDIR"/FF.patch
+	default
+}
+
+src_configure() {
+	echo "/usr/sbin" > conf-bin || die
+	echo "/usr/share/man" > conf-man || die
+	echo "$(tc-getCC) ${CFLAGS} -I/usr/include/bglibs" > conf-cc || die
+	echo "$(tc-getCC) -s -L/usr/lib/bglibs" > conf-ld || die
 }
 
 src_install() {
-	dodir /usr/sbin
-	dodir /usr/share/man/man1
-
-	emake install install_prefix="${D}" || die "install failed"
-
-	dodoc ANNOUNCEMENT ChangeLog NEWS README TODO VERSION
-	dodoc twoftpd.run twoftpd-log.run
+	emake install install_prefix="$D"
+	einstalldocs
 }
