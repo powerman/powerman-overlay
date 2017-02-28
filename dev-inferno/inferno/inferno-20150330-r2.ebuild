@@ -13,7 +13,7 @@ SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT=0
-KEYWORDS="-* ~x86 ~amd64"
+KEYWORDS="-* ~amd64 ~x86"
 IUSE="X doc source re2 cjson ipv6"
 
 DEPEND="re2? ( dev-libs/re2[${MULTILIB_USEDEP}] )

@@ -10,7 +10,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE="flake flaccl mac tta shorten wavpack mp3 aac vorbis"
 
 DEPEND=""
