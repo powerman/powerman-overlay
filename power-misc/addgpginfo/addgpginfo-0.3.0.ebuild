@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=6
+
 DESCRIPTION="add GnuPG info into email headers while delivering"
 HOMEPAGE="http://powerman.name/soft/"
 SRC_URI="http://powerman.name/download/${PN}/${P}.tgz"
@@ -11,8 +13,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="app-crypt/gnupg"
-RDEPEND=""
+DEPEND=""
+RDEPEND="app-crypt/gnupg"
 
 src_install() {
 	dobin addgpginfo
