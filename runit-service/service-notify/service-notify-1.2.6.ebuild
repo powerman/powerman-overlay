@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 DESCRIPTION="Process system log on-the-fly, detect events and run actions"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"

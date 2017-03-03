@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 DESCRIPTION="Service for x11-base/xorg-x11"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
