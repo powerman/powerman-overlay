@@ -34,6 +34,11 @@ New packages:
 - `media-sound/cue2tracks`: split audio CD image files with cue sheet to
   tracks and write tags
 - `media-sound/flaccl`: CUDA-enabled FLAC encoder (former FlaCuda)
+- `net-analyzer/alertmanager`: manage alerts for Prometheus metrics
+- `net-analyzer/process-exporter`: Prometheus exporter that mines /proc to
+  report on selected processes
+- `net-analyzer/pushgateway`: allow ephemeral and batch jobs to expose
+  their metrics to Prometheus
 - `net-fs/wdmrc`: WebDAV emulator for Mail.ru Cloud
 - `net-ftp/twoftpd`: simple secure efficient FTP server by Bruce Guenter
   (with added patch which block TELNET_IAC support to allow using
