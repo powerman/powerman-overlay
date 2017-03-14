@@ -14,7 +14,7 @@ IUSE=""
 
 DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
-	net-analyzer/prometheus-node_exporter"
+	>=net-analyzer/prometheus-node_exporter-0.14.0_rc2"
 
 src_install() {
 	cp -a * "${D}"
