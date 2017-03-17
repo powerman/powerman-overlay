@@ -14,7 +14,7 @@ IUSE=""
 
 DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
-	net-p2p/i2p"
+	net-vpn/i2p"
 
 src_install() {
 	cp -a * "${D}"
