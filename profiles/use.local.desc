@@ -4,6 +4,7 @@
 
 dev-inferno/inferno:cjson - Add fast JSON tokenizer module for Limbo.
 dev-inferno/inferno:re2 - Enable support for dev-libs/re2.
+kde-apps/k3b:emovix - Enable burning support for eMoviX images
 mail-mta/netqmail:authcram - Enable AUTHCRAM support
 mail-mta/netqmail:gencertdaily - Generate SSL certificates daily instead of hourly
 mail-mta/netqmail:highvolume - Prepare netqmail for high volume servers
