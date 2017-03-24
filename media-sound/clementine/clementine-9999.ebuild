@@ -35,7 +35,6 @@ COMMON_DEPEND="
 		>=dev-qt/qtsql-4.5:4[sqlite]
 		app-crypt/qca:2[qt4(+)]
 		>=media-libs/libmygpo-qt-1.0.7[qt4]
-		media-libs/libechonest[qt4]
 		lastfm? ( >=media-libs/liblastfm-1[qt4] )
 		dbus? ( >=dev-qt/qtdbus-4.5:4 ) )
 	qt5? ( >=dev-qt/qtcore-5.1:5
@@ -50,7 +49,6 @@ COMMON_DEPEND="
 		>=dev-qt/linguist-tools-5.1:5
 		app-crypt/qca:2[qt5(+)]
 		>=media-libs/libmygpo-qt-1.0.8[qt5]
-		>=media-libs/libechonest-2.3.0[qt5]
 		lastfm? ( >=media-libs/liblastfm-1[qt5] )
 		dbus? ( >=dev-qt/qtdbus-5.1:5 ) )
 
