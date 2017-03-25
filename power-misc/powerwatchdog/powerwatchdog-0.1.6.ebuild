@@ -12,6 +12,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
+RDEPEND="virtual/mta
+	|| ( sys-process/procps[-modern-top] app-admin/sysstat )"
+
 src_install() {
 	dosbin sbin/watchdog-check-{cpu,df,loadavg,mem,ping,proc,url}
 	dosbin sbin/watchdog-report
