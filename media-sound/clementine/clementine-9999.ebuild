@@ -55,7 +55,6 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.24.1-r1
 	dev-libs/libxml2
 	dev-libs/protobuf:=
-	dev-libs/qjson
 	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:1.0
 	media-libs/gst-plugins-base:1.0
