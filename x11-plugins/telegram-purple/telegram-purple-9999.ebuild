@@ -24,4 +24,5 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	econf $(use_enable webp libwebp)
+	sed -i -e 's:-Werror::' tgl/Makefile.in || die
 }
