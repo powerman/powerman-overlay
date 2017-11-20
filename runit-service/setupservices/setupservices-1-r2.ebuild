@@ -17,6 +17,10 @@ IUSE=""
 DEPEND=""
 RDEPEND=""
 
+src_unpack() {
+	mkdir -p "${S}"
+}
+
 src_install() {
 	newenvd "${FILESDIR}"/services.envd 10services
 }
