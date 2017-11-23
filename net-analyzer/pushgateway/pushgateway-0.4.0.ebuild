@@ -41,7 +41,7 @@ src_compile() {
 }
 
 src_install() {
-	dobin bin/"$PN"
+	dobin bin/pushgateway/"$PN"
 	einstalldocs
 	keepdir /var/lib/"$PN"
 	fowners "$PN":"$PN" /var/lib/"$PN"
