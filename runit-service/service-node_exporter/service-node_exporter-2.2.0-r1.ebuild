@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -14,7 +14,7 @@ IUSE=""
 
 DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
-	~net-analyzer/prometheus-node_exporter-0.14.0"
+	>=app-metrics/node_exporter-0.15.2"
 
 src_install() {
 	cp -a * "${D}"
