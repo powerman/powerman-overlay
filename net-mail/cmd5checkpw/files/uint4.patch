@@ -1,0 +1,20 @@
+diff -uNr cmd5checkpw-0.30.orig/global.h cmd5checkpw-0.30/global.h
+--- cmd5checkpw-0.30.orig/global.h	2003-09-18 16:34:01.000000000 +0300
++++ cmd5checkpw-0.30/global.h	2018-06-06 03:24:23.549400583 +0300
+@@ -1,6 +1,7 @@
+ /* GLOBAL.H - RSAREF types and constants */
+ 
+ #include <string.h>
++#include <stdint.h>
+ 
+ /* Copyright (C) RSA Laboratories, a division of RSA Data Security,
+      Inc., created 1991. All rights reserved.
+@@ -25,7 +26,7 @@
+ typedef unsigned short int UINT2;
+ 
+ /* UINT4 defines a four byte word */
+-typedef unsigned long int UINT4;
++typedef uint32_t UINT4;
+ 
+ #ifndef NULL_PTR
+ #define NULL_PTR ((POINTER)0)
