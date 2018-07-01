@@ -112,5 +112,5 @@ src_install() {
 	newins "$FILESDIR"/profile.env profile
 
 	# Setup the path environment
-	doenvd "$FILESDIR"/20inferno
+	doenvd "$FILESDIR"/99inferno
 }
