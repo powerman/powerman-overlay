@@ -1,7 +1,7 @@
 diff -urp work.orig/kernel/common/inc/nv-linux.h work/kernel/common/inc/nv-linux.h
 --- work.orig/kernel/common/inc/nv-linux.h	2017-09-29 06:17:46.000000000 +0200
 +++ work/kernel/common/inc/nv-linux.h	2017-10-08 00:52:42.721523788 +0200
-@@ -1185,7 +1185,8 @@ extern void *nvidia_stack_t_cache;
+@@ -1189,7 +1189,8 @@ extern void *nvidia_stack_t_cache;
  #if (NV_KMEM_CACHE_CREATE_ARGUMENT_COUNT == 5)
  #define NV_KMEM_CACHE_CREATE_FULL(name, size, align, flags, ctor) \
      kmem_cache_create(name, size, align, flags, ctor)
@@ -11,7 +11,7 @@ diff -urp work.orig/kernel/common/inc/nv-linux.h work/kernel/common/inc/nv-linux
  #else
  #define NV_KMEM_CACHE_CREATE_FULL(name, size, align, flags, ctor) \
      kmem_cache_create(name, size, align, flags, ctor, NULL)
-@@ -1194,6 +1195,14 @@ extern void *nvidia_stack_t_cache;
+@@ -1198,6 +1199,14 @@ extern void *nvidia_stack_t_cache;
  #define NV_KMEM_CACHE_CREATE(name, type)    \
      NV_KMEM_CACHE_CREATE_FULL(name, sizeof(type), 0, 0, NULL)
  
@@ -64,7 +64,7 @@ diff -urp work.orig/kernel/common/inc/nv-register-module.h work/kernel/common/in
 diff -urp work.orig/kernel/nvidia/nv.c work/kernel/nvidia/nv.c
 --- work.orig/kernel/nvidia/nv.c	2017-09-29 06:17:45.000000000 +0200
 +++ work/kernel/nvidia/nv.c	2017-10-08 00:52:42.721523788 +0200
-@@ -683,7 +683,7 @@ int __init nvidia_init_module(void)
+@@ -682,7 +682,7 @@ int __init nvidia_init_module(void)
  
      nv_memdbg_init();
  
@@ -117,7 +117,7 @@ diff -urp work.orig/kernel/nvidia/nv-mmap.c work/kernel/nvidia/nv-mmap.c
 diff -urp work.orig/kernel/nvidia/nv-modeset-interface.c work/kernel/nvidia/nv-modeset-interface.c
 --- work.orig/kernel/nvidia/nv-modeset-interface.c	2017-09-29 06:17:45.000000000 +0200
 +++ work/kernel/nvidia/nv-modeset-interface.c	2017-10-08 00:52:42.721523788 +0200
-@@ -8,8 +8,6 @@
+@@ -8,14 +8,14 @@
   * _NVRM_COPYRIGHT_END_
   */
  
@@ -126,16 +126,15 @@ diff -urp work.orig/kernel/nvidia/nv-modeset-interface.c work/kernel/nvidia/nv-m
  #include "nv-misc.h"
  #include "os-interface.h"
  #include "nv-linux.h"
-@@ -17,6 +15,8 @@
+ #include "nvstatus.h"
  #include "nv.h"
- #include "nv-instance.h"
  
 +#include "nv-modeset-interface.h"
 +
  static const nvidia_modeset_callbacks_t *nv_modeset_callbacks;
  
  static int nvidia_modeset_rm_ops_alloc_stack(nvidia_stack_t **sp)
-@@ -101,10 +101,9 @@ static NvU32 nvidia_modeset_enumerate_gp
+@@ -100,10 +100,9 @@ static NvU32 nvidia_modeset_enumerate_gp
      return count;
  }
  
@@ -148,7 +147,7 @@ diff -urp work.orig/kernel/nvidia/nv-modeset-interface.c work/kernel/nvidia/nv-m
          .system_info    = {
              .allow_write_combining = NV_FALSE,
          },
-@@ -117,17 +116,26 @@ NV_STATUS nvidia_get_rm_ops(nvidia_modes
+@@ -116,17 +115,26 @@ NV_STATUS nvidia_get_rm_ops(nvidia_modes
          .set_callbacks  = nvidia_modeset_set_callbacks,
      };
  
@@ -211,8 +210,8 @@ diff -urp work.orig/kernel/nvidia-modeset/nvidia-modeset-linux.c work/kernel/nvi
 -static nvidia_modeset_rm_ops_t __rm_ops = { 0 };
 +static const nvidia_modeset_rm_ops_t *__rm_ops;
  static nvidia_modeset_callbacks_t nvkms_rm_callbacks = {
--    nvkms_suspend,
--    nvkms_resume
+-    .suspend = nvkms_suspend,
+-    .resume  = nvkms_resume
 +    .suspend = nvkms_suspend,
 +    .resume = nvkms_resume
  };
