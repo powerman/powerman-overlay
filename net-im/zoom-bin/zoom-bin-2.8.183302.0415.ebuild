@@ -7,7 +7,7 @@ inherit xdg-utils unpacker
 
 DESCRIPTION="Video conferencing and web conferencing service"
 HOMEPAGE="https://zoom.us/"
-SRC_URI="https://zoom.us/client/${PV}/zoom_x86_64.pkg.tar.xz"
+SRC_URI="https://zoom.us/client/${PV}/zoom_x86_64.pkg.tar.xz -> zoom_${PV}_x86_64.pkg.tar.xz"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
