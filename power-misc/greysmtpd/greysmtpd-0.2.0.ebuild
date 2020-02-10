@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -14,7 +14,7 @@ IUSE=""
 
 DEPEND="virtual/qmail"
 RDEPEND="${DEPEND}
-	net-libs/adns"
+	dev-perl/Net-DNS-Async-Simple"
 
 src_install() {
 	dobin greysmtpd
