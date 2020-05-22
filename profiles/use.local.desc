@@ -12,4 +12,4 @@ media-sound/cue2tracks:flaccl - Add support for FLACCL, CUDA-enabled FLAC encode
 media-sound/cue2tracks:flake - Add support for Flake, alternative FLAC encoder.
 media-sound/cue2tracks:mac - Add support for Monkey's Audio files.
 media-sound/cue2tracks:tta - Add support for media-sound/ttaenc.
-net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application
+sys-auth/elogind:runit - Use runit instead of openrc.
