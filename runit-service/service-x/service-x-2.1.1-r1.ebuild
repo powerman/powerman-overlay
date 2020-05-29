@@ -16,7 +16,7 @@ DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
 	runit-service/service-agetty
 	runit-service/service-dbus
-	runit-service/service-consolekit
+	runit-service/service-elogin
 	x11-apps/xinit
 	x11-misc/slim"
 
