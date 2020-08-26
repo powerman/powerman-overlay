@@ -8,8 +8,4 @@ media-fonts/developer-font:inferno - Install fonts for OS Inferno.
 media-fonts/developer-font:pcf - Install Portable Compiled Font (required for X11).
 media-fonts/developer-font:psf - Install PC Screen Font with unicode data (for linux console).
 media-fonts/developer-font:raw - Install RAW font data which should be compatible with most UNIX systems (you don't need this on linux).
-media-sound/cue2tracks:flaccl - Add support for FLACCL, CUDA-enabled FLAC encoder.
-media-sound/cue2tracks:flake - Add support for Flake, alternative FLAC encoder.
-media-sound/cue2tracks:mac - Add support for Monkey's Audio files.
-media-sound/cue2tracks:tta - Add support for media-sound/ttaenc.
 sys-auth/elogind:runit - Use runit instead of openrc.
