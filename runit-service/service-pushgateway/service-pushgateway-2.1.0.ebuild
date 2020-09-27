@@ -14,7 +14,7 @@ IUSE=""
 
 DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
-	net-analyzer/pushgateway"
+	app-metrics/pushgateway"
 
 src_install() {
 	cp -a * "${D}"
