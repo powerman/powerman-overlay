@@ -1,0 +1,82 @@
+app-crypt/keybase-bin 4.4.1_p20190910185008 4.7.2_p20191028173732 5.1.1_p20191211223501 5.2.0_p20200130211428 5.4.2_p20200424214931 5.5.1_p20200527202541 5.5.2_p20201016183637 5.6.1_p20210125164223: Client for keybase.io (binary version with GUI)
+app-text/goldendict 1.5.0_rc2-r2: Feature-rich dictionary lookup program
+dev-inferno/inferno 20150330-r3 20180403-r1: OS Inferno Fourth Edition
+dev-libs/eb 4.4.1-r1: EB is a C library and utilities for accessing CD-ROM books
+dev-perl/Net-DNS-Async-Simple 1.161090: A simple wrapper around the excellent Net::DNS::Async
+dev-qt/qthelp 5.15.1: Qt5 module for integrating online documentation into applications
+dev-qt/qtlockedfile 2.4.1_p20171024: QFile extension with advisory locking functions
+dev-qt/qtsingleapplication 2.6.1_p20171024: Qt library to start applications only once per user
+dev-qt/qtwebkit 5.212.0_pre20200309-r1: WebKit rendering library for the Qt5 framework (deprecated)
+dev-vcs/vcprompt 1.3.0: Show info about the current working directory for various VCS for PS1
+media-fonts/developer-font 1.6-r2: Another clean fixed font for the console and X11
+media-fonts/russify 2.7: font for console, dos/koi/win mappings for screen and keyboard
+media-sound/flaccl 2.1.6: CUDA-enabled FLAC encoder (former FlaCuda)
+media-video/vidcutter 6.0.0 9999: FFmpeg-based simple video cutter & joiner with a modern PyQt5 GUI
+net-ftp/twoftpd 1.42 1.43: Simple secure efficient FTP server by Bruce Guenter
+net-mail/cmd5checkpw 0.30-r1 0.30-r2: A checkpassword compatible authentication program that used CRAM-MD5 authentication mode
+power-misc/addgpginfo 0.4.1: add GnuPG info into email headers while delivering
+power-misc/deliver 4.0.1: Control email delivery (for .qmail only)
+power-misc/greysmtpd 0.2.0: tcpserver-compatible anti-spam (greylisting) smtpd
+power-misc/powerbackup 0.1.4 0.1.5: Simple and flexible incremental backup
+power-misc/powerutils 2.2.14: A bundle of useful small utilities
+power-misc/powerwatchdog 0.1.6: Watchdogs for system monitoring
+power-misc/remote 2.0.2: Ease to use wrapper tools for ssh and scp
+power-misc/runit-scripts 1.5.0 1.5.1 1.6.1 1.7.0: Replacement for SysV init scripts to use with runit.
+runit-service/service-3proxy 1.0.2 2.1.2: Service for net-proxy/3proxy
+runit-service/service-acpid 1.0.1 2.0.0: Service for sys-power/acpid
+runit-service/service-adsl 1.0.1 2.0.0: Service for net-dialup/rp-pppoe
+runit-service/service-agetty 1.0.2 2.0.0: Service for agetty
+runit-service/service-alertmanager 2.1.0: Service for net-analyzer/alertmanager
+runit-service/service-apache2 1.1.0 2.0.0: Service for www-servers/apache-2
+runit-service/service-atd 1.0.0 2.0.0: Service for sys-process/at
+runit-service/service-conky 2.0.0: Service for app-admin/conky
+runit-service/service-consolekit 1.0.0 2.0.0: Service for sys-auth/consolekit
+runit-service/service-consul 2.0.0: Service for app-admin/consul
+runit-service/service-courier-auth 1.0.0: Service for net-libs/courier-authlib
+runit-service/service-courier-imap 0.1.0: Service for net-mail/courier-imap
+runit-service/service-cups 1.0.0 2.0.0: Service for net-print/cups
+runit-service/service-dbus 1.0.3 2.0.0: Service for sys-apps/dbus
+runit-service/service-dcron 1.0.0 2.0.0: Service for sys-process/dcron
+runit-service/service-dhcpd 1.1.2-r1 2.1.2: Service for net-misc/dhcp
+runit-service/service-djbdns 1.0.1 2.0.2: Service for net-dns/djbdns
+runit-service/service-docker 1.1.0 2.0.1: Service for app-emulation/docker
+runit-service/service-elogin 1.0.0: Service for sys-auth/elogind
+runit-service/service-expirelog 1.0.0 2.0.0: Service for cleaning runsvdir's title
+runit-service/service-gpm 1.0.0 2.0.0: Service for sys-libs/gpm
+runit-service/service-grafana 2.0.0: Service for www-apps/grafana
+runit-service/service-hostapd 2.0.0: Service for net-wireless/hostapd
+runit-service/service-i2p 1.0.0 2.0.0 2.1.0: Service for net-p2p/i2p
+runit-service/service-log-all 1.0.0 2.0.0: Catch-all log with most important data from all other logs
+runit-service/service-mcelog 1.0.0 2.0.0: Service for app-admin/mcelog
+runit-service/service-mysql 1.1.0 2.0.0 2.1.0: Service for dev-db/mysql
+runit-service/service-nginx 1.0.0 2.0.1: Service for www-servers/nginx
+runit-service/service-node_exporter 2.2.1: Service for net-analyzer/prometheus-node_exporter
+runit-service/service-notify 1.2.6 2.3.0: Process system log on-the-fly, detect events and run actions
+runit-service/service-nut 1.0.1 2.0.0: Service for sys-power/nut
+runit-service/service-opendkim 1.0.0: Service for mail-filter/opendkim
+runit-service/service-opendmarc 1.0.0: Service for mail-filter/opendmarc
+runit-service/service-openvpn 2.0.0: Service for net-vpn/openvpn
+runit-service/service-postfix 1.0.0: Service for mail-mta/postfix
+runit-service/service-postsrs 1.0.0: Service for mail-filter/postsrsd
+runit-service/service-process-exporter 2.1.0: Service for net-analyzer/process-exporter
+runit-service/service-prometheus 2.0.1: Service for app-metrics/prometheus
+runit-service/service-pushgateway 2.1.0: Service for net-analyzer/pushgateway
+runit-service/service-qmail 1.2.0 2.0.0: Service for virtual/qmail
+runit-service/service-revssh 2.0.0: Service for reverse ssh
+runit-service/service-rtorrent 2.0.0: Service for net-p2p/rtorrent
+runit-service/service-samba 1.0.1 2.0.1: Service for net-fs/samba
+runit-service/service-smartd 1.0.0 2.0.0: Service for sys-apps/smartmontools
+runit-service/service-socklog 1.0.1 2.0.0: Service for app-admin/socklog
+runit-service/service-ssh 1.0.0 2.0.0: Service for net-misc/openssh
+runit-service/service-tftpd 1.0.0 2.1.1: Service for net-ftp/tftp-hpa
+runit-service/service-twoftpd 1.0.2 2.0.1: Service for net-ftp/twoftpd
+runit-service/service-vmware 1.0.0 2.0.0: Service for app-emulation/vmware-workstation
+runit-service/service-x 1.1.0 2.1.1-r1: Service for Xorg
+runit-service/setupservices 1-r2: Setup system to use runit services
+sys-auth/elogind 243.7 243.7-r1 246.9.2: The systemd project's logind, extracted to a standalone package
+sys-libs/wcwidth-icons 0.2.1-r1 0.2.2: Support fonts with double-width icons in xterm/rxvt-unicode/zsh/...
+sys-process/runit 2.1.1-r1 2.1.2-r1: A UNIX init scheme with service supervision
+x11-misc/snixembed 9999: Proxy StatusNotifierItems as XEmbedded systemtray-spec icons
+x11-misc/xse 2.1-r2: Command Line Interface to XSendEvent()
+x11-plugins/purple-carbons 0.1.4: Experimental XEP-0280: Message Carbons plugin for libpurple
+x11-plugins/telegram-purple 9999: Adds support for Telegram to Pidgin and Finch.
