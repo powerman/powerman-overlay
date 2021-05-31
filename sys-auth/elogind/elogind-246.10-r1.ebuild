@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,7 +9,7 @@ if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 fi
 
 inherit linux-info meson pam udev xdg-utils
@@ -19,7 +19,7 @@ HOMEPAGE="https://github.com/elogind/elogind"
 
 LICENSE="CC0-1.0 LGPL-2.1+ public-domain"
 SLOT="0"
-IUSE="+acl debug doc +pam +policykit runit selinux"
+IUSE="+acl audit debug doc +pam +policykit runit selinux"
 
 BDEPEND="
 	app-text/docbook-xml-dtd:4.2
@@ -30,6 +30,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 DEPEND="
+	audit? ( sys-process/audit )
 	sys-apps/util-linux
 	sys-libs/libcap
 	virtual/libudev:=
@@ -48,8 +49,9 @@ PDEPEND="
 DOCS=( README.md src/libelogind/sd-bus/GVARIANT-SERIALIZATION )
 
 PATCHES=(
-	"${FILESDIR}/${P}-nodocs.patch"
+	"${FILESDIR}/${PN}-243.7-nodocs.patch"
 	"${FILESDIR}/${PN}-241.4-broken-test.patch" # bug 699116
+	"${FILESDIR}/${P}-revert-polkit-automagic.patch"
 )
 
 pkg_setup() {
@@ -89,6 +91,7 @@ src_configure() {
 		-Ddefault-hierarchy=${cgroupmode}
 		-Ddefault-kill-user-processes=false
 		-Dacl=$(usex acl true false)
+		-Daudit=$(usex audit true false)
 		--buildtype $(usex debug debug release)
 		-Dhtml=$(usex doc auto false)
 		-Dpam=$(usex pam true false)
@@ -104,7 +107,7 @@ src_install() {
 
 	meson_src_install
 
-	newinitd "${FILESDIR}"/${PN}.init ${PN}
+	newinitd "${FILESDIR}"/${PN}.init-r1 ${PN}
 
 	sed -e "s/@libdir@/$(get_libdir)/" "${FILESDIR}"/${PN}.conf.in > ${PN}.conf || die
 	newconfd ${PN}.conf ${PN}
