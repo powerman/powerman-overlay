@@ -6,7 +6,6 @@
 		<name>Alex Efros</name>
 	</maintainer>
 	<use>
-		<flag name="re2">Enable support for dev-libs/re2.</flag>
 		<flag name="cjson">Add fast JSON tokenizer module for Limbo.</flag>
 	</use>
 </pkgmetadata>

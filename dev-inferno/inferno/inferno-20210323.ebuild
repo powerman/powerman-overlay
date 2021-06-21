@@ -1,10 +1,10 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 MULTILIB_COMPAT=( abi_x86_32 )
 
-inherit mercurial git-r3 pax-utils multilib-build
+inherit git-r3 pax-utils multilib-build
 
 DESCRIPTION="OS Inferno Fourth Edition"
 HOMEPAGE="https://bitbucket.org/inferno-os/inferno-os"
@@ -13,21 +13,16 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT=0
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="X doc source re2 cjson ipv6"
+IUSE="X doc source cjson ipv6"
 
-DEPEND="re2? ( dev-libs/re2[${MULTILIB_USEDEP}] )
-	X? (
+DEPEND="X? (
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		x11-libs/libXext[${MULTILIB_USEDEP}]
 	)"
 RDEPEND=""
 
-EHG_REPO_URI="https://bitbucket.org/inferno-os/inferno-os"
-EHG_REVISION="7110524"
-
-RE2_EGIT_REPO_URI="https://github.com/powerman/inferno-re2"
-RE2_EGIT_COMMIT=1.3.0
-RE2_EGIT_CHECKOUT_DIR="$WORKDIR"/re2
+EGIT_REPO_URI="https://bitbucket.org/inferno-os/inferno-os"
+EGIT_COMMIT="48f2755"
 
 CJSON_EGIT_REPO_URI="https://github.com/powerman/inferno-cjson"
 CJSON_EGIT_COMMIT=0.3.3
@@ -39,21 +34,19 @@ PATCHES=(
 	"$FILESDIR"/issue-271-microsec.patch
 	"$FILESDIR"/issue-274-execatidle.patch
 	"$FILESDIR"/issue-287-man-index.patch
+	"$FILESDIR"/issue-360-common.patch
 )
 
 src_unpack() {
-	mercurial_src_unpack
+	git-r3_src_unpack
 
-	if use re2; then
-		git-r3_fetch "$RE2_EGIT_REPO_URI" "$RE2_EGIT_COMMIT"
-		git-r3_checkout "$RE2_EGIT_REPO_URI" "$RE2_EGIT_CHECKOUT_DIR"
-		cp -a "$RE2_EGIT_CHECKOUT_DIR"/* "$S" || die
-	fi
 	if use cjson; then
 		git-r3_fetch "$CJSON_EGIT_REPO_URI" "$CJSON_EGIT_COMMIT"
 		git-r3_checkout "$CJSON_EGIT_REPO_URI" "$CJSON_EGIT_CHECKOUT_DIR"
 		cp -a "$CJSON_EGIT_CHECKOUT_DIR"/* "$S" || die
 	fi
+
+	default
 }
 
 src_prepare() {
@@ -61,9 +54,6 @@ src_prepare() {
 
 	if ! use ipv6; then
 		sed -i 's/ipif6/ipif/g' emu/Linux/emu emu/Linux/emu-g || die
-	fi
-	if use re2; then
-		./patch.re2 || die
 	fi
 	if use cjson; then
 		./patch.cjson || die
@@ -96,7 +86,7 @@ src_install() {
 	insinto /usr/inferno
 	doins -r *
 	if use source; then
-		doins -r .hg*
+		doins -r .git*
 	fi
 
 	# Fix permissions
