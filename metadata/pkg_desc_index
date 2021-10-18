@@ -1,6 +1,6 @@
 app-crypt/keybase-bin 4.4.1_p20190910185008 4.7.2_p20191028173732 5.1.1_p20191211223501 5.2.0_p20200130211428 5.4.2_p20200424214931 5.5.1_p20200527202541 5.5.2_p20201016183637 5.6.1_p20210125164223: Client for keybase.io (binary version with GUI)
 app-text/goldendict 1.5.0_rc2-r2: Feature-rich dictionary lookup program
-dev-inferno/inferno 20150330-r3 20180403-r1: OS Inferno Fourth Edition
+dev-inferno/inferno 20210323: OS Inferno Fourth Edition
 dev-libs/eb 4.4.1-r1: EB is a C library and utilities for accessing CD-ROM books
 dev-perl/Net-DNS-Async-Simple 1.161090: A simple wrapper around the excellent Net::DNS::Async
 dev-qt/qthelp 5.15.1: Qt5 module for integrating online documentation into applications
@@ -11,9 +11,8 @@ dev-vcs/vcprompt 1.3.0: Show info about the current working directory for variou
 media-fonts/developer-font 1.6-r2: Another clean fixed font for the console and X11
 media-fonts/russify 2.7: font for console, dos/koi/win mappings for screen and keyboard
 media-sound/flaccl 2.1.6: CUDA-enabled FLAC encoder (former FlaCuda)
-media-video/vidcutter 6.0.0 9999: FFmpeg-based simple video cutter & joiner with a modern PyQt5 GUI
 net-ftp/twoftpd 1.42 1.43: Simple secure efficient FTP server by Bruce Guenter
-net-mail/cmd5checkpw 0.30-r1 0.30-r2: A checkpassword compatible authentication program that used CRAM-MD5 authentication mode
+net-mail/cmd5checkpw 0.30-r2: A checkpassword compatible authentication program that used CRAM-MD5 authentication mode
 power-misc/addgpginfo 0.4.1: add GnuPG info into email headers while delivering
 power-misc/deliver 4.0.1: Control email delivery (for .qmail only)
 power-misc/greysmtpd 0.2.0: tcpserver-compatible anti-spam (greylisting) smtpd
@@ -21,7 +20,7 @@ power-misc/powerbackup 0.1.4 0.1.5: Simple and flexible incremental backup
 power-misc/powerutils 2.2.14: A bundle of useful small utilities
 power-misc/powerwatchdog 0.1.6: Watchdogs for system monitoring
 power-misc/remote 2.0.2: Ease to use wrapper tools for ssh and scp
-power-misc/runit-scripts 1.5.0 1.5.1 1.6.1 1.7.0: Replacement for SysV init scripts to use with runit.
+power-misc/runit-scripts 1.6.1 1.7.0: Replacement for SysV init scripts to use with runit.
 runit-service/service-3proxy 1.0.2 2.1.2: Service for net-proxy/3proxy
 runit-service/service-acpid 1.0.1 2.0.0: Service for sys-power/acpid
 runit-service/service-adsl 1.0.1 2.0.0: Service for net-dialup/rp-pppoe
@@ -73,7 +72,7 @@ runit-service/service-twoftpd 1.0.2 2.0.1: Service for net-ftp/twoftpd
 runit-service/service-vmware 1.0.0 2.0.0: Service for app-emulation/vmware-workstation
 runit-service/service-x 1.1.0 2.1.1-r1: Service for Xorg
 runit-service/setupservices 1-r2: Setup system to use runit services
-sys-auth/elogind 243.7 243.7-r1 246.9.2: The systemd project's logind, extracted to a standalone package
+sys-auth/elogind 246.9.2 246.10-r1: The systemd project's logind, extracted to a standalone package
 sys-libs/wcwidth-icons 0.2.1-r1 0.2.2: Support fonts with double-width icons in xterm/rxvt-unicode/zsh/...
 sys-process/runit 2.1.2-r1: A UNIX init scheme with service supervision
 x11-misc/snixembed 9999: Proxy StatusNotifierItems as XEmbedded systemtray-spec icons
