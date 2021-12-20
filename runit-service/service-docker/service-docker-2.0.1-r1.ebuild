@@ -1,5 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+
+EAPI=6
 
 DESCRIPTION="Service for app-emulation/docker"
 HOMEPAGE="http://powerman.name/RTFM/runit.html"
@@ -10,19 +12,14 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=""
-RDEPEND="
-	runit-service/setupservices
-	>=app-emulation/docker-1.11.0
-	"
+DEPEND="runit-service/setupservices"
+RDEPEND=">=sys-process/runit-2.1.2-r1
+	app-containers/docker"
 
 src_install() {
 	cp -a * "${D}"
-}
-
-pkg_postinst() {
-	chown log:root /var/log/docker
-	chmod 2750 /var/log/docker
-	chown log:root /var/log/docker/all
-	chown log:root /var/log/docker/*/{lock,state,newstate,current} 2>/dev/null
+	for d in var/log/*/{,*/}; do
+		fowners log:root /"$d"
+		fperms 0750 /"$d"
+	done
 }
