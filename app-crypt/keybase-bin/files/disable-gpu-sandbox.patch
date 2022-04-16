@@ -1,0 +1,13 @@
+https://github.com/keybase/client/issues/24868
+
+--- a/usr/bin/run_keybase	2022-04-16 15:40:58.604051808 +0300
++++ b/usr/bin/run_keybase	2022-04-16 15:42:02.144046494 +0300
+@@ -120,7 +120,7 @@
+ 
+       echo Launching Keybase GUI...
+       gui_log="$logdir/Keybase.app.log"
+-      "$KEYBASE" &>> "$gui_log" &
++      "$KEYBASE" --disable-gpu-sandbox &>> "$gui_log" &
+   fi
+ }
+ 
