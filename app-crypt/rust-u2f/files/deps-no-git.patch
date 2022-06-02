@@ -1,0 +1,27 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index ac34770..75795ad 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -169,7 +169,8 @@ dependencies = [
+ [[package]]
+ name = "authenticator"
+ version = "0.3.1"
+-source = "git+https://github.com/mozilla/authenticator-rs?tag=v0.3.1#660a701b45977cb5d184380061dfc8cec4f696be"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "08cee7a0952628fde958e149507c2bb321ab4fccfafd225da0b20adc956ef88a"
+ dependencies = [
+  "bitflags",
+  "core-foundation",
+diff --git a/linux/test-authenticator/Cargo.toml b/linux/test-authenticator/Cargo.toml
+index 2d3994f..2b7a29a 100644
+--- a/linux/test-authenticator/Cargo.toml
++++ b/linux/test-authenticator/Cargo.toml
+@@ -6,7 +6,7 @@ edition = "2021"
+ # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+ 
+ [dependencies]
+-authenticator = { git = "https://github.com/mozilla/authenticator-rs", tag = "v0.3.1" }
++authenticator = "^0.3.1"
+ base64 = "^0.13.0"
+ env_logger = "^0.9.0"
+ getopts = "^0.2"
