@@ -3,8 +3,6 @@
 
 EAPI=6
 
-inherit user
-
 DESCRIPTION="Setup system to use runit services"
 HOMEPAGE="http://powerman.name/"
 SRC_URI=""
@@ -15,7 +13,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND=""
+RDEPEND="acct-user/log"
 
 src_unpack() {
 	mkdir -p "${S}"
@@ -23,8 +21,4 @@ src_unpack() {
 
 src_install() {
 	newenvd "${FILESDIR}"/services.envd 10services
-}
-
-pkg_setup() {
-	enewuser log -1 -1 -1 nogroup
 }
