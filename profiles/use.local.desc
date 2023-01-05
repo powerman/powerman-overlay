@@ -14,4 +14,5 @@ media-fonts/developer-font:inferno - Install fonts for OS Inferno.
 media-fonts/developer-font:pcf - Install Portable Compiled Font (required for X11).
 media-fonts/developer-font:psf - Install PC Screen Font with unicode data (for linux console).
 media-fonts/developer-font:raw - Install RAW font data which should be compatible with most UNIX systems (you don't need this on linux).
+sys-auth/elogind:cgroup-hybrid - Use hybrid cgroup hierarchy (OpenRC's default) instead of unified.
 sys-auth/elogind:runit - Use runit instead of openrc.
