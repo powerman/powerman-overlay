@@ -1,15 +1,8 @@
-# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
-# your descriptions to your package's metadata.xml ONLY.
-# * generated automatically using egencache *
+# This file is deprecated as per GLEP 56 in favor of metadata.xml.
+# Please add your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using pmaint *
 
 dev-inferno/inferno:cjson - Add fast JSON tokenizer module for Limbo.
-dev-qt/qtwebkit:geolocation - Enable physical position determination via dev-qt/qtpositioning
-dev-qt/qtwebkit:gstreamer - Enable HTML5 audio/video support via media-libs/gstreamer using SLOT 1.0
-dev-qt/qtwebkit:hyphen - Enable hyphenation support via dev-libs/hyphen
-dev-qt/qtwebkit:multimedia - Enable HTML5 audio/video support via dev-qt/qtmultimedia
-dev-qt/qtwebkit:orientation - Enable device orientation detection via dev-qt/qtsensors
-dev-qt/qtwebkit:printsupport - Enable printing via dev-qt/qtprintsupport
-dev-qt/qtwebkit:qml - Build QML/QtQuick bindings
 media-fonts/developer-font:inferno - Install fonts for OS Inferno.
 media-fonts/developer-font:pcf - Install Portable Compiled Font (required for X11).
 media-fonts/developer-font:psf - Install PC Screen Font with unicode data (for linux console).
