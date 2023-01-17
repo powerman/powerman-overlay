@@ -14,7 +14,3 @@ KEYWORDS="~amd64"
 DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
-
-# src_install() {
-# 	emake DESTDIR="${D}" LIBDIR="/usr/$(get_libdir)" install
-# }
