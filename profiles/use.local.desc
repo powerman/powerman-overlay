@@ -1,6 +1,6 @@
-# This file is deprecated as per GLEP 56 in favor of metadata.xml.
-# Please add your descriptions to your package's metadata.xml ONLY.
-# * generated automatically using pmaint *
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using egencache *
 
 dev-inferno/inferno:cjson - Add fast JSON tokenizer module for Limbo.
 media-fonts/developer-font:inferno - Install fonts for OS Inferno.
