@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>ext@sidvind.com</email>
+    <name>David Sveningsson</name>
+  </maintainer>
+  <use>
+    <flag name="archive">Enable archive support using <pkg>app-arch/libarchive</pkg></flag>
+    <flag name="gpg">Enable gpgme support using <pkg>app-crypt/gpgme</pkg></flag>
+  </use>
+</pkgmetadata>
