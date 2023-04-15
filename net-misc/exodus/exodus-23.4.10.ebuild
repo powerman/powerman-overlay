@@ -29,6 +29,6 @@ src_install() {
 	mkdir "${S}"/opt
 	mv "${S}"/usr/lib/exodus "${S}"/opt
 	cp -a "${S}"/* "${D}" || die
-	dosym /opt/exodus/Exodus /usr/bin/exodus
+	dosym ../../opt/exodus/Exodus /usr/bin/exodus
 	fperms 4755 "/opt/exodus/chrome-sandbox"
 }
