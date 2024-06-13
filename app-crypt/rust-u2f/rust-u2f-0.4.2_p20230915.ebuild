@@ -348,31 +348,29 @@ declare -A GIT_CRATES=(
 
 inherit cargo systemd tmpfiles
 
-COMMIT="da1c12db6167f51c46091d45a274a56ab67e45e7"
-
 DESCRIPTION="A software-only Universal 2nd Factor token"
 HOMEPAGE="https://github.com/danstiner/rust-u2f"
+
+COMMIT="da1c12db6167f51c46091d45a274a56ab67e45e7"
 # SRC_URI="https://github.com/danstiner/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 SRC_URI="https://github.com/danstiner/${PN}/archive/${COMMIT}.tar.gz -> ${P}.tar.gz
 	${CARGO_CRATE_URIS}"
-RESTRICT="mirror"
+
+# S=${WORKDIR}/${P}/linux
+S=${WORKDIR}/${PN}-${COMMIT}/linux
+
 # License set may be more restrictive as OR is not respected
 # use cargo-license for a more accurate license picture
 LICENSE="0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
+
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="+debug"
-
-DEPEND=""
-RDEPEND="${DEPEND}"
-BDEPEND=""
+RESTRICT="mirror"
 
 # rust does not use *FLAGS from make.conf, silence portage warning
 # update with proper path to binaries this crate installs, omit leading /
 QA_FLAGS_IGNORED="/usr/bin/${PN}"
-
-# S=${WORKDIR}/${P}/linux
-S=${WORKDIR}/${PN}-${COMMIT}/linux
 
 src_unpack() {
 	cargo_src_unpack
