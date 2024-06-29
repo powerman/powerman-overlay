@@ -22,6 +22,8 @@ DEPEND="
     dev-python/jsonschema[${PYTHON_USEDEP}]
     dev-python/pygls[${PYTHON_USEDEP}]
     dev-python/tree-sitter[${PYTHON_USEDEP}]
+    dev-python/beautifulsoup4[${PYTHON_USEDEP}]
+    dev-python/pypandoc[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
