@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=(python3_{10..12} pypy3)
+PYTHON_COMPAT=(python3_{10..12})
 
 inherit distutils-r1 pypi
 
@@ -12,7 +12,7 @@ DESCRIPTION="A library to create language servers"
 HOMEPAGE="https://github.com/neomutt/lsp-tree-sitter https://pypi.org/project/lsp-tree-sitter/"
 SRC_URI="https://files.pythonhosted.org/packages/source/${PN::1}/${PN}/${P}.tar.gz"
 
-LICENSE="GPL-3.0"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
