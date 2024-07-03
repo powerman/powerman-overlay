@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <upstream>
+    <remote-id type="github">executablebooks/mdformat-footnote</remote-id>
+    <remote-id type="pypi">mdformat-footnote</remote-id>
+  </upstream>
+  <maintainer type="person">
+    <email>powerman-asdf@yandex.ru</email>
+    <name>Alex Efros</name>
+  </maintainer>
+</pkgmetadata>
