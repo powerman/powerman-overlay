@@ -2,7 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <upstream>
-    <remote-id type="github">executablebooks/mdformat-gfm</remote-id>
+    <remote-id type="github">hukkin/mdformat-gfm</remote-id>
     <remote-id type="pypi">mdformat-gfm</remote-id>
   </upstream>
   <maintainer type="person">

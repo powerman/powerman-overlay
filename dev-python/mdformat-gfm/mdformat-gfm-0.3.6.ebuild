@@ -9,7 +9,7 @@ PYTHON_COMPAT=(python3_{10..12})
 inherit distutils-r1 pypi
 
 DESCRIPTION="Mdformat plugin for GitHub Flavored Markdown compatibility"
-HOMEPAGE="https://github.com/executablebooks/mdformat-gfm https://pypi.org/project/mdformat-gfm/"
+HOMEPAGE="https://github.com/hukkin/mdformat-gfm https://pypi.org/project/mdformat-gfm/"
 SRC_URI="$(pypi_sdist_url "${PN//-/_}")"
 
 S=${WORKDIR}/${PN//-/_}-${PV}
