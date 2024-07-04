@@ -13,7 +13,6 @@ KEYWORDS="~amd64 ~x86"
 
 DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
-	sys-apps/ucspi-ssl
 	virtual/qmail"
 
 src_install() {
