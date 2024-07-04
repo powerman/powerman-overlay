@@ -9,7 +9,7 @@ PYTHON_COMPAT=(python3_{10..12})
 inherit distutils-r1 pypi
 
 DESCRIPTION="mdformat plugin to ensure frontmatter is respected"
-HOMEPAGE="https://github.com/executablebooks/mdformat-frontmatter https://pypi.org/project/mdformat-frontmatter/"
+HOMEPAGE="https://github.com/butler54/mdformat-frontmatter https://pypi.org/project/mdformat-frontmatter/"
 SRC_URI="$(pypi_sdist_url "${PN//-/_}")"
 
 S=${WORKDIR}/${PN//-/_}-${PV}

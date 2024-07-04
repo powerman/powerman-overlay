@@ -2,7 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <upstream>
-    <remote-id type="github">executablebooks/mdformat-frontmatter</remote-id>
+    <remote-id type="github">butler54/mdformat-frontmatter</remote-id>
     <remote-id type="pypi">mdformat-frontmatter</remote-id>
   </upstream>
   <maintainer type="person">
