@@ -12,7 +12,6 @@ EGIT_REPO_URI="https://git.sr.ht/~steef/snixembed"
 
 LICENSE="ISC"
 SLOT="0"
-KEYWORDS="~amd64"
 
 DEPEND="
 	dev-lang/vala:=
