@@ -12,15 +12,15 @@ DESCRIPTION="A pythonic generic language server"
 HOMEPAGE="https://github.com/openlawlibrary/pygls https://pypi.org/project/pygls/"
 SRC_URI="https://files.pythonhosted.org/packages/source/${PN::1}/${PN}/${P}.tar.gz"
 
+S=${WORKDIR}/${P}
+
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-    dev-python/cattrs[${PYTHON_USEDEP}]
-    dev-python/lsprotocol[${PYTHON_USEDEP}]
-    dev-python/websockets[${PYTHON_USEDEP}]
+	dev-python/cattrs[${PYTHON_USEDEP}]
+	dev-python/lsprotocol[${PYTHON_USEDEP}]
+	dev-python/websockets[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
-
-S=${WORKDIR}/${P}
