@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
-		<email>powerman-asdf@yandex.ru</email>
-		<name>Alex Efros</name>
-	</maintainer>
-	<use>
-		<flag name="cjson">Add fast JSON tokenizer module for Limbo.</flag>
-	</use>
+  <maintainer type="person">
+    <email>powerman-asdf@yandex.ru</email>
+    <name>Alex Efros</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="bitbucket">inferno-os/inferno-os</remote-id>
+  </upstream>
+  <use>
+    <flag name="cjson">Add fast JSON tokenizer module for Limbo.</flag>
+  </use>
 </pkgmetadata>
