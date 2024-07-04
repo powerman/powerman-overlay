@@ -7,21 +7,15 @@ inherit unpacker xdg
 
 DESCRIPTION="Cryptocurrency Wallet"
 HOMEPAGE="https://www.exodus.com/"
-
 SRC_URI="https://downloads.exodus.com/releases/exodus-linux-x64-${PV}.deb"
+
+S="${WORKDIR}"
 
 LICENSE="all-rights-reserved no-source-code"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 QA_PREBUILT="*"
-
-DEPEND=""
-RDEPEND="${DEPEND}"
-BDEPEND=""
-
-S="${WORKDIR}"
 
 src_install() {
 	mv "${S}/usr/share/doc/exodus" "${S}/usr/share/doc/${P}"
