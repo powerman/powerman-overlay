@@ -12,7 +12,6 @@ SRC_URI="http://untroubled.org/twoftpd/archive/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DEPEND="virtual/libc
 		>=dev-libs/bglibs-1.103

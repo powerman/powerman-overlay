@@ -13,10 +13,11 @@ COMMIT_ID=8a112fbd55
 MY_PV="$(ver_cut 1-3)-$(ver_cut 4 ${PV/p//}).${COMMIT_ID}"
 SRC_URI="https://prerelease.keybase.io/linux_binaries/deb/${MY_PN}_${MY_PV}_amd64.deb"
 
+S="${WORKDIR}"
+
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-IUSE=""
 RESTRICT="strip"
 
 RDEPEND="
@@ -36,8 +37,6 @@ QA_PREBUILT="
 	usr/bin/keybase
 	usr/bin/keybase-redirector
 "
-
-S="${WORKDIR}"
 
 src_prepare() {
 	default

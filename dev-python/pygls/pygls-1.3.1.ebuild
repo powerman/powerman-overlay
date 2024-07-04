@@ -22,6 +22,5 @@ DEPEND="
     dev-python/websockets[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 S=${WORKDIR}/${P}

@@ -10,9 +10,7 @@ SRC_URI="http://powerman.name/download/${PN}/${P}.tgz"
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
-DEPEND=""
 RDEPEND=">=app-crypt/gnupg-2.1"
 
 src_install() {

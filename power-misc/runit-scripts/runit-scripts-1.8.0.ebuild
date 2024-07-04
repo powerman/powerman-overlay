@@ -12,7 +12,6 @@ SRC_URI="http://powerman.name/download/Gentoo/${P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DEPEND=">=sys-process/runit-2.1.2-r1"
 RDEPEND="net-firewall/iptables

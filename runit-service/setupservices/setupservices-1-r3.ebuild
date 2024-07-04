@@ -5,14 +5,11 @@ EAPI=6
 
 DESCRIPTION="Setup system to use runit services"
 HOMEPAGE="http://powerman.name/"
-SRC_URI=""
 
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
-DEPEND=""
 RDEPEND="acct-user/log"
 
 src_unpack() {

@@ -10,9 +10,7 @@ SRC_URI="http://powerman.name/download/deliver/${P}.tgz"
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
-DEPEND=""
 RDEPEND="mail-filter/normalizemime app-i18n/enca"
 
 src_install() {

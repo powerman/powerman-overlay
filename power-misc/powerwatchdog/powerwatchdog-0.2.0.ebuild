@@ -10,7 +10,6 @@ SRC_URI="http://powerman.name/download/powerwatchdog/${P}.tgz"
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND="virtual/mta
 	|| ( sys-process/procps[-modern-top] app-admin/sysstat )"

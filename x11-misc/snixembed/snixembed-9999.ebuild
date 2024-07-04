@@ -13,7 +13,6 @@ EGIT_REPO_URI="https://git.sr.ht/~steef/snixembed"
 LICENSE="ISC"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="
 	dev-lang/vala:=
@@ -21,7 +20,6 @@ DEPEND="
 	>=dev-libs/glib-2.0:2
 	dev-libs/libdbusmenu[gtk3]"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 src_prepare() {
 	vala_src_prepare

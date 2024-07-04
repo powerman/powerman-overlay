@@ -8,7 +8,6 @@ inherit git-r3 pax-utils multilib-build
 
 DESCRIPTION="OS Inferno Fourth Edition"
 HOMEPAGE="https://bitbucket.org/inferno-os/inferno-os"
-SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT=0
@@ -19,7 +18,6 @@ DEPEND="X? (
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		x11-libs/libXext[${MULTILIB_USEDEP}]
 	)"
-RDEPEND=""
 
 EGIT_REPO_URI="https://bitbucket.org/inferno-os/inferno-os"
 EGIT_COMMIT="48f2755"

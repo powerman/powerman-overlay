@@ -24,6 +24,5 @@ DEPEND="
     dev-python/pyhamcrest[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 S=${WORKDIR}/${P}

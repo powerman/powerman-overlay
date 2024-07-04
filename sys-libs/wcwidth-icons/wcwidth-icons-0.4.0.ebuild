@@ -10,7 +10,6 @@ SRC_URI="https://github.com/powerman/wcwidth-icons/archive/v${PV}.tar.gz -> ${P}
 LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 src_install() {
 	emake DESTDIR="${D}" LIBDIR="/usr/$(get_libdir)" install

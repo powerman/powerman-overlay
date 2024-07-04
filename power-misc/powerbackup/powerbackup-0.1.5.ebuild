@@ -10,7 +10,6 @@ SRC_URI="http://powerman.name/download/powerbackup/${P}.tgz"
 LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 src_install() {
 	dobin bin/powerbackup
