@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit linux-info
 
@@ -27,15 +27,15 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [ ! -d "${ROOT}"etc/runit/runsvdir/single ] ||
-		[ "$(find "${ROOT}"etc/runit/runsvdir/single/ -type l)" = "" ]; then
+	if [ ! -d "${ROOT}"/etc/runit/runsvdir/single ] ||
+		[ "$(find "${ROOT}"/etc/runit/runsvdir/single/ -type l)" = "" ]; then
 		ewarn "If you are using 'runsvchdir single' in /etc/runit/1,"
-		ewarn "then you should create ${ROOT}etc/runit/runsvdir/single/"
+		ewarn "then you should create ${ROOT}/etc/runit/runsvdir/single/"
 		ewarn "with at least only getty service in it."
 	fi
 	if [ ! -d "${ROOT}${SVDIR}"/log-all ]; then
 		ewarn "You MUST run service 'log-all' at ALL runlevels!"
-		ewarn "Please run:	ln -s /etc/sv/log-all ${ROOT%/}${SVDIR%/}/"
+		ewarn "Please run:	ln -s /etc/sv/log-all ${ROOT}${SVDIR%/}/"
 	fi
 	if ! linux_config_exists || ! linux_chkconfig_present DEVTMPFS; then
 		ewarn "Please enable CONFIG_DEVTMPFS in your kernel config."
