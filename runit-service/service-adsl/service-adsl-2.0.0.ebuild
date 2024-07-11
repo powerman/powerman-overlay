@@ -24,7 +24,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	for d in "${ROOT}"etc/sv/adsl?*/; do
+	for d in "${ROOT}"/etc/sv/adsl?*/; do
 		[ -e "$d" ] && ewarn "Modified service may need update: $d"
 	done
 }
