@@ -27,16 +27,16 @@ src_install() {
 }
 
 pkg_preinst() {
-	if [ -f "${ROOT}"var/log/apache2/ssl_access_log ]; then
-		mv "${ROOT}"var/log/apache2/ssl_access_log  "${ROOT}"var/log/apache2/ssl_access_log.old || die
-		mv "${ROOT}"var/log/apache2/ssl_error_log   "${ROOT}"var/log/apache2/ssl_error_log.old || die
-		mv "${ROOT}"var/log/apache2/ssl_request_log "${ROOT}"var/log/apache2/ssl_request_log.old || die
+	if [ -f "${ROOT}"/var/log/apache2/ssl_access_log ]; then
+		mv "${ROOT}"/var/log/apache2/ssl_access_log "${ROOT}"/var/log/apache2/ssl_access_log.old || die
+		mv "${ROOT}"/var/log/apache2/ssl_error_log "${ROOT}"/var/log/apache2/ssl_error_log.old || die
+		mv "${ROOT}"/var/log/apache2/ssl_request_log "${ROOT}"/var/log/apache2/ssl_request_log.old || die
 		ewarn "This package now contain 3 new services for ssl-logs."
-		ewarn "You current logs was renamed to ${ROOT}var/log/apache2/ssl_*_log.old."
+		ewarn "You current logs was renamed to ${ROOT}/var/log/apache2/ssl_*_log.old."
 		ewarn "You should start new services now and restart apache:"
-		ewarn "    ln -s /etc/sv/apache2-log-ssl-access  ${ROOT%/}${SVDIR%/}/"
-		ewarn "    ln -s /etc/sv/apache2-log-ssl-error   ${ROOT%/}${SVDIR%/}/"
-		ewarn "    ln -s /etc/sv/apache2-log-ssl-request ${ROOT%/}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/apache2-log-ssl-access  ${ROOT}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/apache2-log-ssl-error   ${ROOT}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/apache2-log-ssl-request ${ROOT}${SVDIR%/}/"
 		ewarn "    sv t apache2"
 	fi
 }
