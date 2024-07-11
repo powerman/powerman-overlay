@@ -24,7 +24,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	for d in "${ROOT}"etc/sv/tinydns?*/; do
+	for d in "${ROOT}"/etc/sv/tinydns?*/; do
 		[ -e "$d" ] && ewarn "Modified service may need update: $d"
 	done
 }
