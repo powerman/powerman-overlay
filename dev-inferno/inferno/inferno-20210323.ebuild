@@ -1,8 +1,8 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-MULTILIB_COMPAT=( abi_x86_32 )
+EAPI=8
+MULTILIB_COMPAT=(abi_x86_32)
 
 inherit git-r3 pax-utils multilib-build
 
@@ -88,7 +88,7 @@ src_install() {
 	fi
 
 	# Fix permissions
-	while IFS="" read -d $'\0' -r f ; do
+	while IFS="" read -d $'\0' -r f; do
 		fperms +x /usr/inferno/"$f"
 	done < <(find Linux/386/bin/ dis/ -type f -not -name '*.dis' -print0)
 	fperms 0600 /usr/inferno/keydb/keys
