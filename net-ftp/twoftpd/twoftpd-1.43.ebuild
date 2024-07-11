@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit toolchain-funcs
 
@@ -20,7 +20,7 @@ RDEPEND="sys-apps/ucspi-tcp
 		sys-process/daemontools
 		>=net-libs/cvm-0.90"
 
-DOCS=( ANNOUNCEMENT ChangeLog NEWS README TODO VERSION twoftpd.run twoftpd-log.run )
+DOCS=(ANNOUNCEMENT ChangeLog NEWS README TODO VERSION twoftpd.run twoftpd-log.run)
 
 src_prepare() {
 	eapply "$FILESDIR"/FF.patch
@@ -28,10 +28,10 @@ src_prepare() {
 }
 
 src_configure() {
-	echo "/usr/sbin" > conf-bin || die
-	echo "/usr/share/man" > conf-man || die
-	echo "$(tc-getCC) ${CFLAGS} -I/usr/include/bglibs" > conf-cc || die
-	echo "$(tc-getCC) -s -L/usr/lib/bglibs" > conf-ld || die
+	echo "/usr/sbin" >conf-bin || die
+	echo "/usr/share/man" >conf-man || die
+	echo "$(tc-getCC) ${CFLAGS} -I/usr/include/bglibs" >conf-cc || die
+	echo "$(tc-getCC) -s -L/usr/lib/bglibs" >conf-ld || die
 }
 
 src_install() {
