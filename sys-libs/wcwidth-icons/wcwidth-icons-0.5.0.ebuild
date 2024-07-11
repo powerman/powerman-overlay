@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 DESCRIPTION="Support fonts with double-width icons in xterm/rxvt-unicode/zsh/..."
 HOMEPAGE="https://github.com/powerman/wcwidth-icons"
