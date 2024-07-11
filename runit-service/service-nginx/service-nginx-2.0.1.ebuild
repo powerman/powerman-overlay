@@ -27,13 +27,13 @@ src_install() {
 }
 
 pkg_preinst() {
-	if [ -f "${ROOT}"var/log/nginx/access_log ]; then
-		mv "${ROOT}"var/log/nginx/access_log "${ROOT}"var/log/nginx/access_log.old || die
-		mv "${ROOT}"var/log/nginx/error_log  "${ROOT}"var/log/nginx/error_log.old || die
-		ewarn "You current logs was renamed to ${ROOT}var/log/nginx/{access,error}_log.old."
+	if [ -f "${ROOT}"/var/log/nginx/access_log ]; then
+		mv "${ROOT}"/var/log/nginx/access_log "${ROOT}"/var/log/nginx/access_log.old || die
+		mv "${ROOT}"/var/log/nginx/error_log "${ROOT}"/var/log/nginx/error_log.old || die
+		ewarn "You current logs was renamed to ${ROOT}/var/log/nginx/{access,error}_log.old."
 		ewarn "You should start new services now and restart nginx:"
-		ewarn "    ln -s /etc/sv/nginx-log-access ${ROOT%/}${SVDIR%/}/"
-		ewarn "    ln -s /etc/sv/nginx-log-error  ${ROOT%/}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/nginx-log-access ${ROOT}${SVDIR%/}/"
+		ewarn "    ln -s /etc/sv/nginx-log-error  ${ROOT}${SVDIR%/}/"
 		ewarn "    sv t nginx"
 	fi
 }
