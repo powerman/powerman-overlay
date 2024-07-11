@@ -26,6 +26,6 @@ src_install() {
 pkg_postinst() {
 	if [ ! -d "${ROOT}${SVDIR}"/notify ]; then
 		ewarn "You MUST run service 'notify' at all runlevels where you use 'log-all'!"
-		ewarn "Please run:	ln -s /etc/sv/notify ${ROOT%/}${SVDIR%/}/"
+		ewarn "Please run:	ln -s /etc/sv/notify ${ROOT}${SVDIR%/}/"
 	fi
 }
