@@ -21,8 +21,8 @@ CRATES="
 	auto_impl@1.2.0
 	autocfg@1.3.0
 	backtrace@0.3.71
-	bit-set@0.5.3
-	bit-vec@0.6.3
+	bit-set@0.6.0
+	bit-vec@0.7.0
 	bitflags@1.3.2
 	bitflags@2.5.0
 	bstr@1.9.1
@@ -30,15 +30,15 @@ CRATES="
 	byteorder@1.5.0
 	bytes@1.6.0
 	cast@0.3.0
-	cc@1.0.97
+	cc@1.0.104
 	cfg-if@1.0.0
 	ciborium@0.2.2
 	ciborium-io@0.2.2
 	ciborium-ll@0.2.2
-	clap@4.5.7
-	clap_builder@4.5.7
-	clap_complete@4.5.6
-	clap_derive@4.5.5
+	clap@4.5.9
+	clap_builder@4.5.9
+	clap_complete@4.5.8
+	clap_derive@4.5.8
 	clap_lex@0.7.0
 	codespan-reporting@0.11.1
 	colorchoice@1.0.1
@@ -102,10 +102,10 @@ CRATES="
 	memoffset@0.9.1
 	miniz_oxide@0.7.2
 	mio@0.8.11
-	napi@2.16.6
+	napi@2.16.8
 	napi-build@2.1.3
-	napi-derive@2.16.5
-	napi-derive-backend@1.0.67
+	napi-derive@2.16.8
+	napi-derive-backend@1.0.70
 	napi-sys@2.4.0
 	newline-converter@0.3.0
 	normalize-line-endings@0.3.0
@@ -150,10 +150,10 @@ CRATES="
 	schemars_derive@0.8.21
 	scopeguard@1.2.0
 	semver@1.0.23
-	serde@1.0.203
-	serde_derive@1.0.203
+	serde@1.0.204
+	serde_derive@1.0.204
 	serde_derive_internals@0.29.0
-	serde_json@1.0.117
+	serde_json@1.0.120
 	serde_repr@0.1.19
 	serde_yaml@0.9.34+deprecated
 	signal-hook@0.3.17
@@ -168,8 +168,8 @@ CRATES="
 	tempfile@3.10.1
 	termcolor@1.4.1
 	termtree@0.4.1
-	thiserror@1.0.61
-	thiserror-impl@1.0.61
+	thiserror@1.0.62
+	thiserror-impl@1.0.62
 	thread_local@1.1.8
 	tinytemplate@1.2.1
 	tinyvec@1.6.0
@@ -177,7 +177,7 @@ CRATES="
 	tokio@1.38.0
 	tokio-util@0.7.11
 	toml_datetime@0.6.6
-	toml_edit@0.22.14
+	toml_edit@0.22.15
 	tower@0.4.13
 	tower-layer@0.3.2
 	tower-lsp@0.20.0
@@ -189,7 +189,7 @@ CRATES="
 	tree-sitter@0.21.0
 	tree-sitter-bash@0.21.0
 	tree-sitter-c@0.21.4
-	tree-sitter-c-sharp@0.21.2
+	tree-sitter-c-sharp@0.21.3
 	tree-sitter-cpp@0.22.2
 	tree-sitter-css@0.21.0
 	tree-sitter-dart@0.0.4
@@ -199,18 +199,18 @@ CRATES="
 	tree-sitter-haskell@0.21.0
 	tree-sitter-html@0.20.3
 	tree-sitter-java@0.21.0
-	tree-sitter-javascript@0.21.3
+	tree-sitter-javascript@0.21.4
 	tree-sitter-javascript-sg@0.21.2
 	tree-sitter-json@0.21.0
 	tree-sitter-kotlin@0.3.6
 	tree-sitter-lua@0.1.0
-	tree-sitter-php@0.22.5
+	tree-sitter-php@0.22.7
 	tree-sitter-python@0.21.0
 	tree-sitter-ruby@0.21.0
 	tree-sitter-rust@0.21.2
 	tree-sitter-scala@0.21.0
 	tree-sitter-swift@0.4.2
-	tree-sitter-typescript@0.21.1
+	tree-sitter-typescript@0.21.2
 	unicode-bidi@0.3.15
 	unicode-ident@1.0.12
 	unicode-normalization@0.1.23
