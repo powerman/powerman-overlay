@@ -8,7 +8,7 @@ PYTHON_COMPAT=(python3_{10..12})
 
 inherit distutils-r1 pypi
 
-DESCRIPTION="An mdformat plugin for rendering tables"
+DESCRIPTION="Format Markdown for Obsidian including Callouts (Admonitions)"
 HOMEPAGE="https://github.com/kyleking/mdformat-obsidian https://pypi.org/project/mdformat_obsidian/"
 SRC_URI="$(pypi_sdist_url "${PN//-/_}")"
 
