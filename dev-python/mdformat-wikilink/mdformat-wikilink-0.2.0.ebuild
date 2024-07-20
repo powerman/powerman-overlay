@@ -8,7 +8,7 @@ PYTHON_COMPAT=(python3_{10..12})
 
 inherit distutils-r1 pypi
 
-DESCRIPTION="An mdformat plugin for rendering tables"
+DESCRIPTION="Add wiki-style link support to mdformat"
 HOMEPAGE="https://github.com/tmr232/mdformat-wikilink https://pypi.org/project/mdformat-wikilink/"
 SRC_URI="$(pypi_sdist_url "${PN//-/_}")"
 
