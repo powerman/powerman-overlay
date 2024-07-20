@@ -8,7 +8,7 @@ PYTHON_COMPAT=(python3_{10..12})
 
 inherit distutils-r1 pypi
 
-DESCRIPTION="An mdformat plugin for rendering tables"
+DESCRIPTION="mdformat plugin to render thematic breaks using three dashes"
 HOMEPAGE="https://github.com/csala/mdformat-simple-breaks https://pypi.org/project/mdformat_simple_breaks/"
 SRC_URI="$(pypi_sdist_url "${PN//-/_}")"
 
