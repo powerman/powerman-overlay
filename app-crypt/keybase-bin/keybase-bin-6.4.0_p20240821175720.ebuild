@@ -9,7 +9,7 @@ DESCRIPTION="Client for keybase.io (binary version with GUI)"
 HOMEPAGE="https://keybase.io/"
 
 MY_PN="${PN/-bin/}"
-COMMIT_ID=8a112fbd55
+COMMIT_ID=3212f60cc5
 MY_PV="$(ver_cut 1-3)-$(ver_cut 4 ${PV/p//}).${COMMIT_ID}"
 SRC_URI="https://prerelease.keybase.io/linux_binaries/deb/${MY_PN}_${MY_PV}_amd64.deb"
 
