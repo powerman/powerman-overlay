@@ -3,8 +3,10 @@
 
 EAPI=7
 
+PYTHON_COMPAT=( python3_{10..12} )
+
 if [[ ${PV} = *9999* ]]; then
-	EGIT_BRANCH="v241-stable"
+	EGIT_BRANCH="v252-stable"
 	EGIT_REPO_URI="https://github.com/elogind/elogind.git"
 	inherit git-r3
 else
@@ -12,14 +14,14 @@ else
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 fi
 
-inherit linux-info meson pam udev xdg-utils
+inherit linux-info meson pam python-any-r1 udev xdg-utils
 
 DESCRIPTION="The systemd project's logind, extracted to a standalone package"
 HOMEPAGE="https://github.com/elogind/elogind"
 
 LICENSE="CC0-1.0 LGPL-2.1+ public-domain"
 SLOT="0"
-IUSE="+acl audit +cgroup-hybrid debug doc +pam +policykit runit selinux test"
+IUSE="+acl audit cgroup-hybrid debug doc +pam +policykit runit selinux test"
 RESTRICT="!test? ( test )"
 
 BDEPEND="
@@ -28,6 +30,8 @@ BDEPEND="
 	app-text/docbook-xsl-stylesheets
 	dev-util/gperf
 	virtual/pkgconfig
+	$(python_gen_any_dep 'dev-python/jinja[${PYTHON_USEDEP}]')
+	$(python_gen_any_dep 'dev-python/lxml[${PYTHON_USEDEP}]')
 "
 DEPEND="
 	audit? ( sys-process/audit )
@@ -46,16 +50,19 @@ PDEPEND="
 	policykit? ( sys-auth/polkit )
 "
 
-DOCS=( README.md src/libelogind/sd-bus/GVARIANT-SERIALIZATION )
+DOCS=( README.md)
 
 PATCHES=(
-	"${FILESDIR}/${PN}-243.7-nodocs.patch"
-	"${FILESDIR}/${PN}-241.4-broken-test.patch" # bug 699116
-	"${FILESDIR}/${P}-revert-polkit-automagic.patch"
-	"${FILESDIR}/${P}-clang-undefined-symbol.patch"
-	"${FILESDIR}/${P}-loong.patch"
-	"${FILESDIR}/${P}-musl-selinux.patch"
+	"${FILESDIR}/${P}-nodocs.patch"
+	"${FILESDIR}/${P}-musl-lfs.patch"
+	"${FILESDIR}/${P}-musl-1.2.5.patch"
+	"${FILESDIR}/${P}-py-exec.patch" # bug 933398
 )
+
+python_check_deps() {
+	python_has_version "dev-python/jinja[${PYTHON_USEDEP}]" &&
+	python_has_version "dev-python/lxml[${PYTHON_USEDEP}]"
+}
 
 pkg_setup() {
 	local CONFIG_CHECK="~CGROUPS ~EPOLL ~INOTIFY_USER ~SIGNALFD ~TIMERFD"
@@ -64,6 +71,21 @@ pkg_setup() {
 }
 
 src_prepare() {
+	if use elibc_musl; then
+		# Some of musl-specific patches break build on the
+		# glibc systems (like getdents), therefore those are
+		# only used when the build is done for musl.
+		PATCHES+=(
+			"${FILESDIR}/${P}-musl-sigfillset.patch"
+			"${FILESDIR}/${P}-musl-statx.patch"
+			"${FILESDIR}/${P}-musl-rlim-max.patch"
+			"${FILESDIR}/${P}-musl-getdents.patch"
+			"${FILESDIR}/${P}-musl-gshadow.patch"
+			"${FILESDIR}/${P}-musl-strerror_r.patch"
+			"${FILESDIR}/${P}-musl-more-strerror_r.patch"
+		)
+	fi
+
 	default
 	xdg_environment_reset
 }
@@ -74,6 +96,10 @@ src_configure() {
 	else
 		cgroupmode="unified"
 	fi
+
+	python_setup
+
+	EMESON_BUILDTYPE="$(usex debug debug release)"
 
 	local emesonargs=(
 		-Ddocdir="${EPREFIX}/usr/share/doc/${PF}"
@@ -86,6 +112,7 @@ src_configure() {
 		-Drootprefix="${EPREFIX}/"
 		-Dbashcompletiondir="${EPREFIX}/usr/share/bash-completion/completions"
 		-Dman=auto
+		-Dpolkit=$(usex policykit true false)
 		-Dsmack=true
 		$(use runit && echo -Dpoweroff-path=/sbin/elogind-poweroff)
 		$(use runit && echo -Dreboot-path=/sbin/elogind-reboot)
@@ -94,20 +121,18 @@ src_configure() {
 		-Ddefault-kill-user-processes=false
 		-Dacl=$(usex acl true false)
 		-Daudit=$(usex audit true false)
-		-Dbuildtype=$(usex debug debug release)
 		-Dhtml=$(usex doc auto false)
 		-Dpam=$(usex pam true false)
 		-Dselinux=$(usex selinux true false)
 		-Dtests=$(usex test true false)
 		-Dutmp=$(usex elibc_musl false true)
+		-Dmode=release
 	)
 
 	meson_src_configure
 }
 
 src_install() {
-	DOCS+=( src/libelogind/sd-bus/GVARIANT-SERIALIZATION )
-
 	meson_src_install
 
 	newinitd "${FILESDIR}"/${PN}.init-r1 ${PN}
@@ -123,6 +148,7 @@ src_install() {
 }
 
 pkg_postinst() {
+	udev_reload
 	if ! use pam; then
 		ewarn "${PN} will not be managing user logins/seats without USE=\"pam\"!"
 		ewarn "In other words, it will be useless for most applications."
@@ -155,4 +181,16 @@ pkg_postinst() {
 			elog "when the first service calls it via dbus."
 		fi
 	fi
+
+	for version in ${REPLACING_VERSIONS}; do
+		if ver_test "${version}" -lt 252.9; then
+			elog "Starting with release 252.9 the sleep configuration is now done"
+			elog "in the /etc/elogind/sleep.conf. Should you use non-default sleep"
+			elog "configuration remember to migrate those to new configuration file."
+		fi
+	done
+}
+
+pkg_postrm() {
+	udev_reload
 }
