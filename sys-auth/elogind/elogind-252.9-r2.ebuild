@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=(python3_{10..12})
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_BRANCH="v252-stable"
@@ -30,7 +30,7 @@ BDEPEND="
 	app-text/docbook-xsl-stylesheets
 	dev-util/gperf
 	virtual/pkgconfig
-	$(python_gen_any_dep 'dev-python/jinja[${PYTHON_USEDEP}]')
+	$(python_gen_any_dep 'dev-python/jinja2[${PYTHON_USEDEP}]')
 	$(python_gen_any_dep 'dev-python/lxml[${PYTHON_USEDEP}]')
 "
 DEPEND="
@@ -50,7 +50,7 @@ PDEPEND="
 	policykit? ( sys-auth/polkit )
 "
 
-DOCS=( README.md)
+DOCS=(README.md)
 
 PATCHES=(
 	"${FILESDIR}/${P}-nodocs.patch"
@@ -60,8 +60,8 @@ PATCHES=(
 )
 
 python_check_deps() {
-	python_has_version "dev-python/jinja[${PYTHON_USEDEP}]" &&
-	python_has_version "dev-python/lxml[${PYTHON_USEDEP}]"
+	python_has_version "dev-python/jinja2[${PYTHON_USEDEP}]" &&
+		python_has_version "dev-python/lxml[${PYTHON_USEDEP}]"
 }
 
 pkg_setup() {
@@ -137,7 +137,7 @@ src_install() {
 
 	newinitd "${FILESDIR}"/${PN}.init-r1 ${PN}
 
-	sed -e "s|@libdir@|$(get_libdir)|" "${FILESDIR}"/${PN}.conf.in > ${PN}.conf || die
+	sed -e "s|@libdir@|$(get_libdir)|" "${FILESDIR}"/${PN}.conf.in >${PN}.conf || die
 	newconfd ${PN}.conf ${PN}
 
 	if use runit; then
