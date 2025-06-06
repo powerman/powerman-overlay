@@ -379,10 +379,10 @@ src_unpack() {
 }
 
 src_install() {
-	cp ../target/x86_64-unknown-linux-gnu/$(usex debug debug release)/{softu2f-,}user-daemon
-	cp ../target/x86_64-unknown-linux-gnu/$(usex debug debug release)/{softu2f-,}system-daemon
+	cp ../target/$(usex debug debug release)/{softu2f-,}user-daemon
+	cp ../target/$(usex debug debug release)/{softu2f-,}system-daemon
 	exeinto /usr/lib/softu2f
-	doexe ../target/x86_64-unknown-linux-gnu/$(usex debug debug release)/{user,system}-daemon
+	doexe ../target/$(usex debug debug release)/{user,system}-daemon
 
 	systemd_dounit system-daemon/softu2f.{service,socket}
 	systemd_douserunit user-daemon/softu2f.service
