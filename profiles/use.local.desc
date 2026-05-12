@@ -2,6 +2,13 @@
 # your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using egencache *
 
+app-admin/keepassxc:autotype - Add support to autotype the passwords into other applications
+app-admin/keepassxc:browser - Enable communication with web browser plugins
+app-admin/keepassxc:keeshare - Enable KeeShare sharing integration
+app-admin/keepassxc:keyring - Enable support for use as the the system keyring
+app-admin/keepassxc:network - Enable network support (e.g. for downloading favicons)
+app-admin/keepassxc:ssh-agent - Use KeePassXC to unlock SSH keys
+app-admin/keepassxc:yubikey - Enable database unlocking via hardware keys supporting YubiKey-style HMAC-SHA1 protocol
 app-admin/reprepro:archive - Enable archive support using app-arch/libarchive
 app-admin/reprepro:gpg - Enable gpgme support using app-crypt/gpgme
 dev-inferno/inferno:cjson - Add fast JSON tokenizer module for Limbo.
