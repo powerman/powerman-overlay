@@ -13,7 +13,7 @@ KEYWORDS="~amd64 ~x86"
 
 DEPEND="runit-service/setupservices"
 RDEPEND=">=sys-process/runit-2.1.2-r1
-	www-servers/nginx"
+	www-servers/nginx:stable="
 
 src_install() {
 	cp -a * "${D}"
